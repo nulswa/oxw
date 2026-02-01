@@ -1,10 +1,10 @@
 import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!global.db.data.chats[m.chat].fPrem && m.isGroup) {
+if (!global.db.data.chats[m.chat].fPremium && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Lo siento, este comando solo se utiliza al comprar un plan con premium incluído.\n\n- Usa el comando *#plan* para ver los planes disponibles.` }, { quoted: m })
 }
 
-if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione el nombre de una provincia.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Formosa` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* Formosa` }, { quoted: m })
 await m.react("⏰");
 try {
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(text)}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273`;

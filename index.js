@@ -338,7 +338,7 @@ const filenames = readdirSync(tmpDir)
 filenames.forEach(file => {
 const filePath = join(tmpDir, file)
 unlinkSync(filePath)})
-//console.log(chalk.gray(`[ ✅ ]  Archivos innecesarios eliminados.`))
+console.log(chalk.gray(`[ ✅ ]  Archivos innecesarios eliminados.`))
 } catch {
 console.log(chalk.gray(`[ ❌ ]  No se ha podido eliminar los archivos innecesarios.`));
 }}, 30 * 1000) 

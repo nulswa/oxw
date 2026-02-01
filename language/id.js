@@ -1,4 +1,4 @@
-const translations = {
+export const translations = {
 
   ejemplo: '✦  *Contoh penggunaan:*',
   nolink: '✦  *Tautan tidak valid...*',
@@ -110,4 +110,4 @@ const translations = {
   rapido: 'Kecepatan'
 }
 
-export default translations
+//export default translations

@@ -1,4 +1,4 @@
-const translations = {
+export const translations = {
 
   ejemplo: '✦  *مثال على الاستخدام:*',
   nolink: '✦  *الرابط غير صالح...*',
@@ -111,4 +111,4 @@ const translations = {
 
 }
 
-export default translations
+//export default translations

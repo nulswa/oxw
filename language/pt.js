@@ -1,4 +1,4 @@
-const translations = {
+export const translations = {
 
   ejemplo: '✦  *Exemplo de uso:*',
   nolink: '✦  *O link não é válido...*',
@@ -111,4 +111,4 @@ const translations = {
 
 }
 
-export default translations
+//export default translations

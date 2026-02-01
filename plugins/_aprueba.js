@@ -1,4 +1,4 @@
-const handler = async (m, { conn }) => {  
+const handler = async (m, { conn, usedPrefix }) => {  
 
 
   await conn.sendMessage(m.chat, { text: 'hola',

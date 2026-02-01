@@ -1,0 +1,11 @@
+.npm/
+.git/
+node_modules/
+package-lock.json
+yarn.lock
+database.json
+Sessions/Principal/
+Sessions/SubBot/
+BackupSession/
+database/
+

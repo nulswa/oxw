@@ -1,10 +1,10 @@
 import axios from 'axios'
 let handler = async (m, { conn, usedPrefix, command, text }) => {
 if (!global.db.data.chats[m.chat].fAis && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ inteligencia artificial ]* estan desactivados...` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mssg.noias}` }, { quoted: m })
 }
 
-if (!text) return client.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* Hola` }, { quoted: m })
+if (!text) return client.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* Hola` }, { quoted: m })
 await m.react("⏰")
 try {
 let { data } = await axios.get(`https://api-hasumi.vercel.app/api/ai/chatgpt?text=${encodeURIComponent(text)}`)

@@ -6,7 +6,7 @@ import crypto from 'crypto';
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 let q = m.quoted ? m.quoted : m;
 let mime = (q.msg || q).mimetype || '';
-if (!mime) return conn.sendMessage(m.chat, { text: `ᗢ Responda a un archivo multimedia para subirlo en Mediafire.` }, { quoted: m });
+if (!mime) return conn.sendMessage(m.chat, { text: `${mssg.replya('mp4, mp3, jpg, gif, webp')}` }, { quoted: m });
 await m.react("⏰");
 let mediaFont = "Mediafire";
 try {
@@ -153,12 +153,12 @@ if (resumableResponse.data && resumableResponse.data.response && resumableRespon
 
 if (quickKey) {
 const link = `https://www.mediafire.com/file/${quickKey}/`;
-let toruUpload = `· ┄ · ⊸ 𔓕 *Upload  :  Mediafire*
+let toruUpload = `· ┄ · ⊸ 𔓕 *${mssg.resultado}  :  Mediafire*
 
-＃ *Nombre* : ${filename}
-＃ *Peso* : ${toruBit(fileSize)}
-＃ *Fuente* : ${mediaFont}
-＃ *Enlace* : ${link}
+＃ *${mssg.nombre}* : ${filename}
+＃ *${mssg.peso}* : ${toruBit(fileSize)}
+＃ *${mssg.fuente}* : ${mediaFont}
+＃ *${mssg.enlace}* : ${link}
 
 > ${textbot}`
 const thumbXd = Buffer.from(await (await fetch(`https://files.catbox.moe/uzje6f.jpg`)).arrayBuffer());

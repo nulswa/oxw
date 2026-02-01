@@ -7,7 +7,7 @@ import { fileTypeFromBuffer } from "file-type"
 import crypto from "crypto"
 const handler = async (m, { conn, command, usedPrefix, text }) => {
 if (!global.db.data.chats[m.chat].fConvert && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ convertidor ]* estan desactivados...` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mssg.noconv}` }, { quoted: m })
 }
 
 try {
@@ -15,17 +15,17 @@ let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 switch (command) {
 case 'turl': {
-if (!mime) return conn.sendMessage(m.chat, { text: `ᗢ Responda a una extensión para convertirlo en enlace.` }, { quoted: m })
+if (!mime) return conn.sendMessage(m.chat, { text: `${mssg.replya('mp4, mp3, jpg, webp')}` }, { quoted: m })
 await m.react('⏰')
 const media = await q.download()
 const isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
 const link = await uploadImage(media)
-const txt = `· ┄ · ⊸ 𔓕 *Qu_Ax  :  Upload*
+const txt = `· ┄ · ⊸ 𔓕 *Qu_Ax  :  ${mssg.resultado}*
 
-\t＃ *Fuente* : qu.ax
-\t＃ *Peso* : ${formatBytes(media.length)}
-\t＃ *Caducidad* : ${isTele ? 'No expira.' : 'Undefined'}
-\t＃ *Enlace* : ${link}
+\t＃ *${mssg.fuente}* : qu.ax
+\t＃ *${mssg.peso}* : ${formatBytes(media.length)}
+\t＃ *${mssg.duracion}* : ${isTele ? 'No expira.' : 'Undefined'}
+\t＃ *${mssg.enlace}* : ${link}
 
 > ${textbot}`
 const ppTelegra = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
@@ -34,17 +34,17 @@ await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender], contextInfo: {
 break
 }
 case 'catbox': {
-if (!mime) return conn.sendMessage(m.chat, { text: `ᗢ Responda a una extensión para convertirlo en enlace.` }, { quoted: m })
+if (!mime) return conn.sendMessage(m.chat, { text: `${mssg.replya('mp4, mp3, jpg, webp')}` }, { quoted: m })
 await m.react('⏰')
 const media = await q.download()
 const isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
 const link = await catbox(media)
-const txt = `· ┄ · ⊸ 𔓕 *CatBox  :  Upload*
+const txt = `· ┄ · ⊸ 𔓕 *CatBox  :  ${mssg.resultado}*
 
-\t＃ *Fuente* : CatBox
-\t＃ *Peso* : ${formatBytes(media.length)}
-\t＃ *Caducidad* : ${isTele ? 'No expira.' : 'Undefined'}
-\t＃ *Enlace* : ${link}
+\t＃ *${mssg.fuente}* : CatBox
+\t＃ *${mssg.peso}* : ${formatBytes(media.length)}
+\t＃ *${mssg.duracion}* : ${isTele ? 'No expira.' : 'Undefined'}
+\t＃ *${mssg.enlace}* : ${link}
 
 > ${textbot}`
 const ppCatbox = Buffer.from(await (await fetch(`https://files.catbox.moe/9b9myu.jpg`)).arrayBuffer())

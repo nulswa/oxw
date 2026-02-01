@@ -18,13 +18,6 @@ const translations = {
   
   //-- Textos
   textoa: (value) => `Bot automatique via *(${value})*, peut obtenir des informations/données ou d'autres avantages pour fournir une utilisation utile à tous les utilisateurs.`,
-  textob: 'Impossible de convertir le contenu...',
-  textoc: 'Plus de catégories...',
-  textod: 'Si vous allez faire un achat, contactez un assistant ou le propriétaire.',
-  textoe: 'Serveurs achetés selon les détails...',
-  textof: 'Vous êtes déjà administrateur...',
-  textog: 'Vous avez manqué le texte',
-  exito: '✓ *Exécuté avec succès.*',
   
   //-- No
   nomenu: '📍 La commande *[ menu ]* est désactivée...',

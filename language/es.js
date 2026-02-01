@@ -18,13 +18,6 @@ const translations = {
   
   //-- Textos
   textoa: (value) => `Bot automático via *(${value})*, puede obtener información/datos o otras ventajas para proporcionar un uso util para todo usuario.`
-  textob: 'No se pudo convertir el contenido...',
-  textoc: 'No hay mas categorías...',
-  textod: 'Si vas a realizar una compra, contacta con un asistente o al mismo propietario.',
-  textoe: 'Servidores comprados según los detalles...',
-  textof: 'Ya eres administrador...',
-  textog: 'Te falto texto',
-  exito: '✓ *Ejecutado con exito.*',
   
   //-- No
   nomenu: '📍 El comando *[ menu ]* esta desactivado...',

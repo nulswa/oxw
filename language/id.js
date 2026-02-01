@@ -18,13 +18,6 @@ const translations = {
   
   //-- Textos
   textoa: (value) => `Bot otomatis via *(${value})*, dapat memperoleh informasi/data atau keuntungan lain untuk menyediakan penggunaan yang berguna bagi semua pengguna.`,
-  textob: 'Tidak dapat mengkonversi konten...',
-  textoc: 'Tidak ada kategori lagi...',
-  textod: 'Jika Anda akan melakukan pembelian, hubungi asisten atau pemilik.',
-  textoe: 'Server dibeli sesuai dengan detail...',
-  textof: 'Anda sudah menjadi administrator...',
-  textog: 'Anda melewatkan teks',
-  exito: '✓ *Dijalankan dengan sukses.*',
   
   //-- No
   nomenu: '📍 Perintah *[ menu ]* dinonaktifkan...',

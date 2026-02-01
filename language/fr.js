@@ -4,7 +4,9 @@ const translations = {
   nolink: '✦  *Le lien n\'est pas valide...*',
   apino: '✦  *API en panne : (erreur : X)...*',
   nobus: '✦  *Aucun résultat...*',
-
+  replya: (value) => `ᗢ Répondez à un format *( ${value} )* pour continuer.`,
+  replyb: (value) => `ᗢ Répondez à un format *( ${value} )* et fournissez un nom.`,
+  
   //Idiomas
   iselec: 'ᗢ Sélectionnez la langue que vous souhaitez.',
   selci: (value) => `Vous avez sélectionné la langue *( ${value} )*, les textes du bot seront traduits pour vous.`,
@@ -13,6 +15,16 @@ const translations = {
   falapi: '✦ Type d\'erreur API:',
   noresult: '✦ Impossible d\'accéder à l\'API...',
   unsolo: (value) => `✦ Vous ne pouvez répondre qu\'aux formats *( ${value} )*`,
+  
+  //-- Textos
+  textoa: (value) => `Bot automatique via *(${value})*, peut obtenir des informations/données ou d'autres avantages pour fournir une utilisation utile à tous les utilisateurs.`,
+  textob: 'Impossible de convertir le contenu...',
+  textoc: 'Plus de catégories...',
+  textod: 'Si vous allez faire un achat, contactez un assistant ou le propriétaire.',
+  textoe: 'Serveurs achetés selon les détails...',
+  textof: 'Vous êtes déjà administrateur...',
+  textog: 'Vous avez manqué le texte',
+  exito: '✓ *Exécuté avec succès.*',
   
   //-- No
   nomenu: '📍 La commande *[ menu ]* est désactivée...',
@@ -35,6 +47,7 @@ const translations = {
   noplan: (value) => `📍 Désolé, vous devez acheter un plan qui inclut la version *[ ${value} ]*\n- Utilisez *#plan* pour voir les plans disponibles...`,
   
   //-- Datos
+  ulistado: '⫶☰ Liste',
   udesca: 'Téléchargeur',
   usearch: 'Chercheur',
   ugener: 'Générateur',

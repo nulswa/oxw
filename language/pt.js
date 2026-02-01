@@ -4,7 +4,9 @@ const translations = {
   nolink: '✦  *O link não é válido...*',
   apino: '✦  *API fora do ar: (erro: X)...*',
   nobus: '✦  *Nenhum resultado...*',
-
+  replya: (value) => `ᗢ Responda a um formato *( ${value} )* para continuar.`,
+  replyb: (value) => `ᗢ Responda a um formato *( ${value} )* e forneça um nome.`,
+  
   //Idiomas
   iselec: 'ᗢ Selecione o idioma que você deseja.',
   selci: (value) => `Você selecionou o idioma *( ${value} )*, os textos do bot serão traduzidos para você.`,
@@ -14,6 +16,16 @@ const translations = {
   noresult: '✦ Não foi possível acessar a API...',
   unsolo: (value) => `✦ Você só pode responder formatos *( ${value} )*`,
   
+  //-- Textos
+  textoa: (value) => `Bot automático via *(${value})*, pode obter informações/dados ou outras vantagens para fornecer uso útil para todos os usuários.`,
+  textob: 'Não foi possível converter o conteúdo...',
+  textoc: 'Não há mais categorias...',
+  textod: 'Se você for fazer uma compra, entre em contato com um assistente ou o proprietário.',
+  textoe: 'Servidores comprados de acordo com os detalhes...',
+  textof: 'Você já é um administrador...',
+  textog: 'Você perdeu o texto',
+  exito: '✓ *Executado com sucesso.*',
+
   //-- No
   nomenu: '📍 O comando *[ menu ]* está desativado...',
   noinfo: '📍 Os comandos de *[ informação ]* estão desativados...',
@@ -35,6 +47,7 @@ const translations = {
   noplan: (value) => `📍 Desculpe, você deve comprar um plano que inclua a versão *[ ${value} ]*\n- Use *#plan* para ver os planos disponíveis...`,
   
   //-- Datos
+  ulistado: '⫶☰ Listagem',
   udesca: 'Baixador',
   usearch: 'Buscador',
   ugener: 'Gerador',

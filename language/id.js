@@ -4,7 +4,9 @@ const translations = {
   nolink: '✦  *Tautan tidak valid...*',
   apino: '✦  *API tidak aktif: (error: X)...*',
   nobus: '✦  *Tidak ada hasil...*',
-
+  replya: (value) => `ᗢ Balas ke format *( ${value} )* untuk melanjutkan.`,
+  replyb: (value) => `ᗢ Balas ke format *( ${value} )* dan berikan nama.`,
+  
   //Idiomas
   iselec: 'ᗢ Pilih bahasa yang Anda inginkan.',
   selci: (value) => `Anda memilih bahasa *( ${value} )*, teks bot akan diterjemahkan untuk Anda.`,
@@ -13,6 +15,16 @@ const translations = {
   falapi: '✦ Jenis kesalahan API:',
   noresult: '✦ Tidak dapat mengakses API...',
   unsolo: (value) => `✦ Anda hanya dapat merespons format *( ${value} )*`,
+  
+  //-- Textos
+  textoa: (value) => `Bot otomatis via *(${value})*, dapat memperoleh informasi/data atau keuntungan lain untuk menyediakan penggunaan yang berguna bagi semua pengguna.`,
+  textob: 'Tidak dapat mengkonversi konten...',
+  textoc: 'Tidak ada kategori lagi...',
+  textod: 'Jika Anda akan melakukan pembelian, hubungi asisten atau pemilik.',
+  textoe: 'Server dibeli sesuai dengan detail...',
+  textof: 'Anda sudah menjadi administrator...',
+  textog: 'Anda melewatkan teks',
+  exito: '✓ *Dijalankan dengan sukses.*',
   
   //-- No
   nomenu: '📍 Perintah *[ menu ]* dinonaktifkan...',
@@ -35,6 +47,7 @@ const translations = {
   noplan: (value) => `📍 Maaf, Anda harus membeli paket yang menyertakan versi *[ ${value} ]*\n- Gunakan *#plan* untuk melihat paket yang tersedia...`,
   
   //-- Datos
+  ulistado: '⫶☰ Daftar',
   udesca: 'Pengunduh',
   usearch: 'Pencari',
   ugener: 'Generator',

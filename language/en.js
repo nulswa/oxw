@@ -4,7 +4,9 @@ const translations = {
   nolink: '✦  *The link is not valid...*',
   apino: '✦  *API down: (error: X)...*',
   nobus: '✦  *No results...*',
-
+  replya: (value) => `ᗢ Reply to a format *( ${value} )* to continue.`,
+  replyb: (value) => `ᗢ Reply to a format *( ${value} )* and provide a name.`,
+  
   //Idiomas
   iselec: 'ᗢ Select the language you want.',
   selci: (value) => `You selected the language *( ${value} )*, the bot's texts will be translated for you.`,
@@ -13,6 +15,16 @@ const translations = {
   falapi: '✦ API error type:',
   noresult: '✦ Could not access API...',
   unsolo: (value) => `✦ You can only respond to formats *( ${value} )*`,
+  
+  //-- Textos
+  textoa: (value) => `Automatic bot via *(${value})*, can obtain information/data or other advantages to provide useful usage for all users.`,
+  textob: 'Could not convert content...',
+  textoc: 'No more categories...',
+  textod: 'If you are going to make a purchase, contact an assistant or the owner.',
+  textoe: 'Servers purchased according to details...',
+  textof: 'You are already an administrator...',
+  textog: 'You missed text',
+  exito: '✓ *Executed successfully.*',
   
   //-- No
   nomenu: '📍 The command *[ menu ]* is disabled...',
@@ -35,6 +47,7 @@ const translations = {
   noplan: (value) => `📍 Sorry, you must purchase a plan that includes the *[ ${value} ]* version\n- Use *#plan* to view available plans...`,
   
   //-- Datos
+  ulistado: '⫶☰ Listing',
   udesca: 'Downloader',
   usearch: 'Searcher',
   ugener: 'Generator',

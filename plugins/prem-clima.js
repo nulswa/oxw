@@ -10,7 +10,7 @@ try {
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(text)}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273`;
 const response = await fetch(apiUrl);
 if (!response.ok) {
-return conn.sendMessage(m.chat, { text: `La ubicacion no fue encontrada o esta mal escrito, recuerde usar una ubicacion provincial.\n\n• Por ejemplo:\n*${usedPrefix + command}* Formosa` }, { quoted: m });
+return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* Formosa` }, { quoted: m });
 }
 const data = await response.json();
 if (data.cod !== 200) {

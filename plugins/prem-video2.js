@@ -2,11 +2,11 @@ import fetch from 'node-fetch'
 import axios from 'axios'
 
 let handler = async (m, {conn, args, text, usedPrefix, command}) => {
-if (!global.db.data.chats[m.chat].fPrem && m.isGroup) {
+if (!global.db.data.chats[m.chat].fPremium && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Lo siento, este comando solo se utiliza al comprar un plan con premium incluído.\n\n- Usa el comando *#plan* para ver los planes disponibles.` }, { quoted: m })
 }
 
-if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un texto para generar un video.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Haz una caja con un gato dentro dormido y cómodo.` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* Haz una caja con un gato dentro dormido y cómodo.` }, { quoted: m })
 try {
 await m.react('⏰')
 await conn.sendMessage(m.chat, { text: `Generando el video, espere 2-3 minutos...` }, { quoted: m })

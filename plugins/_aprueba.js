@@ -2,7 +2,7 @@ const handler = async (m, { conn }) => {
 
 
   await conn.sendMessage(m.chat, {
-    video,
+    "https://files.catbox.moe/jkokln.mp4",
     gifPlayback: true,
     jpegThumbnail: toruMenu,
     caption: text,

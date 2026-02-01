@@ -1,43 +1,26 @@
 {
-  "name": "oxw",
-  "version": "2.8.6",
-  "description": "Lol",
-  "main": "index.js",
-  "type": "module",
-
-  "engines": {
-    "node": ">=24.10.0",
-    "npm": ">=11.6.0"
-  },
-  "directories": {
-    "lib": "lib",
-    "src": "src",
-    "plugins": "plugins"
-  },
-  "scripts": {
-    "start": "node index.js",
-    "qr": "node index.js qr",
-    "code": "node index.js code",
-    "eslint": "eslint .",
-    "eslintfix": "eslint --fix ."
-  },
-  "homepage": "https://github.com/nulswa/oxw",
-  "author": {
-    "name": "Farguts"
-  },
-  "collaborators": {
-    "col1": "Ramon",
-    "col2": "Ian",
-    "col3": "LolWa"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nulswa/oxw.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nulswa/oxw/issues"
-  },
-  "license": "GPL-3.0-or-later",
+"name": "oxw",
+"version": "1.8.2",
+"description": "Simple ChatBot.",
+"main": "index.js",
+"type": "module",
+"directories": {
+"lib": "lib",
+"plugins": "plugins"
+},
+"scripts": {
+"start": "node index.js"
+},
+"repository": {
+"type": "git",
+"url": "git+https://github.com/nulswa/oxw.git"
+},  
+"author": "Alan.Js",
+"license": "MIT-License",
+"bugs": {
+"url": "https://github.com/nulswa/oxw/issues"
+},
+"homepage": "https://github.com/nulswa/oxw#readme",
   "dependencies": {
     "@whiskeysockets/baileys": "npm:wileys",
     "@adiwajshing/keyed-db": "^0.2.4",
@@ -110,6 +93,9 @@
   "optionalDependencies": {
     "wa-sticker-formatter": "^4.3.2",
     "moment-timezone": "^0.5.37"
-  },
-  "_note": "Compatible con todas las plataformas para bots de WhatsApp"
+},
+"engines": {
+"node": ">=20.0.0"
 }
+}
+    

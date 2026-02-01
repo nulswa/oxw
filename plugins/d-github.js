@@ -22,10 +22,10 @@ fetch(zipUrl),
 let repoData = await repoResponse.json()
 let filename = zipResponse.headers.get('content-disposition').match(/attachment; filename=(.*)/)[1]
 let type = zipResponse.headers.get('content-type')
-let txt = `· ┄ · ⊸ 𔓕 *GitHub  :  Download*
+let txt = `· ┄ · ⊸ 𔓕 *${mssg.udesca}  :  GitHub*
 
-\t＃ ${mssg.usuario} : *${user}* (${sanitizedRepo})
-\t＃ ${mssg.enlace} : ${args[0]}
+＃ ${mssg.usuario} : *${user}* (${sanitizedRepo})
+＃ ${mssg.enlace} : ${args[0]}
 
 📍  *${mssg.descrip}:* ${repoData.description || mssg.nobus }
 
@@ -37,7 +37,7 @@ thumbnail: thumb,
 sourceUrl: null, 
 mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 conn.sendFile(m.chat, await zipResponse.buffer(), filename, `${botname}\n> ${textbot}`, m)
-await m.react("✅")
+//await m.react("✅")
 } catch (e) {
 await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
 }

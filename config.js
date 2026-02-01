@@ -54,7 +54,7 @@ global.fargs = {
 }
 
 //
-global.mssg = 'es'
+//global.mssg = 'es'
   
 global.botname = "き TORU > Ⓒmx_2.7.8-lt (norm)"
 global.botweb = "https://ko-fi.com/farguts"

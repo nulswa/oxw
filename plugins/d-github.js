@@ -2,12 +2,12 @@ import fetch from 'node-fetch'
 let regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
 let handler = async (m, { args, usedPrefix, command, text }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mssg.nodesca}` }, { quoted: m })
 }
 
-let pruebaXd = `ᗢ Proporcione un enlace de un repositorio de GitHub.\t⚶ Por ejemplo:\n*${usedPrefix + command}* https://github.com/xxxx/xxxx`
+let pruebaXd = `${mssg.ejemplo}\n*${usedPrefix + command}* https://github.com/xxxx/xxxx`
 if (!args[0]) return conn.sendMessage(m.chat, { text: pruebaXd }, { quoted: m })
-if (!regex.test(args[0])) return conn.sendMessage(m.chat, { text: `El enlace ingresado no es valido.`}, { quoted: m })
+if (!regex.test(args[0])) return conn.sendMessage(m.chat, { text: mssg.nolink }, { quoted: m })
 let [_, user, repo] = args[0].match(regex) || []
 let sanitizedRepo = repo.replace(/.git$/, '')
 let repoUrl = `https://api.github.com/repos/${user}/${sanitizedRepo}`
@@ -24,15 +24,14 @@ let filename = zipResponse.headers.get('content-disposition').match(/attachment;
 let type = zipResponse.headers.get('content-type')
 let txt = `· ┄ · ⊸ 𔓕 *GitHub  :  Download*
 
-\t＃ Usuario  :  *${user}*
-\t＃ Repositorio  :  ${sanitizedRepo}
-\t＃ Enlace  :  ${args[0]}
+\t＃ ${mssg.usuario} : *${user}* (${sanitizedRepo})
+\t＃ ${mssg.enlace} : ${args[0]}
 
-📍  *Descripcion:* ${repoData.description || 'No tiene descripcion.'}
+📍  *${mssg.descrip}:* ${repoData.description || mssg.nobus }
 
 > ${textbot}`
 await await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender], contextInfo: { externalAdReply: { 
-title: "⧿ GitHub : Download ⧿", 
+title: `⧿ ${mssg.udesca} : GitHub ⧿`, 
 body: botname, 
 thumbnail: thumb, 
 sourceUrl: null, 

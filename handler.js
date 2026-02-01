@@ -474,17 +474,17 @@ let edadaleatoria = ['10', '28', '20', '40', '18', '21', '15', '11', '9', '17', 
 let user2 = m.pushName || 'Anónimo'
 let verifyaleatorio = ['reg', 'verify'].getRandom()
  const msg = {
-rowner: fargs.prop,
-owner: fargs.dAdmin,
-mods: fargs.moder,
-premium: fargs.prem,
-group: fargs.grupo,
-private: fargs.privado,
-admin: fargs.admins,
-botAdmin: fargs.bAdmin,
-unreg: fargs.registro, 
-friends: fargs.amigos,
-restrict: fargs.estric
+rowner: mssg.proph,
+owner: mssg.dAdminh,
+mods: mssg.moderh,
+premium: mssg.premh,
+group: mssg.grupoh,
+private: mssg.privadoh,
+admin: mssg.adminsh,
+botAdmin: mssg.bAdminh,
+unreg: mssg.registroh, 
+friends: mssg.amigosh,
+restrict: mssg.estrich
  }[type]
 if (msg) return conn.reply(m.chat, msg, m).then(_ => m.react('📍'))
 }

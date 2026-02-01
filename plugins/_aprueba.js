@@ -1,7 +1,7 @@
 const handler = async (m, { conn }) => {  
 
 
-  await conn.sendMessage(m.chat, { text: text,
+  await conn.sendMessage(m.chat, { text: 'hola',
     footer: '🧠 BLACK CLOVER SYSTEM ☘️',
     buttons: [
       { buttonId: `${usedPrefix}menurpg`, buttonText: { displayText: '🏛️ M E N U R P G' }, type: 1 },

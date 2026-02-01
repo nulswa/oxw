@@ -8,7 +8,61 @@ const translations = {
   //Idiomas
   iselec: 'ᗢ Sélectionnez la langue que vous souhaitez.',
   selci: (value) => `Vous avez sélectionné la langue *( ${value} )*, les textes du bot seront traduits pour vous.`,
-
+  
+  //-- Errores
+  falapi: '✦ Type d\'erreur API:',
+  noresult: '✦ Impossible d\'accéder à l\'API...',
+  unsolo: (value) => `✦ Vous ne pouvez répondre qu\'aux formats *( ${value} )*`,
+  
+  //-- No
+  nomenu: '📍 La commande *[ menu ]* est désactivée...',
+  noinfo: '📍 Les commandes *[ information ]* sont désactivées...',
+  nodesca: '📍 Les commandes *[ téléchargements ]* sont désactivées...',
+  nosearch: '📍 Les commandes *[ recherche ]* sont désactivées...',
+  nostick: '📍 Les commandes *[ autocollants ]* sont désactivées...',
+  noconv: '📍 Les commandes *[ convertisseur ]* sont désactivées...',
+  nologos: '📍 Les commandes *[ logos ]* sont désactivées...',
+  noreaction: '📍 Les commandes *[ réactions ]* sont désactivées...',
+  norandom: '📍 Les commandes *[ aléatoire ]* sont désactivées...',
+  norpg: '📍 Les commandes *[ rpg ]* sont désactivées...',
+  nogroup: '📍 Les commandes *[ groupes ]* sont désactivées...',
+  notienda: '📍 Les commandes *[ boutique ]* sont désactivées...',
+  noajustes: '📍 Les commandes *[ paramètres ]* sont désactivées...',
+  noutils: '📍 Les commandes *[ utilitaire ]* sont désactivées...',
+  nogacha: '📍 Les commandes *[ gacha ]* sont désactivées...',
+  nojuegos: '📍 Les commandes *[ jeux ]* sont désactivées...',
+  noias: '📍 Les commandes *[ intelligence artificielle ]* sont désactivées...',
+  noplan: (value) => `📍 Désolé, vous devez acheter un plan qui inclut la version *[ ${value} ]*\n- Utilisez *#plan* pour voir les plans disponibles...`,
+  
+  //-- Datos
+  udesca: 'Téléchargeur',
+  usearch: 'Chercheur',
+  ugener: 'Générateur',
+  usuario: 'Utilisateur',
+  nombre: 'Nom',
+  titulos: 'Titre',
+  duracion: 'Durée',
+  publicado: 'Publié',
+  updates: 'Mise à jour',
+  resultados: 'Résultats',
+  descrip: 'Description',
+  enlace: 'Lien',
+  vistas: 'Vues',
+  peso: 'Poids',
+  exportado: 'Exportés',
+  stickks: 'Autocollants',
+  seguidor: 'Abonnés',
+  seguido: 'Abonnements',
+  fuente: 'Source',
+  tipo: 'Type',
+  paquete: 'Paquet',
+  album: 'Album',
+  artista: 'Artiste',
+  creador: 'Créateur',
+  canal: 'Chaîne',
+  grupo: 'Groupe',
+  comunidad: 'Communauté',
+  
   //-- RPG / Message
   coffee: 'Coffre',
   mining: 'Miner',
@@ -21,6 +75,19 @@ const translations = {
   piesas: 'Révéler',
   inventario: 'Inventaire',
   cartera: 'Portefeuille',
+  
+  //-- Handler
+  proph: '✦ *Vous ne pouvez pas utiliser cette commande...*',
+  dAdminh: '✦ *Seuls les administrateurs du bot...*',
+  moderh: '✦ *Seuls les modérateurs...*',
+  premh: '✦ *Seuls les utilisateurs premium...*',
+  grupoh: '✦ *Uniquement dans les discussions de groupe...*',
+  privadoh: '✦ *Uniquement dans les discussions privées...*',
+  adminsh: '✦ *Seuls les administrateurs...*',
+  bAdminh: '✦ *Seulement si le bot est administrateur...*',
+  registroh: '✦ *Ajoutez votre nom à la liste des utilisateurs.*',
+  amigosh: '✦ *Seuls les amis enregistrés par @Farguts...*',
+  estrich: '✦ *Commande restreinte...*',
 
   //-- RPG / Éléments
   fuego: 'Feu',

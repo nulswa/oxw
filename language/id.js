@@ -8,7 +8,61 @@ const translations = {
   //Idiomas
   iselec: 'ᗢ Pilih bahasa yang Anda inginkan.',
   selci: (value) => `Anda memilih bahasa *( ${value} )*, teks bot akan diterjemahkan untuk Anda.`,
-
+  
+  //-- Errores
+  falapi: '✦ Jenis kesalahan API:',
+  noresult: '✦ Tidak dapat mengakses API...',
+  unsolo: (value) => `✦ Anda hanya dapat merespons format *( ${value} )*`,
+  
+  //-- No
+  nomenu: '📍 Perintah *[ menu ]* dinonaktifkan...',
+  noinfo: '📍 Perintah *[ informasi ]* dinonaktifkan...',
+  nodesca: '📍 Perintah *[ unduhan ]* dinonaktifkan...',
+  nosearch: '📍 Perintah *[ pencarian ]* dinonaktifkan...',
+  nostick: '📍 Perintah *[ stiker ]* dinonaktifkan...',
+  noconv: '📍 Perintah *[ konverter ]* dinonaktifkan...',
+  nologos: '📍 Perintah *[ logo ]* dinonaktifkan...',
+  noreaction: '📍 Perintah *[ reaksi ]* dinonaktifkan...',
+  norandom: '📍 Perintah *[ acak ]* dinonaktifkan...',
+  norpg: '📍 Perintah *[ rpg ]* dinonaktifkan...',
+  nogroup: '📍 Perintah *[ grup ]* dinonaktifkan...',
+  notienda: '📍 Perintah *[ toko ]* dinonaktifkan...',
+  noajustes: '📍 Perintah *[ pengaturan ]* dinonaktifkan...',
+  noutils: '📍 Perintah *[ utilitas ]* dinonaktifkan...',
+  nogacha: '📍 Perintah *[ gacha ]* dinonaktifkan...',
+  nojuegos: '📍 Perintah *[ permainan ]* dinonaktifkan...',
+  noias: '📍 Perintah *[ kecerdasan buatan ]* dinonaktifkan...',
+  noplan: (value) => `📍 Maaf, Anda harus membeli paket yang menyertakan versi *[ ${value} ]*\n- Gunakan *#plan* untuk melihat paket yang tersedia...`,
+  
+  //-- Datos
+  udesca: 'Pengunduh',
+  usearch: 'Pencari',
+  ugener: 'Generator',
+  usuario: 'Pengguna',
+  nombre: 'Nama',
+  titulos: 'Judul',
+  duracion: 'Durasi',
+  publicado: 'Diterbitkan',
+  updates: 'Pembaruan',
+  resultados: 'Hasil',
+  descrip: 'Deskripsi',
+  enlace: 'Tautan',
+  vistas: 'Tampilan',
+  peso: 'Berat',
+  exportado: 'Diekspor',
+  stickks: 'Stiker',
+  seguidor: 'Pengikut',
+  seguido: 'Mengikuti',
+  fuente: 'Sumber',
+  tipo: 'Jenis',
+  paquete: 'Paket',
+  album: 'Album',
+  artista: 'Artis',
+  creador: 'Pembuat',
+  canal: 'Saluran',
+  grupo: 'Grup',
+  comunidad: 'Komunitas',
+  
   //-- RPG / Pesan
   coffee: 'Peti',
   mining: 'Menambang',
@@ -21,7 +75,20 @@ const translations = {
   piesas: 'Ungkap',
   inventario: 'Inventaris',
   cartera: 'Dompet',
-
+  
+  //-- Handler
+  proph: '✦ *Anda tidak dapat menggunakan perintah ini...*',
+  dAdminh: '✦ *Hanya administrator bot...*',
+  moderh: '✦ *Hanya moderator...*',
+  premh: '✦ *Hanya pengguna premium...*',
+  grupoh: '✦ *Hanya di obrolan grup...*',
+  privadoh: '✦ *Hanya di obrolan pribadi...*',
+  adminsh: '✦ *Hanya administrator...*',
+  bAdminh: '✦ *Hanya jika bot adalah administrator...*',
+  registroh: '✦ *Tambahkan nama Anda ke daftar pengguna.*',
+  amigosh: '✦ *Hanya teman yang terdaftar oleh @Farguts...*',
+  estrich: '✦ *Perintah terbatas...*',
+  
   //-- RPG / Item
   fuego: 'Api',
   agua: 'Air',

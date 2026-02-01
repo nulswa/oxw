@@ -8,6 +8,60 @@ const translations = {
   //Idiomas
   iselec: 'ᗢ Select the language you want.',
   selci: (value) => `You selected the language *( ${value} )*, the bot's texts will be translated for you.`,
+  
+  //-- Errores
+  falapi: '✦ API error type:',
+  noresult: '✦ Could not access API...',
+  unsolo: (value) => `✦ You can only respond to formats *( ${value} )*`,
+  
+  //-- No
+  nomenu: '📍 The command *[ menu ]* is disabled...',
+  noinfo: '📍 The *[ information ]* commands are disabled...',
+  nodesca: '📍 The *[ downloads ]* commands are disabled...',
+  nosearch: '📍 The *[ search ]* commands are disabled...',
+  nostick: '📍 The *[ stickers ]* commands are disabled...',
+  noconv: '📍 The *[ converter ]* commands are disabled...',
+  nologos: '📍 The *[ logos ]* commands are disabled...',
+  noreaction: '📍 The *[ reactions ]* commands are disabled...',
+  norandom: '📍 The *[ random ]* commands are disabled...',
+  norpg: '📍 The *[ rpg ]* commands are disabled...',
+  nogroup: '📍 The *[ groups ]* commands are disabled...',
+  notienda: '📍 The *[ store ]* commands are disabled...',
+  noajustes: '📍 The *[ settings ]* commands are disabled...',
+  noutils: '📍 The *[ utility ]* commands are disabled...',
+  nogacha: '📍 The *[ gacha ]* commands are disabled...',
+  nojuegos: '📍 The *[ games ]* commands are disabled...',
+  noias: '📍 The *[ artificial intelligence ]* commands are disabled...',
+  noplan: (value) => `📍 Sorry, you must purchase a plan that includes the *[ ${value} ]* version\n- Use *#plan* to view available plans...`,
+  
+  //-- Datos
+  udesca: 'Downloader',
+  usearch: 'Searcher',
+  ugener: 'Generator',
+  usuario: 'User',
+  nombre: 'Name',
+  titulos: 'Title',
+  duracion: 'Duration',
+  publicado: 'Published',
+  updates: 'Update',
+  resultados: 'Results',
+  descrip: 'Description',
+  enlace: 'Link',
+  vistas: 'Views',
+  peso: 'Weight',
+  exportado: 'Exported',
+  stickks: 'Stickers',
+  seguidor: 'Followers',
+  seguido: 'Following',
+  fuente: 'Source',
+  tipo: 'Type',
+  paquete: 'Package',
+  album: 'Album',
+  artista: 'Artist',
+  creador: 'Creator',
+  canal: 'Channel',
+  grupo: 'Group',
+  comunidad: 'Community',
 
   //-- RPG / Message
   coffee: 'Chest',
@@ -21,7 +75,20 @@ const translations = {
   piesas: 'Reveal',
   inventario: 'Inventory',
   cartera: 'Wallet',
-
+  
+  //-- Handler
+  proph: '✦ *You cannot use this command...*',
+  dAdminh: '✦ *Only bot administrators...*',
+  moderh: '✦ *Only moderators...*',
+  premh: '✦ *Only premium users...*',
+  grupoh: '✦ *Only in group chats...*',
+  privadoh: '✦ *Only in private chats...*',
+  adminsh: '✦ *Only administrators...*',
+  bAdminh: '✦ *Only if the bot is an administrator...*',
+  registroh: '✦ *Add your name to the user list.*',
+  amigosh: '✦ *Only friends listed by @Farguts...*',
+  estrich: '✦ *Restricted command...*',
+  
   //-- RPG / Items
   fuego: 'Fire',
   agua: 'Water',

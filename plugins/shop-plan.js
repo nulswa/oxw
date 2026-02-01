@@ -155,8 +155,8 @@ let estados = `📍  Estadísticas segun las compras de este mes.
 > *Plan Optima* : ${optima}
 
 > ${textbot}`
-const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/wuybzk.jpg`)).arrayBuffer())
-return conn.sendMessage(m.chat, { text: estados, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Plan : Servers ⧿", body: "Servidores comprados actualmente.", thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+const thumb2 = Buffer.from(await (await fetch(`https://files.catbox.moe/wuybzk.jpg`)).arrayBuffer())
+return conn.sendMessage(m.chat, { text: estados, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Plan : Servers ⧿", body: "Servidores comprados actualmente.", thumbnail: thumb2, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else { 
 let noXd = `No hay otra categoria para ver en este comando.`
 return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })

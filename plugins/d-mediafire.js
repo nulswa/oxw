@@ -13,20 +13,20 @@ await m.react('⏰')
 try {
 const api = `https://api.delirius.store/download/mediafire?url=${encodeURIComponent(url)}`
 const res = await fetch(api)
-if (!res.ok) conn.sendMessage(m.chat, { text: mssg.apino }, { quoted: m })
+if (!res.ok) conn.sendMessage(m.chat, { text: mess.noapi }, { quoted: m })
 const json = await res.json()
 const data = json?.data || json?.result || json
 const fileUrl = data?.url || data?.link || data?.download || data?.dl || data?.download_url
 const fileTitle = data?.title || data?.filename || data?.name || 'archivo'
-const fileSize = data?.size || data?.filesize || 'Undefined'
+const fileSize = data?.size || data?.filesize || 'Desconocido'
 const fileMime = data?.mime || data?.mimetype || 'application/octet-stream'
 const thumbBot = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
 if (!fileUrl) throw new Error('[ !fileUrl ] error en la descarga...')
-const caption = `· ┄ · ⊸ 𔓕 *${mssg.udesca}  :  Mediafire*
+const caption = `· ┄ · ⊸ 𔓕 *Mediafire  :  ${mssg.udesca}*
 
-＃ *${mssg.titulos}* : ${fileTitle}
-＃ *${mssg.peso}* : ${fileSize}
-＃ *${mssg.paquete}* : ${fileMime}
+\t＃ *${mssg.titulos}* : ${fileTitle}
+\t＃ *${mssg.peso}* : ${fileSize}
+\t＃ *${mssg.paquete}* : ${fileMime}
 
 > ${textbot}`.trim()
 const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/293guw.jpg`)).arrayBuffer())

@@ -15,6 +15,7 @@ const response = await fetch(apiUrl, {
 timeout: 30000
 })
 if (!response.ok) {
+
 throw new Error(`Error en la API: ${response.status} - ${response.statusText}`)
 }
 const data = await response.json()
@@ -34,7 +35,7 @@ videoTitle = data.title || 'Video de Facebook'
 videoUrl = data.data.url
 videoTitle = data.data.title || 'Video de Facebook'
 } else {
-throw new Error('📍  No se encontró URL del video en la respuesta')
+return conn.sendMessage(m.chat, { text: mssg.nobus }, { quoted: m })
 }
 
 await conn.sendMessage(m.chat, { video: { url: videoUrl }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
@@ -47,7 +48,7 @@ await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 handler.command = ['fb', 'facebook']
 export default handler
   
-
+  
 
 /*
 import fetch from 'node-fetch'

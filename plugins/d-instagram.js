@@ -3,22 +3,22 @@ import axios from 'axios'
 
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mssg.nodesca}` }, { quoted: m })
 }
 
-if (!args[0]) return conn.sendMessage(m.chat, { text: `ᗢ Proporciona un enlace de Instagram.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* https://www.instagram.com/xxxx/xxxx/xxxx` }, { quoted: m })
-if (!args[0].match(/instagram/gi)) return conn.sendMessage(m.chat, { text: `El enlace ingresado no es valido.` }, { quoted: m })
+if (!args[0]) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* https://www.instagram.com/xxxx/xxxx/xxxx` }, { quoted: m })
+if (!args[0].match(/instagram/gi)) return conn.sendMessage(m.chat, { text: mssg.nolink }, { quoted: m })
 try {
 await m.react("⏰")
 let res = await igdl(args[0])
 if (res.type === 'video') {
 conn.sendMessage(m.chat, { video: { url: res.video_url }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
-await m.react("✅")
+//await m.react("✅")
 } else {
 for (let img of res.images) {
 return conn.sendMessage(m.chat, { image: { url: img }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
 }
-await m.react("✅")
+//await m.react("✅")
 }
 } catch (error) {
 console.log(error)

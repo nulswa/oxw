@@ -3,17 +3,17 @@ import cheerio from 'cheerio'
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mssg.nodesca}` }, { quoted: m })
 }
 
-if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione un enlace de Pinterest\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* https://pin.it/xxxx` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* https://pin.it/xxxx` }, { quoted: m })
 try {
 await m.react('⏰')
 if (text.includes("https://")) {
 let i = await dl(args[0])
 let isVideo = i.download.includes(".mp4")
-await conn.sendMessage(m.chat, { [isVideo ? "video" : "image"]: { url: i.download }, caption: i.title }, { quoted: fkontak })
-await m.react("✅")
+await conn.sendMessage(m.chat, { [isVideo ? "video" : "image"]: { url: i.download }, caption: i.title }, { quoted: m })
+//await m.react("✅")
 }
 } catch (e) {
 await conn.sendMessage(m.chat, { text: e.message }, { quoted: m })

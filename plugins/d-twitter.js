@@ -2,11 +2,11 @@ import axios from 'axios'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mssg.nodesca}` }, { quoted: m })
 }
 
-if (!args[0]) return client.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* https://x.com/xxx` }, { quoted: m })
-if (!/^(https?:\/\/)?(www\.)?(twitter\.com|x\.com)\//i.test(args[0])) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
+if (!args[0]) return client.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* https://x.com/xxx` }, { quoted: m })
+if (!/^(https?:\/\/)?(www\.)?(twitter\.com|x\.com)\//i.test(args[0])) return conn.sendMessage(m.chat, { text: mssg.nolink }, { quoted: m })
 try {
 await m.react("⏰")
 let data = await vxtwitter(args[0])

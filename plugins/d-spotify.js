@@ -1,10 +1,10 @@
 import fetch from 'node-fetch'
 const handler = async (m, { conn, text, args, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mssg.nodesca}` }, { quoted: m })
 }
 
-if (!text) return client.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* https://open.spotify.com/xxx` }, { quoted: m })
+if (!text) return client.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* https://open.spotify.com/xxx` }, { quoted: m })
 try {
 await m.react("⏰")
 const res = await fetch(`https://api.delirius.store/download/spotifydl?url=${text}`)
@@ -12,16 +12,16 @@ const json = await res.json()
 const toru = json.data
 
 if (!toru?.data) {
-return conn.sendMessage(m.chat, { text: mess.noapi }, { quoted: m })
+return conn.sendMessage(m.chat, { text: mssg.apino }, { quoted: m })
 }
 
-if (!/^(https?:\/\/)?(www\.)?(open\.spotify\.com)\//i.test(text)) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
+if (!/^(https?:\/\/)?(www\.)?(open\.spotify\.com)\//i.test(text)) return conn.sendMessage(m.chat, { text: mssg.nolink }, { quoted: m })
 
-let mensaje = `· ┄ · ⊸ 𔓕 *Spotify  :  Download*
+let mensaje = `· ┄ · ⊸ 𔓕 *Spotify  :  ${mssg.udesca}*
 
-\t＃ *Titulo* : ${toru.title}
-\t＃ *Autor/a* : ${toru.author}
-\t＃ *Duracion* : ${toru.duration}
+\t＃ *${mssg.titulos}* : ${toru.title}
+\t＃ *${mssg.artista}* : ${toru.author}
+\t＃ *${mssg.duracion}* : ${toru.duration}
 
 > ${textbot}`
 const thumb = (await conn.getFile(toru.image))?.data

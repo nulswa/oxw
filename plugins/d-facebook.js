@@ -2,13 +2,13 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `${mssg.nodesca}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
 }
 
 try {
-if (!args[0]) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* https://www.facebook.com/xxx` }, { quoted: m })
+if (!args[0]) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://www.facebook.com/xxx` }, { quoted: m })
 const url = args[0]
-if (!url.match(/facebook\.com|fb\.watch/)) return conn.sendMessage(m.chat, { text: mssg.nolink }, { quoted: m })
+if (!url.match(/facebook\.com|fb\.watch/)) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
 await m.react("⏰")
 const apiUrl = `https://mayapi.ooguy.com/facebook?url=${encodeURIComponent(url)}&apikey=may-f53d1d49`
 const response = await fetch(apiUrl, {
@@ -20,7 +20,7 @@ throw new Error(`Error en la API: ${response.status} - ${response.statusText}`)
 }
 const data = await response.json()
 if (!data.status) {
-return conn.sendMessage(m.chat, { text: mssg.apino }, { quoted: m })
+return conn.sendMessage(m.chat, { text: mess.noapi }, { quoted: m })
 }
 
 let videoUrl, videoTitle
@@ -35,7 +35,7 @@ videoTitle = data.title || 'Video de Facebook'
 videoUrl = data.data.url
 videoTitle = data.data.title || 'Video de Facebook'
 } else {
-return conn.sendMessage(m.chat, { text: mssg.nobus }, { quoted: m })
+return conn.sendMessage(m.chat, { text: mess.nosear }, { quoted: m })
 }
 
 await conn.sendMessage(m.chat, { video: { url: videoUrl }, caption: `${botname}\n> ${textbot}` }, { quoted: m })

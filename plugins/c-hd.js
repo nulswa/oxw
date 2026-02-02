@@ -3,14 +3,14 @@ import FormData from 'form-data'
 
 let handler = async (m, { conn, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fConvert && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `${mssg.noconv}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ convertidor ]* estan desactivados...` }, { quoted: m })
 }
 
 const quoted = m.quoted ? m.quoted : m
 const mime = quoted.mimetype || quoted.msg?.mimetype || ''
 
 if (!/image\/(jpe?g|png)/i.test(mime)) {
-return conn.sendMessage(m.chat, { text: `${mssg.replya('jpg, png, jpeg')}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `ᗢ Responda a una imagen para subir su calidad.` }, { quoted: m })
 }
 
 try {

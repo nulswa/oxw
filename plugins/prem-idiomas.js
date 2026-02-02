@@ -1,9 +1,9 @@
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fPremium && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Lo siento, este comando solo se utiliza al comprar un plan con premium incluído.\n\n- Usa el comando *#plan* para ver los planes disponibles.` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Este conando es exclusivo para el plan *[ Premium ]*\n- Usa *#plan* para ver los planes disponibles.` }, { quoted: m })
 }
 
-let te = `${mssg.iselec}\n\n- es (Español)\n- en (Inglés)\n- id (Indonesia)\n- pt (Portugues)\n- ar (Árabe)\n- fr (Francés)\n\n${mssg.ejemplo}\n*${usedPrefix + command}* en`
+/*let te = `${mssg.iselec}\n\n- es (Español)\n- en (Inglés)\n- id (Indonesia)\n- pt (Portugues)\n- ar (Árabe)\n- fr (Francés)\n\n${mssg.ejemplo}\n*${usedPrefix + command}* en`
 if (!text) return conn.sendMessage(m.chat, { text: te }, { quoted: m })
 let user = global.db.data.users[m.sender]
  if (args[0] === "es") {
@@ -28,7 +28,9 @@ conn.sendMessage(m.chat, { text: `${mssg.selci('Francés')}` }, { quoted: m })
 let noXd = `[ ❌ ] ERROR: #lang`
 return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
  }
+*/
 
+await conn.sendMessage(m.chat, { text: "[47%] Instalando traducciones..." }, { quoted: m })
  }
 
  handler.tags = ['prem']

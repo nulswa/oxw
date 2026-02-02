@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 import moment from 'moment-timezone'
 const handler = async (m, { conn, command, usedPrefix, text }) => {
 if (!global.db.data.chats[m.chat].fConvert && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `${mssg.noconv}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ convertidor ]* estan desactivados...` }, { quoted: m })
 }
 
 try {

@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fPremium && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Lo siento, este comando solo se utiliza al comprar un plan con premium incluído.\n\n- Usa el comando *#plan* para ver los planes disponibles.` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Este conando es exclusivo para el plan *[ Premium ]*\n- Usa *#plan* para ver los planes disponibles.` }, { quoted: m })
 }
 
 if (!text) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* Formosa` }, { quoted: m })

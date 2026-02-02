@@ -2,10 +2,10 @@ import axios from 'axios'
 import fetch from 'node-fetch'
 let handler = async (m, { conn, usedPrefix, command, text }) => {
 if (!global.db.data.chats[m.chat].fAis && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `${mssg.noias}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ inteligencia artificial ]* estan desactivados...` }, { quoted: m })
 }
 
-if (!text) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* Como usar metodos de Hacking en facebook.` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* Como usar metodos de Hacking en facebook.` }, { quoted: m })
 await m.react("⏰")
 try {
 let data = await fetch(`https://api.soymaycol.icu/ai-venice?q=${text}&apikey=soymaycol%3C3`)

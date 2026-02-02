@@ -7,7 +7,7 @@ if (!global.db.data.chats[m.chat].fSearch && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ búsquedas ]* estan desactivados...` }, { quoted: m })
 }
 
-if (!text) return conn.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* Caballo Juan` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* Caballo Juan` }, { quoted: m });
 await m.react('⏰');
 try {
 const res = await fetch(`https://api.delirius.store/search/stickerly?query=${encodeURIComponent(text)}`);
@@ -51,7 +51,7 @@ header: proto.Message.InteractiveMessage.Header.create({ hasMediaAttachment: fal
 carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({ cards })})}}}, { quoted: m });
 
 await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
-//await m.react('✅');
+await m.react('✅');
 
 } catch (e) {
 console.error(e);

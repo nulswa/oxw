@@ -3,11 +3,11 @@ import axios from 'axios'
 
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `${mssg.nodesca}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
 }
 
-if (!args[0]) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* https://www.instagram.com/xxxx/xxxx/xxxx` }, { quoted: m })
-if (!args[0].match(/instagram/gi)) return conn.sendMessage(m.chat, { text: mssg.nolink }, { quoted: m })
+if (!args[0]) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://www.instagram.com/xxxx/xxxx/xxxx` }, { quoted: m })
+if (!args[0].match(/instagram/gi)) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
 try {
 await m.react("⏰")
 let res = await igdl(args[0])

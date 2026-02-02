@@ -3,10 +3,10 @@ import cheerio from 'cheerio'
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `${mssg.nodesca}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
 }
 
-if (!text) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* https://pin.it/xxxx` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://pin.it/xxxx` }, { quoted: m })
 try {
 await m.react('⏰')
 if (text.includes("https://")) {

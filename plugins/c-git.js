@@ -8,7 +8,7 @@ const GITHUB_REPO = '' // Nombre del repositorio
 const GITHUB_BRANCH = 'main' // Rama donde se subirán los archivos (puede ser 'main' o 'master')
 let handler = async (m, { conn, args, usedPrefix, command, text }) => {
 if (!global.db.data.chats[m.chat].fConvert && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `${mssg.noconv}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ convertidor ]* estan desactivados...` }, { quoted: m })
 }
 
 try {
@@ -16,7 +16,7 @@ let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 
 if (!mime) {
-return conn.sendMessage(m.chat, { text: `${mssg.replya('jpg, webp, mp3, mp4')}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `ᗢ Responda a una extensión para subirlo a Mediafire.` }, { quoted: m })
 }
 
 const media = await q.download()
@@ -31,12 +31,12 @@ await m.react("⏰")
 //conn.sendMessage(m.chat, { text: `Subiendo archivo al repositorio...` }, { quoted: m })
 
 const link = await uploadToGitHub(media, fileName)
-let toruContext = `· ┄ · ⊸ 𔓕 *${mssg.resultados} : GitHub*
+let toruContext = `· ┄ · ⊸ 𔓕 *Upload : GitHub*
 
-\t＃ *${mssg.nombre}* : ${fileName}
-\t＃ *${mssg.peso}* : ${formatBytes(media.length)}
-\t＃ *${mssg.fuente}* : ${fuente}
-\t＃ *${mssg.enlace}* : ${link}
+\t＃ *Nombre* : ${fileName}
+\t＃ *Peso* : ${formatBytes(media.length)}
+\t＃ *Fuente* : ${fuente}
+\t＃ *Enlace* : ${link}
 
 > ${textbot}`
 await conn.sendMessage(m.chat, { text: toruContext }, { quoted: m })

@@ -64,12 +64,12 @@ async function generarTTS(texto, modelo) {
 
 const handler = async (m, { text, conn, command, usedPrefix }) => {
 if (!global.db.data.chats[m.chat].fAis && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `${mssg.noias}` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ inteligencia artificial ]* estan desactivados...` }, { quoted: m })
 }
 
   let listado = `• toru\n• gura\n• onix\n• ax`
   if (!text.includes('=')) {
-    return conn.sendMessage(m.chat, { text: `${mssg.ulistado}\n${listado}\n\n${mssg.ejemplo}\n*${usedPrefix + command}* hola, como estas=toru` }, { quoted: m });
+    return conn.sendMessage(m.chat, { text: `> *Listado:*\n${listado}\n\n${mess.example}\n*${usedPrefix + command}* hola, como estas=toru` }, { quoted: m });
   }
 
   let [contenido, modelo] = text.split('=').map(v => v.trim().toLowerCase());

@@ -1,6 +1,6 @@
 let handler = async (m, { conn, args }) => {
 if (!global.db.data.chats[m.chat].fPremium && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Lo siento, este comando solo se utiliza al comprar un plan con premium incluído.\n\n- Usa el comando *#plan* para ver los planes disponibles.` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `📍  Este conando es exclusivo para el plan *[ Premium ]*\n- Usa *#plan* para ver los planes disponibles.` }, { quoted: m })
 }
 
 if (!m.quoted) return conn.sendMessage(m.chat, { text: `ᗢ Responda a un mensaje para reenviarlo.` }, { quoted: m })

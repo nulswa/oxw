@@ -4,6 +4,10 @@ import FormData from 'form-data';
 import crypto from 'crypto';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
+if (!global.db.data.chats[m.chat].fConvert && m.isGroup) {
+return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ convertidor ]* estan desactivados...` }, { quoted: m })
+}
+
 let q = m.quoted ? m.quoted : m;
 let mime = (q.msg || q).mimetype || '';
 if (!mime) return conn.sendMessage(m.chat, { text: `${mssg.replya('mp4, mp3, jpg, gif, webp')}` }, { quoted: m });

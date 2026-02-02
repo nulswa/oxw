@@ -69,7 +69,7 @@ return mostrarAyuda(m, conn, usedPrefix);
 
 } catch (error) {
 console.error(error);
-await conn.reply(m.chat, error.message, m);
+await m.reply(error.message);
 }
 };
 
@@ -77,7 +77,7 @@ await conn.reply(m.chat, error.message, m);
 async function adoptarWaifu(m, conn, groupId, sender, usedPrefix) {
 if (adoptedWaifus[groupId][sender]) {
 const waifu = adoptedWaifus[groupId][sender];
-return conn.reply(m.chat, `Ya tienes a un bot personal en tu posición.\n- *Nombre* : ${waifu.name}\n\n- Cuidalo para subir de nivel.`, m);
+return m.reply(`Ya tienes a un bot personal en tu posición.\n- *Nombre* : ${waifu.name}\n\n- Cuidalo para subir de nivel.`);
 }
 
 
@@ -87,7 +87,7 @@ const disponibles = waifusList.filter(w =>
 );
 
 if (disponibles.length === 0) {
-return conn.reply(m.chat, `Los bots ya fueron llevados en este grupo.\n- Cada grupo dispone de dos bots.`, m);
+return m.reply(`Los bots ya fueron llevados en este grupo.\n- Cada grupo dispone de dos bots.`);
 }
 
  
@@ -110,7 +110,7 @@ await conn.sendFile(m.chat, waifu.image, 'imagen.jpg', `🝐 を *Bot : Adopció
 
 async function verMiWaifu(m, conn, groupId, sender) {
 if (!adoptedWaifus[groupId][sender]) {
-return conn.reply(m.chat, `No tienes un bot adoptado y personal.\n- Usa *#llevar* para obtener un bot de la comunidad.`, m);
+return m.reply(`No tienes un bot adoptado y personal.\n- Usa *#llevar* para obtener un bot de la comunidad.`);
 }
 
 const waifu = adoptedWaifus[groupId][sender];
@@ -121,7 +121,7 @@ await conn.sendFile(m.chat, waifu.image, 'waifu.jpg', `\t\t【 *Bot : Personal �
 
 function listarWaifusGrupo(m, conn, groupId) {
 if (!adoptedWaifus[groupId] || Object.keys(adoptedWaifus[groupId]).length === 0) {
-return conn.reply(m.chat, `No hay bots llevados en este grupo.`, m);
+return m.reply(`No hay bots llevados en este grupo.`);
 }
 
 let lista = '\t\t【 *Bots : Adopción* 】\n\n';
@@ -139,7 +139,7 @@ i++;
 }
 
 lista += `\n> Total: ${i-1} bots personales.`;
-conn.reply(m.chat, lista, m);
+conn.reply(lista);
 }
 
 
@@ -150,7 +150,7 @@ const disponibles = waifusList.filter(w =>
 );
 
 if (disponibles.length === 0) {
-return conn.reply(m.chat, `No hay bots personales disponibles para llevar.`, m);
+return m.reply(`No hay bots personales disponibles para llevar.`);
 }
 
 let lista = '\t\t【 Bots : Disponibles 】\n- Lista de bots disponibles.\n\n';
@@ -163,13 +163,13 @@ lista += `۰────────────۰\n\n`;
 });
 
 lista += `\nUsa *${usedPrefix}llevar* para tener uno.`;
-conn.reply(m.chat, lista, m);
+m.reply(lista);
 }
 
 
 function alimentarWaifu(m, conn, groupId, sender, usedPrefix) {
 if (!adoptedWaifus[groupId][sender]) {
-return conn.reply(m.chat, `No tienes un bot adoptivo y personal.\n- Usa el comando *#llevar* para tener uno.`, m);
+return m.reply(`No tienes un bot adoptivo y personal.\n- Usa el comando *#llevar* para tener uno.`);
 }
 
 const waifu = adoptedWaifus[groupId][sender];
@@ -182,7 +182,7 @@ waifu.felicidad = Math.min(100, waifu.felicidad + 15);
 if (waifu.hambre >= 100 && waifu.nivel < 20) {
 waifu.nivel++;
 waifu.hambre = 50; 
-conn.reply(m.chat, `[ 🥳 ]  ¡Tu bot *( ${waifu.name} )* ha subido de nivel ${waifu.nivel}!\n- Sigue cuidando para subir mas de nivel.`, m);
+m.reply(`[ 🥳 ]  ¡Tu bot *( ${waifu.name} )* ha subido de nivel ${waifu.nivel}!\n- Sigue cuidando para subir mas de nivel.`);
 }
 
 await conn.sendFile(m.chat, waifu.imagen, 'bots.jpg', `✎ \`Alimentación\` ❤️\n- ¡Haz llevado de comer a tu bot!¡\n\n▢ *Hambre* : ${waifu.hambre}/100\n▢ *Felicidad* : ${waifu.felicidad}/100\n▢ *Nivel* : ${waifu.nivel}\n\n❤️ *${waifu.name}* esta contento por que lo llevaste.\n\n> 🍔 Tu bot recupero *+20* de hambre y *+15* de felicidad.`, m );
@@ -191,23 +191,23 @@ await conn.sendFile(m.chat, waifu.imagen, 'bots.jpg', `✎ \`Alimentación\` ❤
 
 async function tenerRelaciones(m, conn, groupId, sender, usedPrefix) {
 if (!adoptedWaifus[groupId][sender]) {
-return conn.reply(m.chat, `No tienes un bot personal.\n- Usa el comando *#llevar* para tener uno.`, m);
+return m.reply(`No tienes un bot personal.\n- Usa el comando *#llevar* para tener uno.`);
 }
 
 const waifu = adoptedWaifus[groupId][sender];
 
 
 if (waifu.nivel < 15) {
-return conn.reply(m.chat, `Tu bot personal debe tener el nivel 15 para usarlo a tu favor.\n- El nivel actual de tu bot es: *${waifu.nivel}*`, m);
+return m.reply(`Tu bot personal debe tener el nivel 15 para usarlo a tu favor.\n- El nivel actual de tu bot es: *${waifu.nivel}*`);
 }
 
 
 if (waifu.hambre < 15) {
-return conn.reply(m.chat, `Tu bot tiene mucha hambre.\n- *Hambre* : ${waifu.hambre}/100\n\n🍔 Alimentalo primero.`, m);
+return m.reply(`Tu bot tiene mucha hambre.\n- *Hambre* : ${waifu.hambre}/100\n\n🍔 Alimentalo primero.`);
 }
 
 if (waifu.felicidad < 40) {
-return conn.reply(m.chat, `Tu bot no esta contento con la idea.\n- Mensaje: *Me siento incómodo, jsjs.*`, m);
+return m.reply(`Tu bot no esta contento con la idea.\n- Mensaje: *Me siento incómodo, jsjs.*`);
 }
 
 
@@ -227,7 +227,7 @@ const mensajesRelaciones = [
 const mensaje = mensajesRelaciones[Math.floor(Math.random() * mensajesRelaciones.length)];
 
 
-await conn.reply(m.chat, mensaje, m);
+await m.reply(mensaje);
 //conn.sendFile(m.chat, waifu.image, 'waifu.jpg', mensaje, m);
 }
 
@@ -240,12 +240,12 @@ const ayuda = `> *Comandos*
 *${usedPrefix}listbots* - Bots personales disponibles.
 `;
 
-conn.reply(m.chat, ayuda, m);
+m.reply(ayuda);
 }
 
 
-handler.help = ['adoptar', 'miwaifu', 'listawaifus', 'waifusdisponibles', 'alimentar', 'relaciones', 'waifus'];
-handler.tags = ['waifu', 'juegos'];
+//handler.help = ['adoptar', 'miwaifu', 'listawaifus', 'waifusdisponibles', 'alimentar', 'relaciones', 'waifus'];
+//handler.tags = ['waifu', 'juegos'];
 handler.command = ['llevar', 'mibot', 'usar', 'listbots', 'alimentar', 'adopcion', 'doplist'];
 handler.group = true;
 

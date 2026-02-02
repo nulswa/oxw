@@ -221,7 +221,7 @@ return conn.reply(m.chat, `Tu bot tiene mucha hambre.\n- *Hambre* : ${waifu.hamb
 }
 
 if (waifu.felicidad < 40) {
-return conn.reply(m.chat, `Tu bot no esta contento con la idea.\n- Mensaje: *${pickRandom(['Me siento incomodo. jsjs', 'Vamos a comer mejor.', 'Me surgen dudas', 'Me surgen dudas aun.', '¿Por que hay que hacer esto?', 'Que raro el gusto.', 'Ta raro, no pense que ser personal fuese asi ._.', '._.', 'No jsjs :b'])}`, m);
+return conn.reply(m.chat, `Tu bot no esta contento con la idea.\n- Mensaje: *Me siento incómodo, jsjs.*`, m);
 }
 
 

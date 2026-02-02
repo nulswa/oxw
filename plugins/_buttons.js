@@ -6,14 +6,14 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
   const imageUrl = 'https://i.postimg.cc/QtVfF3Zq/Picsart-26-01-17-02-46-49-331.jpg' // Cambia por tu imagen
   
   // Descargar la imagen
-  let imgBuffer;
+  /*let imgBuffer;
   try {
     const response = await fetch(imageUrl);
     imgBuffer = await response.buffer();
   } catch (e) {
     conn.sendMessage(m.chat, { text: e.message }, { quoted: m })
     console.error('Error descargando imagen:', e);
-  }
+  }*/
 
   // Definir las secciones de la lista
   const sections = [
@@ -78,11 +78,12 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
     "Selecciona una opción del menú para continuar.\n\nEste es un mensaje de demostración de lista interactiva con botones personalizados.", // Texto del body
     "Ver Opciones 📱", // Texto del botón
     sections,
-    imgBuffer, // Imagen
+    null, // Imagen
     m
   );
 }
 
 handler.command = ["button", "lista", "menu"]
 export default handler
+
 

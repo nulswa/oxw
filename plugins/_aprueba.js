@@ -1,6 +1,7 @@
+
 import fetch from 'node-fetch'
 
-// Base de datos temporal del juego
+// Base de datos temporal del juego - AHORA POR MENSAJE, NO POR USUARIO
 const gameData = {}
 
 const handler = async (m, { conn, command, usedPrefix, text }) => {
@@ -10,11 +11,6 @@ let user = global.db.data.users[userId]
 // Inicializar usuario si no existe
 if (!user.torucoin) user.torucoin = 0
 if (!user.toruexp) user.toruexp = 0
-
-// Verificar si ya tiene un juego activo
-if (gameData[userId] && gameData[userId].activo) {
-return conn.reply(m.chat, '📍  *Ya tienes un juego activo.* Termínalo primero o espera a que expire 5 minutos...', m)
-}
 
 // Lista de palabras/frases para adivinar
 const palabras = [
@@ -38,6 +34,8 @@ const palabras = [
 { id: 18, español: "Gato", ingles: "cat", pista: "Mascota felina" },
 { id: 19, español: "Feliz cumpleaños", ingles: "happy birthday", pista: "Celebración anual" },
 { id: 20, español: "¿Cómo estás?", ingles: "how are you", pista: "Pregunta sobre el estado" },
+    
+// NUEVAS 50 PALABRAS/FRASES
 { id: 21, español: "¿Dónde está el baño?", ingles: "where is the bathroom", pista: "Pregunta común en lugares públicos" },
 { id: 22, español: "¿Cuánto cuesta?", ingles: "how much is it", pista: "Pregunta sobre precio" },
 { id: 23, español: "No entiendo", ingles: "i don't understand", pista: "Cuando no comprendes algo" },
@@ -96,49 +94,44 @@ const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)
 // Mensaje del juego
 let mensaje = `
 ❔ \`ADIVINA LA PALABRA\`
-- ¡Gana *+50* ${currency} y *+50* ${currency2}
+- ¡Gana *+50* ${currency} y +50 *${currency2}
 
 ┌───────────────
-│● 💡 *Accion* 
+│● 💡 *Pista* 
 > ${palabraSeleccionada.pista}
 │
 │● 📝 *Palabra:*
 > ${palabraSeleccionada.español}
 └───────────────
 
-> 🔑 *Intentos* : 3 intentos.
+> 🔑 *Intentos* : 3 intentos por usuario.
 > ⏰ *Tiempo:* 5 minutos.
 
-📍 Responda a este mensaje con su respuesta en ingles.`
+📍 Responda a este mensaje con su respuesta en inglés.`
 
 const mensajeEnviado = await conn.sendMessage(m.chat, { text: mensaje }, { quoted: m })
 
-// Guardar el juego activo
-gameData[userId] = {
+// CAMBIO IMPORTANTE: Guardar por messageId en lugar de userId
+const messageId = mensajeEnviado.key.id
+
+gameData[messageId] = {
 palabra: palabraSeleccionada,
-intentos: 3,
 activo: true,
-messageId: mensajeEnviado.key.id,
 chat: m.chat,
-timestamp: Date.now()
+timestamp: Date.now(),
+participantes: {} // Guardar intentos por cada usuario
 }
 
 // Timer de 5 minutos
 setTimeout(() => {
-if (gameData[userId] && gameData[userId].activo && gameData[userId].messageId === mensajeEnviado.key.id) {
-user.torucoin -= 5
-if (user.torucoin < 0) user.torucoin = 0
-
-let mensajeTimeout = `⏰  Se agoto tu tiempo de respuesta.
-- La respuesta era: *${gameData[userId].palabra.ingles}*
-
-⎔ *Penalización:*
-• ${toem} -5 *${currency}*
+if (gameData[messageId] && gameData[messageId].activo) {
+let mensajeTimeout = `⏰  Se agotó el tiempo del juego.
+- La respuesta era: *${gameData[messageId].palabra.ingles}*
 
 > ${textbot}`
 
 conn.sendMessage(m.chat, { text: mensajeTimeout })
-delete gameData[userId]
+delete gameData[messageId]
 }
 }, 5 * 60 * 1000) // 5 minutos
 }
@@ -156,16 +149,27 @@ if (!global.db.data.users[userId]) return false
 
 let user = global.db.data.users[userId]
 
-// Verificar si el usuario tiene un juego activo
-if (!gameData[userId] || !gameData[userId].activo) return false
-
 // Verificar que esté citando un mensaje del bot
 if (!m.quoted.fromMe) return false
 
-// Verificar que esté citando el mensaje correcto del juego
-if (m.quoted.id !== gameData[userId].messageId) return false
+// Buscar si el mensaje citado corresponde a un juego activo
+const messageId = m.quoted.id
+if (!gameData[messageId] || !gameData[messageId].activo) return false
 
-const juegoActual = gameData[userId]
+const juegoActual = gameData[messageId]
+
+// Inicializar intentos del usuario si es la primera vez que participa
+if (!juegoActual.participantes[userId]) {
+juegoActual.participantes[userId] = 3 // 3 intentos por usuario
+}
+
+// Verificar si el usuario ya agotó sus intentos
+if (juegoActual.participantes[userId] <= 0) {
+await this.sendMessage(m.chat, { 
+text: `📍  Ya agotaste tus 3 intentos en este juego. Espera a que alguien más lo resuelva o que termine el tiempo.` 
+}, { quoted: m })
+return true
+}
 
 // Obtener la respuesta del usuario (normalizada)
 let respuestaUsuario = m.text.toLowerCase().trim()
@@ -187,38 +191,37 @@ ${toem2} *${currency2}* : +50
 
 await this.sendMessage(m.chat, { text: mensajeVictoria }, { quoted: m })
 
-// Eliminar el juego
-delete gameData[userId]
+// Eliminar el juego (alguien ya ganó)
+delete gameData[messageId]
 
 } else {
 // Respuesta incorrecta
-juegoActual.intentos--
+juegoActual.participantes[userId]--
 
-if (juegoActual.intentos <= 0) {
-// SE ACABARON LOS INTENTOS
+if (juegoActual.participantes[userId] <= 0) {
+// ESTE USUARIO AGOTÓ SUS INTENTOS
 user.torucoin -= 5
 if (user.torucoin < 0) user.torucoin = 0
 
-let mensajeDerrota = `📍  Perdiste, la palabra correcta era *( ${juegoActual.palabra.ingles} )*
+let mensajeDerrota = `📍  Perdiste, agotaste tus 3 intentos.
 
 ⎔ *Penalización:*
-• ${toem} -5 *${currency}*
+- ${toem} -5 *${currency}*
+
+💡 La palabra era: *${juegoActual.palabra.ingles}*
 
 > ${textbot}`
 
 await this.sendMessage(m.chat, { text: mensajeDerrota }, { quoted: m })
 
-// Eliminar el juego
-delete gameData[userId]
-
 } else {
-// INTENTO FALLIDO PERO AÚN HAY OPORTUNIDADES
+// INTENTO FALLIDO PERO AÚN HAY OPORTUNIDADES PARA ESTE USUARIO
 let mensajeIntento = `❔  La respuesta *( ${respuestaUsuario} )* es incorrecta.
-- Te quedan *${juegoActual.intentos}* intentos...
+- Te quedan *${juegoActual.participantes[userId]}* intentos...
 
-• 💡 *Accion:* ${juegoActual.palabra.pista}
+- 💡 *Pista:* ${juegoActual.palabra.pista}
 
-> 📍  Responda al mensaje principal del juego para otra respuesta.`
+> 📍  Responde al mensaje principal del juego para otra respuesta.`
 
 await this.sendMessage(m.chat, { text: mensajeIntento }, { quoted: m })
 }
@@ -229,4 +232,3 @@ return true
 
 handler.command = ["wix", "adivinaingles", "english"]
 export default handler
-    

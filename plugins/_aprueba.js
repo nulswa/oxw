@@ -46,7 +46,7 @@ const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)
 // Mensaje del juego
 let mensaje = `
 ❔ \`ADIVINA LA PALABRA\`
-- ¡Gana *+50* ${currency} y +50 *${currency2}
+- ¡Gana *+50* ${currency} y *+50* ${currency2}
 
 ┌───────────────
 │● 💡 *Pista* 

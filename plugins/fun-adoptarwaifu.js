@@ -119,7 +119,7 @@ await conn.sendFile(m.chat, waifu.image, 'waifu.jpg', `\t\tã€ *Bot : Personal ã
 }
 
 
-function listarWaifusGrupo(m, groupId) {
+function listarWaifusGrupo(m, conn, groupId) {
 if (!adoptedWaifus[groupId] || Object.keys(adoptedWaifus[groupId]).length === 0) {
 return conn.reply(m.chat, `No hay bots llevados en este grupo.`, m);
 }
@@ -143,7 +143,7 @@ conn.reply(m.chat, lista, m);
 }
 
 
-function verWaifusDisponibles(m, groupId, usedPrefix) {
+function verWaifusDisponibles(m, conn, groupId, usedPrefix) {
 const waifusAdoptadas = Object.values(adoptedWaifus[groupId] || {});
 const disponibles = waifusList.filter(w => 
 !waifusAdoptadas.some(aw => aw.id === w.id)
@@ -167,7 +167,7 @@ conn.reply(m.chat, lista, m);
 }
 
 
-function alimentarWaifu(m, groupId, sender, usedPrefix) {
+function alimentarWaifu(m, conn, groupId, sender, usedPrefix) {
 if (!adoptedWaifus[groupId][sender]) {
 return conn.reply(m.chat, `No tienes un bot adoptivo y personal.\n- Usa el comando *#llevar* para tener uno.`, m);
 }
@@ -232,12 +232,12 @@ await conn.reply(m.chat, mensaje, m);
 }
 
 
-function mostrarAyuda(m, usedPrefix) {
+function mostrarAyuda(m, conn, usedPrefix) {
 const ayuda = `> *Comandos*
-*#llevar* - Llevar un bot personal.
-*#mibot* - Ver detalles de tu bot.
-*#usar* - Usar el bot personal de otra manera.
-*#listbots* - Bots personales disponibles.
+*${usedPrefix}llevar* - Llevar un bot personal.
+*${usedPrefix}mibot* - Ver detalles de tu bot.
+*${usedPrefix}usar* - Usar el bot personal de otra manera.
+*${usedPrefix}listbots* - Bots personales disponibles.
 `;
 
 conn.reply(m.chat, ayuda, m);

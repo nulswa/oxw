@@ -5,7 +5,7 @@ return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ grupos ]* esta
 
 let mentionedJid = await m.mentionedJid
 let user = mentionedJid && mentionedJid.length ? mentionedJid[0] : m.quoted && await m.quoted.sender ? await m.quoted.sender : null
-if (!user) return client.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* @${m.sender.split`@`[0]}`, mentions: [m.sender] }, { quoted: m })
+if (!user) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* @${m.sender.split`@`[0]}`, mentions: [m.sender] }, { quoted: m })
 try {
 await m.react("⏰")
 const groupInfo = await conn.groupMetadata(m.chat)

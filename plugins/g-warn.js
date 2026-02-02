@@ -16,7 +16,7 @@ const ownerBot = global.owner[0][0] + '@s.whatsapp.net'
 switch (command) {
 case 'warn+': {
 if (!who || typeof who !== 'string' || !who.includes('@')) {
-return conn.sendMessage(m.chat, { text: `ᗢ Mencione a un usuario para darle una advertencia.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* @${m.sender.split`@`[0]}`, mentions: [m.sender] }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* @${m.sender.split`@`[0]}`, mentions: [m.sender] }, { quoted: m })
 }
 const msgtext = text?.trim() || ''
 const partes = msgtext.split(/\s+/)
@@ -35,7 +35,7 @@ await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
 break
 }
 case 'warn-': {
-if (!who) return conn.sendMessage(m.chat, { text: `ᗢ Mencione a un usuario advertido para quitar una advertencia.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* @${m.sender.split`@`[0]}`, mentions: [m.sender] }, { quoted: m })
+if (!who) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* @${m.sender.split`@`[0]}`, mentions: [m.sender] }, { quoted: m })
 if (mentionedJid.includes(conn.user.jid)) return
 if (user.warn === 0) return conn.sendMessage(m.chat, { text: `📍  El usuario que has mencionado no tiene ninguna advertencia.` }, { quoted: m })
 user.warn -= 1

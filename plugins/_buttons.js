@@ -11,6 +11,7 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
     const response = await fetch(imageUrl);
     imgBuffer = await response.buffer();
   } catch (e) {
+    conn.sendMessage(m.chat, { text: e.message }, { quoted: m })
     console.error('Error descargando imagen:', e);
   }
 
@@ -84,3 +85,4 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
 
 handler.command = ["button", "lista", "menu"]
 export default handler
+

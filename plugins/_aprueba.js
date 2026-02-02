@@ -12,6 +12,23 @@ let user = global.db.data.users[userId]
 if (!user.torucoin) user.torucoin = 0
 if (!user.toruexp) user.toruexp = 0
 
+// NUEVO: Verificar si ya hay un juego activo en este chat
+const juegoActivoEnChat = Object.values(gameData).find(
+    juego => juego.activo && juego.chat === m.chat
+)
+
+if (juegoActivoEnChat) {
+    const tiempoRestante = Math.ceil((300000 - (Date.now() - juegoActivoEnChat.timestamp)) / 1000 / 60)
+    return conn.reply(m.chat, 
+        `⚠️  *Ya hay un juego activo en este chat.*\n\n` +
+        `📍  Espera a que:\n` +
+        `• Alguien responda correctamente\n` +
+        `• Todos pierdan sus intentos\n` +
+        `• Expire el tiempo (~${tiempoRestante} min restantes)\n\n` +
+        `> Para participar, cita el mensaje del juego activo.`, 
+    m)
+}
+
 // Lista de palabras/frases para adivinar
 const palabras = [
 { id: 1, español: "Hola", ingles: "hello", pista: "Saludo común" },

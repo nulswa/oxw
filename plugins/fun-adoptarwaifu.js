@@ -44,17 +44,17 @@ return verMiWaifu(m, conn, groupId, sender);
 
 
 if (cmd === 'doplist') {
-return listarWaifusGrupo(m, groupId);
+return listarWaifusGrupo(m, conn, groupId);
 }
 
 
 if (cmd === 'listbots') {
-return verWaifusDisponibles(m, groupId, usedPrefix);
+return verWaifusDisponibles(m, conn, groupId, usedPrefix);
 }
 
 
 if (cmd === 'alimentar') {
-return alimentarWaifu(m, groupId, sender, usedPrefix);
+return alimentarWaifu(m, conn, groupId, sender, usedPrefix);
 }
 
 
@@ -64,7 +64,7 @@ return tenerRelaciones(m, conn, groupId, sender, usedPrefix);
 
 
 if (cmd === 'adopcion') {
-return mostrarAyuda(m, usedPrefix);
+return mostrarAyuda(m, conn, usedPrefix);
 }
 
 } catch (error) {

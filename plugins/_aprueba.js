@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch'
 
 // Base de datos temporal del juego - AHORA POR MENSAJE, NO POR USUARIO
@@ -18,15 +17,14 @@ const juegoActivoEnChat = Object.values(gameData).find(
 )
 
 if (juegoActivoEnChat) {
-    const tiempoRestante = Math.ceil((300000 - (Date.now() - juegoActivoEnChat.timestamp)) / 1000 / 60)
-    return conn.reply(m.chat, 
-        `⚠️  *Ya hay un juego activo en este chat.*\n\n` +
-        `📍  Espera a que:\n` +
-        `• Alguien responda correctamente\n` +
-        `• Todos pierdan sus intentos\n` +
-        `• Expire el tiempo (~${tiempoRestante} min restantes)\n\n` +
-        `> Para participar, cita el mensaje del juego activo.`, 
-    m)
+const tiempoRestante = Math.ceil((300000 - (Date.now() - juegoActivoEnChat.timestamp)) / 1000 / 60)
+return conn.reply(m.chat, 
+`⏰  *Ya hay un juego activo en este chat.*\n\n` +
+`📍  Espera a que:\n` +
+`• Alguien responda correctamente\n` +
+`• Todos pierdan sus intentos\n` +
+`• Expire el tiempo (~${tiempoRestante} min restantes)\n\n` +
+`> Para participar, cita el mensaje del juego activo.`, m)
 }
 
 // Lista de palabras/frases para adivinar
@@ -51,8 +49,6 @@ const palabras = [
 { id: 18, español: "Gato", ingles: "cat", pista: "Mascota felina" },
 { id: 19, español: "Feliz cumpleaños", ingles: "happy birthday", pista: "Celebración anual" },
 { id: 20, español: "¿Cómo estás?", ingles: "how are you", pista: "Pregunta sobre el estado" },
-    
-// NUEVAS 50 PALABRAS/FRASES
 { id: 21, español: "¿Dónde está el baño?", ingles: "where is the bathroom", pista: "Pregunta común en lugares públicos" },
 { id: 22, español: "¿Cuánto cuesta?", ingles: "how much is it", pista: "Pregunta sobre precio" },
 { id: 23, español: "No entiendo", ingles: "i don't understand", pista: "Cuando no comprendes algo" },
@@ -111,10 +107,10 @@ const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)
 // Mensaje del juego
 let mensaje = `
 ❔ \`ADIVINA LA PALABRA\`
-- ¡Gana *+50* ${currency} y +50 *${currency2}
+- ¡Gana *+50* ${currency} y *+50* ${currency2}
 
 ┌───────────────
-│● 💡 *Pista* 
+│● 💡 *Accion* 
 > ${palabraSeleccionada.pista}
 │
 │● 📝 *Palabra:*
@@ -236,7 +232,7 @@ await this.sendMessage(m.chat, { text: mensajeDerrota }, { quoted: m })
 let mensajeIntento = `❔  La respuesta *( ${respuestaUsuario} )* es incorrecta.
 - Te quedan *${juegoActual.participantes[userId]}* intentos...
 
-- 💡 *Pista:* ${juegoActual.palabra.pista}
+- 💡 *Accion:* ${juegoActual.palabra.pista}
 
 > 📍  Responde al mensaje principal del juego para otra respuesta.`
 

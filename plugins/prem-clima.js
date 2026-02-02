@@ -4,13 +4,13 @@ if (!global.db.data.chats[m.chat].fPremium && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Este conando es exclusivo para el plan *[ Premium ]*\n- Usa *#plan* para ver los planes disponibles.` }, { quoted: m })
 }
 
-if (!text) return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* Formosa` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* Formosa` }, { quoted: m })
 await m.react("⏰");
 try {
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(text)}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273`;
 const response = await fetch(apiUrl);
 if (!response.ok) {
-return conn.sendMessage(m.chat, { text: `${mssg.ejemplo}\n*${usedPrefix + command}* Formosa` }, { quoted: m });
+return conn.sendMessage(m.chat, { text: mess.noapi }, { quoted: m });
 }
 const data = await response.json();
 if (data.cod !== 200) {

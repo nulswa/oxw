@@ -37,7 +37,57 @@ const palabras = [
 { id: 17, español: "Perro", ingles: "dog", pista: "Mejor amigo del hombre" },
 { id: 18, español: "Gato", ingles: "cat", pista: "Mascota felina" },
 { id: 19, español: "Feliz cumpleaños", ingles: "happy birthday", pista: "Celebración anual" },
-{ id: 20, español: "¿Cómo estás?", ingles: "how are you", pista: "Pregunta sobre el estado" }
+{ id: 20, español: "¿Cómo estás?", ingles: "how are you", pista: "Pregunta sobre el estado" },
+{ id: 21, español: "¿Dónde está el baño?", ingles: "where is the bathroom", pista: "Pregunta común en lugares públicos" },
+{ id: 22, español: "¿Cuánto cuesta?", ingles: "how much is it", pista: "Pregunta sobre precio" },
+{ id: 23, español: "No entiendo", ingles: "i don't understand", pista: "Cuando no comprendes algo" },
+{ id: 24, español: "¿Hablas español?", ingles: "do you speak spanish", pista: "Pregunta sobre idioma" },
+{ id: 25, español: "Mucho gusto", ingles: "nice to meet you", pista: "Al conocer a alguien" },
+{ id: 26, español: "De nada", ingles: "you're welcome", pista: "Respuesta a 'gracias'" },
+{ id: 27, español: "¿Qué hora es?", ingles: "what time is it", pista: "Pregunta sobre la hora" },
+{ id: 28, español: "Tengo hambre", ingles: "i am hungry", pista: "Cuando necesitas comer" },
+{ id: 29, español: "Tengo sed", ingles: "i am thirsty", pista: "Cuando necesitas beber" },
+{ id: 30, español: "¿Dónde está el gato?", ingles: "where is the cat", pista: "Buscando a la mascota felina" },
+{ id: 31, español: "Me gusta", ingles: "i like it", pista: "Expresión de agrado" },
+{ id: 32, español: "No me gusta", ingles: "i don't like it", pista: "Expresión de desagrado" },
+{ id: 33, español: "Hasta luego", ingles: "see you later", pista: "Despedida informal" },
+{ id: 34, español: "¿Cómo te llamas?", ingles: "what is your name", pista: "Pregunta sobre el nombre" },
+{ id: 35, español: "Me llamo", ingles: "my name is", pista: "Presentación personal" },
+{ id: 36, español: "Buen viaje", ingles: "have a good trip", pista: "Deseo para viajeros" },
+{ id: 37, español: "Buena suerte", ingles: "good luck", pista: "Deseo de fortuna" },
+{ id: 38, español: "Con permiso", ingles: "excuse me", pista: "Para pedir paso" },
+{ id: 39, español: "Salud", ingles: "bless you", pista: "Después de un estornudo" },
+{ id: 40, español: "Felicidades", ingles: "congratulations", pista: "Por un logro" },
+{ id: 41, español: "Sí, por supuesto", ingles: "yes of course", pista: "Afirmación enfática" },
+{ id: 42, español: "No lo sé", ingles: "i don't know", pista: "Desconocimiento" },
+{ id: 43, español: "Tal vez", ingles: "maybe", pista: "Posibilidad incierta" },
+{ id: 44, español: "Espera un momento", ingles: "wait a moment", pista: "Pedir paciencia" },
+{ id: 45, español: "Ven aquí", ingles: "come here", pista: "Llamar a alguien" },
+{ id: 46, español: "Vete", ingles: "go away", pista: "Pedir que se vayan" },
+{ id: 47, español: "Ayuda", ingles: "help", pista: "Pedir socorro" },
+{ id: 48, español: "Cuidado", ingles: "be careful", pista: "Advertencia" },
+{ id: 49, español: "Rápido", ingles: "hurry up", pista: "Pedir velocidad" },
+{ id: 50, español: "Despacio", ingles: "slow down", pista: "Pedir calma" },
+{ id: 51, español: "Te extraño", ingles: "i miss you", pista: "Sentimiento de ausencia" },
+{ id: 52, español: "Estoy cansado", ingles: "i am tired", pista: "Falta de energía" },
+{ id: 53, español: "Estoy feliz", ingles: "i am happy", pista: "Estado de ánimo positivo" },
+{ id: 54, español: "Estoy triste", ingles: "i am sad", pista: "Estado de ánimo negativo" },
+{ id: 55, español: "¿Qué pasa?", ingles: "what's up", pista: "Saludo informal" },
+{ id: 56, español: "Nada especial", ingles: "nothing much", pista: "Respuesta casual" },
+{ id: 57, español: "Está bien", ingles: "it's okay", pista: "Aceptación" },
+{ id: 58, español: "No hay problema", ingles: "no problem", pista: "Sin inconvenientes" },
+{ id: 59, español: "Claro que sí", ingles: "sure", pista: "Afirmación casual" },
+{ id: 60, español: "Claro que no", ingles: "of course not", pista: "Negación enfática" },
+{ id: 61, español: "¿En serio?", ingles: "really", pista: "Expresión de sorpresa" },
+{ id: 62, español: "No te preocupes", ingles: "don't worry", pista: "Tranquilizar a alguien" },
+{ id: 63, español: "Ten cuidado", ingles: "take care", pista: "Despedida con cariño" },
+{ id: 64, español: "Buena idea", ingles: "good idea", pista: "Aprobación de sugerencia" },
+{ id: 65, español: "Mala idea", ingles: "bad idea", pista: "Desaprobación" },
+{ id: 66, español: "¿De verdad?", ingles: "are you sure", pista: "Confirmación de certeza" },
+{ id: 67, español: "Estoy de acuerdo", ingles: "i agree", pista: "Conformidad" },
+{ id: 68, español: "No estoy de acuerdo", ingles: "i disagree", pista: "Disconformidad" },
+{ id: 69, español: "¿Puedes ayudarme?", ingles: "can you help me", pista: "Solicitud de ayuda" },
+{ id: 70, español: "Con mucho gusto", ingles: "with pleasure", pista: "Aceptación amable" }
 ]
 
 // Seleccionar palabra aleatoria
@@ -49,7 +99,7 @@ let mensaje = `
 - ¡Gana *+50* ${currency} y *+50* ${currency2}
 
 ┌───────────────
-│● 💡 *Pista* 
+│● 💡 *Accion* 
 > ${palabraSeleccionada.pista}
 │
 │● 📝 *Palabra:*
@@ -166,7 +216,7 @@ delete gameData[userId]
 let mensajeIntento = `❔  La respuesta *( ${respuestaUsuario} )* es incorrecta.
 - Te quedan *${juegoActual.intentos}* intentos...
 
-• 💡 *Pista:* ${juegoActual.palabra.pista}
+• 💡 *Accion:* ${juegoActual.palabra.pista}
 
 > 📍  Responda al mensaje principal del juego para otra respuesta.`
 

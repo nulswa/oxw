@@ -4,7 +4,7 @@ const waifusList = [
 id: 1,
 name: 'TORU',
 image: 'https://i.postimg.cc/Y28MD3LQ/819440c39a84a763f33ed0c83c9c15d3.jpg',
-image2: 'https://i.postimg.cc/mZ97QPP7/c445c69dcae90bcb6848d29be2d9a9c0.jpg',
+imagen: 'https://i.postimg.cc/mZ97QPP7/c445c69dcae90bcb6848d29be2d9a9c0.jpg',
 anime: 'Jugueton',
 rarity: 'Hombre'
 },
@@ -12,7 +12,7 @@ rarity: 'Hombre'
 id: 2,
 name: 'ONIX',
 image: 'https://i.postimg.cc/xTYNMtDn/a7b155f8ab809c785fa259d8d3aeb35b.jpg',
-image2: 'https://i.postimg.cc/YCMN2tqg/060572a70858ae1f2c3ff6be0b7df14f.jpg',
+imagen: 'https://i.postimg.cc/YCMN2tqg/060572a70858ae1f2c3ff6be0b7df14f.jpg',
 anime: 'Algo gruñón',
 rarity: 'Hombre'
 }
@@ -115,21 +115,7 @@ return conn.reply(m.chat, `No tienes un bot adoptado y personal.\n- Usa *#llevar
 
 const waifu = adoptedWaifus[groupId][sender];
 
-await conn.sendFile(m.chat, waifu.image, 'waifu.jpg', 
-`\t\t【 *Bot : Personal 】
-- Mira las estadísticas de tu bot personal.
-
-▢ *Nombre* : @${waifu.name}
-▢ *Genero* : ${waifu.rarity}
-▢ *Personalidad* : ${waifu.anime}
-
-> *Detalles:*
-▢ *Hambre* : ${waifu.hambre}/100
-▢ *Felicidad* : ${waifu.felicidad}/100
-▢ *Relaciones* : ${waifu.relaciones} veces
-▢ *Nivel* : ${waifu.nivel}
-
-> ❔ Aumenta el nivel de tu bot personal para otros logros.`m);
+await conn.sendFile(m.chat, waifu.image, 'waifu.jpg', `\t\t【 *Bot : Personal 】\n- Mira las estadísticas de tu bot personal.\n\n▢ *Nombre* : @${waifu.name}\n▢ *Genero* : ${waifu.rarity}\n▢ *Personalidad* : ${waifu.anime}\n\n> *Detalles:*\n▢ *Hambre* : ${waifu.hambre}/100\n▢ *Felicidad* : ${waifu.felicidad}/100\n▢ *Relaciones* : ${waifu.relaciones} veces\n▢ *Nivel* : ${waifu.nivel}\n\n> ❔ Aumenta el nivel de tu bot personal para otros logros.`m);
 }
 
 
@@ -196,10 +182,10 @@ waifu.felicidad = Math.min(100, waifu.felicidad + 15);
 if (waifu.hambre >= 100 && waifu.nivel < 20) {
 waifu.nivel++;
 waifu.hambre = 50; 
-conn.reply(m.chat, `[ 🥳 ]  ¡Tu bot *( @${waifu.name} )* ha subido de nivel ${waifu.nivel}!\n- Sigue cuidando para subir mas de nivel.`, m);
+conn.reply(m.chat, `[ 🥳 ]  ¡Tu bot *( ${waifu.name} )* ha subido de nivel ${waifu.nivel}!\n- Sigue cuidando para subir mas de nivel.`, m);
 }
 
-await conn.sendFile(m.chat, waifu.image2, 'bots.jpg', `✎ \`Alimentación\` ❤️\n- ¡Haz llevado de comer a tu bot!¡\n\n▢ *Hambre* : ${waifu.hambre}/100\n▢ *Felicidad* : ${waifu.felicidad}/100\n▢ *Nivel* : ${waifu.nivel}\n\n❤️ *@${waifu.name}* esta contento por que lo llevaste.\n\n> 🍔 Tu bot recupero *+20* de hambre y *+15* de felicidad.`, m );
+await conn.sendFile(m.chat, waifu.imagen, 'bots.jpg', `✎ \`Alimentación\` ❤️\n- ¡Haz llevado de comer a tu bot!¡\n\n▢ *Hambre* : ${waifu.hambre}/100\n▢ *Felicidad* : ${waifu.felicidad}/100\n▢ *Nivel* : ${waifu.nivel}\n\n❤️ *${waifu.name}* esta contento por que lo llevaste.\n\n> 🍔 Tu bot recupero *+20* de hambre y *+15* de felicidad.`, m );
 }
 
 

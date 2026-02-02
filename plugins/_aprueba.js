@@ -11,6 +11,11 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
     if (!user.torucoin) user.torucoin = 0
     if (!user.toruexp) user.toruexp = 0
     
+    // Verificar si ya tiene un juego activo
+    if (gameData[userId] && gameData[userId].activo) {
+        return conn.reply(m.chat, '⚠️ *Ya tienes un juego activo.* Termínalo primero o espera a que expire.', m)
+    }
+    
     // Lista de palabras/frases para adivinar
     const palabras = [
         { id: 1, español: "Hola", ingles: "hello", pista: "Saludo común" },
@@ -28,7 +33,7 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
         { id: 13, español: "Familia", ingles: "family", pista: "Parientes" },
         { id: 14, español: "Libro", ingles: "book", pista: "Para leer" },
         { id: 15, español: "Teléfono", ingles: "phone", pista: "Para llamar" },
-        { id: 16, español: "Computadora", ingles: "computer", pista: "Para trabajar/jugar" },
+        { id: 16, española: "Computadora", ingles: "computer", pista: "Para trabajar/jugar" },
         { id: 17, español: "Perro", ingles: "dog", pista: "Mejor amigo del hombre" },
         { id: 18, español: "Gato", ingles: "cat", pista: "Mascota felina" },
         { id: 19, español: "Feliz cumpleaños", ingles: "happy birthday", pista: "Celebración anual" },
@@ -38,24 +43,18 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
     // Seleccionar palabra aleatoria
     const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)]
     
-    // Guardar el juego activo
-    gameData[userId] = {
-        palabra: palabraSeleccionada,
-        intentos: 3,
-        activo: true
-    }
-    
     // Mensaje del juego
     let mensaje = `╭━━━━━━━━━⬣
 ┃ 🎮 *ADIVINA LA PALABRA*
 ┃
-┃ 🆔 *ID:* ${palabraSeleccionada.id}
+┃ 🆔 *ID:* *${palabraSeleccionada.id}*
 ┃ 📝 *Palabra en Español:*
 ┃ ${palabraSeleccionada.español}
 ┃
 ┃ 💡 *Pista:* ${palabraSeleccionada.pista}
 ┃
 ┃ ❤️ *Intentos restantes:* 3
+┃ ⏱️ *Tiempo límite:* 5 minutos
 ┃
 ┃ 📌 *Instrucciones:*
 ┃ Responde citando este mensaje
@@ -65,31 +64,67 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
 ┃ 💀 *Penalización:* -5 coins
 ╰━━━━━━━━━⬣`
     
-    await conn.sendMessage(m.chat, { text: mensaje }, { quoted: m })
+    const mensajeEnviado = await conn.sendMessage(m.chat, { text: mensaje }, { quoted: m })
+    
+    // Guardar el juego activo
+    gameData[userId] = {
+        palabra: palabraSeleccionada,
+        intentos: 3,
+        activo: true,
+        messageId: mensajeEnviado.key.id,
+        chat: m.chat,
+        timestamp: Date.now()
+    }
+    
+    // Timer de 5 minutos
+    setTimeout(() => {
+        if (gameData[userId] && gameData[userId].activo && gameData[userId].messageId === mensajeEnviado.key.id) {
+            user.torucoin -= 5
+            if (user.torucoin < 0) user.torucoin = 0
+            
+            let mensajeTimeout = `╭━━━━━━━━━⬣
+┃ ⏰ *TIEMPO AGOTADO*
+┃
+┃ ❌ Se acabó el tiempo
+┃ 
+┃ ✅ La respuesta era: *${gameData[userId].palabra.ingles}*
+┃
+┃ 💸 *Penalización:*
+┃ • -5 Coins 🪙
+┃
+┃ 💰 *Total Coins:* ${user.torucoin}
+┃ ⭐ *Total EXP:* ${user.toruexp}
+╰━━━━━━━━━⬣`
+            
+            conn.sendMessage(m.chat, { text: mensajeTimeout })
+            delete gameData[userId]
+        }
+    }, 5 * 60 * 1000) // 5 minutos
 }
 
-handler.before = async function (m, { conn }) {
+handler.before = async function (m) {
     // Verificar si es un mensaje válido
-    if (!m.quoted || !m.text) return
-    if (m.isBaileys) return
+    if (!m.text) return false
+    if (m.isBaileys) return false
+    if (!m.quoted) return false
     
     let userId = m.sender
+    
+    // Verificar si el usuario existe en la base de datos
+    if (!global.db.data.users[userId]) return false
+    
     let user = global.db.data.users[userId]
     
     // Verificar si el usuario tiene un juego activo
-    if (!gameData[userId] || !gameData[userId].activo) return
+    if (!gameData[userId] || !gameData[userId].activo) return false
     
-    // Verificar que esté citando el mensaje del bot
-    const match = m.quoted.text.match(/🆔.*?\*(\d+)\*/)
-    if (!match) return
+    // Verificar que esté citando un mensaje del bot
+    if (!m.quoted.fromMe) return false
     
-    const id = parseInt(match[1].trim())
+    // Verificar que esté citando el mensaje correcto del juego
+    if (m.quoted.id !== gameData[userId].messageId) return false
+    
     const juegoActual = gameData[userId]
-    
-    // Verificar que el ID coincida
-    if (juegoActual.palabra.id !== id) {
-        return conn.reply(m.chat, '⚠️ *Este no es tu juego activo actual.*', m)
-    }
     
     // Obtener la respuesta del usuario (normalizada)
     let respuestaUsuario = m.text.toLowerCase().trim()
@@ -114,7 +149,7 @@ handler.before = async function (m, { conn }) {
 ┃ ⭐ *Total EXP:* ${user.toruexp}
 ╰━━━━━━━━━⬣`
         
-        await conn.sendMessage(m.chat, { text: mensajeVictoria }, { quoted: m })
+        await this.sendMessage(m.chat, { text: mensajeVictoria }, { quoted: m })
         
         // Eliminar el juego
         delete gameData[userId]
@@ -142,7 +177,7 @@ handler.before = async function (m, { conn }) {
 ┃ ⭐ *Total EXP:* ${user.toruexp}
 ╰━━━━━━━━━⬣`
             
-            await conn.sendMessage(m.chat, { text: mensajeDerrota }, { quoted: m })
+            await this.sendMessage(m.chat, { text: mensajeDerrota }, { quoted: m })
             
             // Eliminar el juego
             delete gameData[userId]
@@ -161,7 +196,7 @@ handler.before = async function (m, { conn }) {
 ┃ el mensaje original
 ╰━━━━━━━━━⬣`
             
-            await conn.sendMessage(m.chat, { text: mensajeIntento }, { quoted: m })
+            await this.sendMessage(m.chat, { text: mensajeIntento }, { quoted: m })
         }
     }
     
@@ -170,3 +205,4 @@ handler.before = async function (m, { conn }) {
 
 handler.command = ["wix", "adivinaingles", "english"]
 export default handler
+

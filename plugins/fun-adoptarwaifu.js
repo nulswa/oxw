@@ -310,7 +310,7 @@ m.reply(ayuda);
 
 handler.help = ['adoptar', 'miwaifu', 'listawaifus', 'waifusdisponibles', 'alimentar', 'relaciones', 'waifus'];
 handler.tags = ['waifu', 'juegos'];
-handler.command = ['adoptar', 'miwaifu', 'listawaifus', 'waifusdisponibles', 'alimentar', 'relaciones', 'waifus'];
+handler.command = ['abrir', 'mibot', 'pert', 'doplist', 'alimentar', 'relation', 'infoadop'];
 handler.group = true;
 
 export default handler;

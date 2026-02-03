@@ -15,7 +15,7 @@ const fakeAdReply = {
     text: "Este es un mensaje con anuncio fake",
     contextInfo: {
         forwardingScore: 999,
-        isForwarded: true,
+        isForwarded: false,
         externalAdReply: {
             showAdAttribution: true,
             title: "⧿ TORU BOT ⧿",
@@ -276,7 +276,7 @@ const fakeCombo = {
     contextInfo: {
         mentionedJid: [m.sender],
         forwardingScore: 999,
-        isForwarded: true,
+        isForwarded: false,
         externalAdReply: {
             showAdAttribution: true,
             title: "⧿ TORU PRO ⧿",

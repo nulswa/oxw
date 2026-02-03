@@ -24,7 +24,7 @@ const size = await getSize(dl_url);
 const sizeStr = size ? await formatSize(size) : 'Desconocido';
 
 const cleanTitle = title.replace(/[^\w\s]/gi, '').trim().replace(/\s+/g, '_');
-const fileName = `${cleanTitle}.mp4`;
+const fileName = `${cleanTitle}.mp3`;
 
 const caption = `${title}\n\n${botname}\n> ${textbot}`;
 

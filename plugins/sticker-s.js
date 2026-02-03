@@ -18,12 +18,12 @@ let handler = async (m, { conn }) => {
     })
 
     let media = await q.download()
-    if (!media) throw 'No se pudo obtener el archivo'
+    if (!media) return m.reply( 'No se pudo obtener el archivo' )
 
     let stiker = await sticker(
       media,
-      global.sk_pack || '',
-      global.sk_pakc2 || ''
+      global.skpack,
+      global.skpakc2
     )
 
     await conn.sendMessage(

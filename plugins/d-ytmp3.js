@@ -36,7 +36,7 @@ ${title}
 
 > ${textbot}`;
 const toruYt = "https://files.catbox.moe/d9picr.jpg";
-const toruEstilo = { key: { fromMe: false, participant: "0@s.whatsapp.net" }, message: { documentMessage: { title: textbot, fileName: "⧿ YouTube : Download ⧿", jpegThumbnail: toruYt || global.toruImg }}};
+const toruEstilo = { key: { fromMe: false, participant: "0@s.whatsapp.net" }, message: { documentMessage: { title: textbot, fileName: "⧿ YouTube : Download ⧿", jpegThumbnail: "https://files.catbox.moe/d9picr.jpg" }}};
 await conn.sendMessage(m.chat, { text: toruWa }, { quoted: toruEstilo });
   
 let head = await fetch(dl_url, { method: "HEAD" });

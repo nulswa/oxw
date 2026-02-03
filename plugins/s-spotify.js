@@ -138,16 +138,24 @@ var handler = async (m, { text, conn, usedPrefix, command }) => {
             results: results, 
             timestamp: Date.now(),
             chat: m.chat,
-            activo: true
+            activo: true,
+            expirado: false // Bandera para controlar si ya expiró
         }
 
         // Timer de 1 minuto
         setTimeout(() => {
-            if (spotifyCache[messageId] && spotifyCache[messageId].activo) {
+            if (spotifyCache[messageId] && spotifyCache[messageId].activo && !spotifyCache[messageId].expirado) {
+                spotifyCache[messageId].expirado = true
+                spotifyCache[messageId].activo = false
+                
                 conn.sendMessage(m.chat, { 
-                    text: `⏰  La búsqueda de Spotify ha expirado.\n\n> Usa *${usedPrefix + command}* para buscar de nuevo.` 
+                    text: `⏰  La búsqueda de Spotify ha expirado.\n\n> Usa *${usedPrefix}sp* para buscar de nuevo.` 
                 })
-                delete spotifyCache[messageId]
+                
+                // Limpiar después de 5 segundos
+                setTimeout(() => {
+                    delete spotifyCache[messageId]
+                }, 5000)
             }
         }, CACHE_TIME)
 
@@ -175,20 +183,30 @@ handler.before = async (m, { conn }) => {
     // Obtener el messageId del mensaje citado
     const messageId = m.quoted.id
 
-    // Verificar si existe en el caché
+    // Verificar si existe en el caché de Spotify
     const searchCache = spotifyCache[messageId]
     
-    if (!searchCache || !searchCache.activo) {
-        return conn.sendMessage(m.chat, { 
-            text: `⏰  La búsqueda ha expirado o no es válida.\n\n> Vuelve a usar el comando de búsqueda.` 
-        }, { quoted: m })
+    // Si no existe en el caché de Spotify, ignorar (no es un mensaje de búsqueda de Spotify)
+    if (!searchCache) return false
+
+    // Verificar si ya expiró
+    if (searchCache.expirado || !searchCache.activo) {
+        // Solo mostrar mensaje de expiración si aún no se ha mostrado
+        if (!searchCache.mensajeMostrado) {
+            searchCache.mensajeMostrado = true
+            await conn.sendMessage(m.chat, { 
+                text: `⏰  La búsqueda ha expirado.\n\n> Vuelve a usar el comando de búsqueda.` 
+            }, { quoted: m })
+        }
+        return true
     }
 
     // Verificar que el índice sea válido
     if (!searchCache.results[index]) {
-        return conn.sendMessage(m.chat, { 
+        await conn.sendMessage(m.chat, { 
             text: `📍  Número inválido. Elige un número entre 1 y ${searchCache.results.length}.` 
         }, { quoted: m })
+        return true
     }
 
     const track = searchCache.results[index]
@@ -227,7 +245,8 @@ handler.before = async (m, { conn }) => {
 
         await m.react('✅')
 
-        // Eliminar del caché después de la descarga
+        // Marcar como inactivo y eliminar del caché después de la descarga
+        searchCache.activo = false
         delete spotifyCache[messageId]
 
     } catch (e) {
@@ -240,44 +259,3 @@ handler.before = async (m, { conn }) => {
 
 handler.command = ['spotifys', 'sp', 'spys']
 export default handler
-
-
-
-/*
-
-import fetch from 'node-fetch'
-const handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!global.db.data.chats[m.chat].fSearch && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ búsquedas ]* estan desactivados...` }, { quoted: m })
-}
-if (!text) return conn.sendMessage(m.chat, { text: `ᗢ Proporcione una busqueda en Spotify.\n\n\t⚶ Por ejemplo:\n*${usedPrefix + command}* Golden Brown` }, { quoted: m })
-try {
-await m.react("⏰")
-const res = await fetch(`https://api.delirius.store/search/spotify?q=${text}&limit=10`)
-const json = await res.json()
-const toru = json.data
-if (!toru || toru.length < 2) return conn.sendMessage(m.chat, { text: `No se han encontrado resultados en Spotify.` }, { quoted: m })
-const maxItems = Math.min(toru.length, 10)
-
-let mensaje = `· ┄ · ⊸ 𔓕 *Spotify  :  Search*\n\n\t＃ *Busqueda* : ${text}\n\t＃ *Resultados* : *${maxItems}* results\n\t＃ *Fuente* : Spotify \n\n\n`
-
-let listado = toru.map(t => {
-return `⧡ *ID* : ${t.id}
-⧡ *Titulo* : ${t.title}
-⧡ *Duracion* : ${t.duration}
-⧡ *Enlace* : ${t.url}`
-}).join('\n\n\n')
-const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/suuskr.jpg`)).arrayBuffer())
-await conn.sendMessage(m.chat, { text: mensaje + listado, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Spotify : Search ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-await m.react("✅")
-} catch (e) {
-await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
-}}
-
-handler.command = ['spys', 'spotifys']
-export default handler
-
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-  
-*/

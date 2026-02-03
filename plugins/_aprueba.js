@@ -20,28 +20,22 @@ await conn.sendMessage(m.chat, {
     text: mensaje,
     contextInfo: {
         mentionedJid: [m.sender],
-        forwardingScore: 999,
-        isForwarded: true,
         businessMessageForwardInfo: {
             businessOwnerJid: "0@s.whatsapp.net"
         },
-        forwardedNewsletterMessageInfo: {
-            newsletterJid: "120363200000000000@newsletter",
-            newsletterName: "⧿ TORU PREMIUM ⧿",
-            serverMessageId: 1
-        },
         externalAdReply: {
-            showAdAttribution: true,
+            showAdAttribution: false,
             title: "⧿ TORU PRO MAX ⧿",
             body: "Sistema Empresarial Avanzado",
             mediaType: 1,
             thumbnailUrl: thumbnailUrl,
             sourceUrl: "https://toru-bot.com",
             renderLargerThumbnail: true,
-            containsAutoReply: true
+            containsAutoReply: false
         }
     }
-}, { quoted: m });
+}, m);
 };
 handler.command = ['fake2', 'ads', 'estilos'];
 export default handler;
+

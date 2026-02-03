@@ -139,7 +139,8 @@ var handler = async (m, { text, conn, usedPrefix, command }) => {
             timestamp: Date.now(),
             chat: m.chat,
             activo: true,
-            expirado: false // Bandera para controlar si ya expiró
+            expirado: false,
+            usuariosDescargados: {} // Rastrear qué usuarios ya descargaron qué canción
         }
 
         // Timer de 1 minuto
@@ -152,10 +153,10 @@ var handler = async (m, { text, conn, usedPrefix, command }) => {
                     text: `⏰  La búsqueda de Spotify ha expirado.\n\n> Usa *${usedPrefix}sp* para buscar de nuevo.` 
                 })
                 
-                // Limpiar después de 5 segundos
+                // Limpiar después de 10 segundos
                 setTimeout(() => {
                     delete spotifyCache[messageId]
-                }, 5000)
+                }, 10000)
             }
         }, CACHE_TIME)
 
@@ -179,6 +180,7 @@ handler.before = async (m, { conn }) => {
     if (!match) return false
 
     const index = parseInt(match[1]) - 1
+    const userId = m.sender
 
     // Obtener el messageId del mensaje citado
     const messageId = m.quoted.id
@@ -245,9 +247,11 @@ handler.before = async (m, { conn }) => {
 
         await m.react('✅')
 
-        // Marcar como inactivo y eliminar del caché después de la descarga
-        searchCache.activo = false
-        delete spotifyCache[messageId]
+        // NO eliminar el caché, solo registrar que este usuario descargó esta canción
+        if (!searchCache.usuariosDescargados[userId]) {
+            searchCache.usuariosDescargados[userId] = []
+        }
+        searchCache.usuariosDescargados[userId].push(index)
 
     } catch (e) {
         console.error('Error al descargar:', e)

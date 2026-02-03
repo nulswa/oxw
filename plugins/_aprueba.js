@@ -2,7 +2,7 @@ import axios from 'axios';
 import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, args, usedPrefix, command }) => {
-const toruYt = await fetch("https://files.catbox.moe/d9picr.jpg");
+const toruYt = await fetch("https://github.com/nulswa/oxw/blob/main/src/adn3jv.jpeg");
 const thumb = Buffer.from(await toruYt.arrayBuffer());
 
 // ═══════════════════════════════════════

@@ -243,7 +243,7 @@ let xd = `Selecciona el estilo que quieres probar:
 10. Newsletter/Canal`;
 
 // Puedes cambiar el fake según lo que necesites:
-const estiloSeleccionado = fakeProduct; // Cambia este según el estilo que quieras
+const estiloSeleccionado = fakeOrder; // Cambia este según el estilo que quieras
 
 await conn.sendMessage(m.chat, { text: xd }, { quoted: estiloSeleccionado });
 

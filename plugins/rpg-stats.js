@@ -35,7 +35,7 @@ let yo = `· ┄ · ⊸ 𔓕 *STATS : RPG*
 💨 *Aire* : *#${user.taire}^*
 
 > 📍  Derrota enemigos o juega comandos para ganar eatatus.`
-await conn.sendMessage(m.chat, { text: yo, mentions: [m.sender], contextInfo: { externalAdReply: { title: "〩  S T A T S  〩", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: yo, mentions: await conn.parseMention(yo), contextInfo: { externalAdReply: { title: "〩  S T A T S  〩", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 //conn.sendMessage(m.chat, { text: `${who == m.sender ? `${yo}` : `${tu}`}`, mentions: [who] }, { quoted: m }
 //m.reply(`${who == m.sender ? `${yo}` : `${tu}`}`, null, { mentions: [who] })
 }

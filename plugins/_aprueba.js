@@ -30,7 +30,7 @@ let handler = async (m, { conn, text, args }) => {
     const fileName = `${cleanTitle}.mp4`;
 
     const caption = `
-🎁 *Youtube MP4 V2* ✨  
+🎁 *Audio V2* ✨  
 ────────────────  
 ☃️ *Título:* ${title}  
 🛷 *Tamaño:* ${sizeStr}  
@@ -43,16 +43,13 @@ let handler = async (m, { conn, text, args }) => {
     if (fileSizeMB >= 100) {
       await conn.sendMessage(m.chat, {
         document: { url: dl_url },
-        mimetype: 'video/mp4',
+        mimetype: 'audio/mpeg',
         fileName,
         caption: `${caption}\n✨ *Enviado como documento (archivo grande)*`
       }, { quoted: m });
     } else {
-      await conn.sendMessage(m.chat, {
-        video: { url: dl_url },
-        mimetype: 'video/mp4',
-        caption
-      }, { quoted: m });
+    await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: "audio/mpeg", fileName: title }, { quoted: m })
+      //await conn.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption }, { quoted: m });
     }
 
     await conn.sendMessage(m.chat, { react: { text: '✔️', key: m.key } });

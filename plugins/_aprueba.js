@@ -5,7 +5,7 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
 }
 
-if (!text) return client.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://youtube.com/xxx` }, { quoted: m })
+if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://youtube.com/xxx` }, { quoted: m })
 try {
 await m.react("⏰")
 const res = await fetch(`https://sylphy.xyz/download/ytmp3?url=${text}&api_key=sylphy-c0ZDE6V`)

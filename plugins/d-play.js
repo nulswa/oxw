@@ -55,7 +55,7 @@ const audioApis = [
 { url: () => fetch(`https://api.neoxr.eu/api/youtube?url=${userVideoData.url}&type=audio&quality=128kbps&apikey=GataDios`).then((res) => res.json()), extract: (data) => ({data: data.data.url, isDirect: false}) },
 { url: () => fetch(`https://api-shadowxyz.vercel.app/download/ytmp3V2?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data?.result?.download_url, isDirect: false}) },
 { url: () => fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.dl, isDirect: false}) },
-{ url: () => fetch(`https://sylphy.xyz/download/v2/ytmp3url=${userVideoData.url}&api_key=sylphy-c0ZDE6V`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.result.dl_url : null, isDirect: false}) },
+{ url: () => fetch(`https://sylphy.xyz/download/v2/ytmp3?url=${userVideoData.url}&api_key=sylphy-c0ZDE6V`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.result.dl_url : null, isDirect: false}) },
 { url: () => fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.result.download.url, isDirect: false}) }
 ]
 

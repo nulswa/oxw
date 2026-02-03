@@ -120,7 +120,7 @@ await conn.sendFile(m.chat, utoru.foto, 'utoru.jpg', `『 *Bot* : Personal* 』\
 }
 
 
-function grupoBots(m, groupId) {
+function grupoBots(m, conn, groupId) {
 if (!adopsBots[groupId] || Object.keys(adopsBots[groupId]).length === 0) {
 return m.reply('No hay bots llevados en este grupo.\n- Usa *#llevar* para tener uno.');
 }
@@ -253,5 +253,6 @@ handler.command = ['llevar', 'mibot', 'listbots', 'adops', 'dar', 'comer', 'utor
 handler.group = true;
 
 export default handler;
+
 
 

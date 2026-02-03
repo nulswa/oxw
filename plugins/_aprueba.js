@@ -8,7 +8,7 @@ return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* e
 if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://youtube.com/xxx` }, { quoted: m })
 try {
 await m.react("⏰")
-const res = await fetch(`https://sylphy.xyz/download/ytmp3?url=${text}&api_key=sylphy-c0ZDE6V`)
+const res = await fetch(`https://sylphy.xyz/download/v2/ytmp3?url=${text}&api_key=sylphy-c0ZDE6V`)
 const json = await res.json()
 const toru = json.status
 

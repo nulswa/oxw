@@ -14,7 +14,7 @@ let handler = async (m, { conn }) => {
     }
 
     await conn.sendMessage(m.chat, {
-      react: { text: '🕒', key: m.key }
+      react: { text: '⏰', key: m.key }
     })
 
     let media = await q.download()
@@ -22,8 +22,8 @@ let handler = async (m, { conn }) => {
 
     let stiker = await sticker(
       media,
-      global.packsticker || '',
-      global.packsticker2 || ''
+      global.sk_pack || '',
+      global.sk_pakc2 || ''
     )
 
     await conn.sendMessage(
@@ -40,7 +40,7 @@ let handler = async (m, { conn }) => {
     await conn.sendMessage(m.chat, {
       react: { text: '❌', key: m.key }
     })
-    m.reply('Error al crear el sticker')
+    m.reply(e.message)
   }
 }
 

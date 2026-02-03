@@ -1,55 +1,239 @@
-import axios from 'axios' 
-import fetch from 'node-fetch'
-const handler = async (m, { conn, text, args, usedPrefix, command }) => {
-if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* estan desactivados...` }, { quoted: m })
+
+import fetch from "node-fetch"
+import yts from "yt-search"
+import crypto from "crypto"
+import axios from "axios"
+import Jimp from "jimp"
+
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+
+  const getFileSize = async (url) => {
+    try {
+      const head = await fetch(url, { method: "HEAD" });
+      const size = head.headers.get("content-length");
+      if (!size) return "Desconocido";
+      let mb = (Number(size) / 1024 / 1024).toFixed(2);
+      return `${mb} MB`;
+    } catch {
+      return "Desconocido";
+    }
+  };
+
+  try {
+    if (!text?.trim())
+      return conn.reply(m.chat, `*💛 Por favor, ingresa el nombre o enlace del video.*`, m, rcanal);
+
+    await m.react('⏰');
+    await conn.sendMessage(m.chat, { text: `> 🌳 Buscando en YouTube:\n> ${text} ` }, { quoted: m });
+
+    const videoMatch = text.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|shorts\/|v\/)?([a-zA-Z0-9_-]{11})/);
+    const query = videoMatch ? `https://youtu.be/${videoMatch[1]}` : text;
+
+    const search = await yts(query);
+    const allItems = (search?.videos?.length ? search.videos : search.all) || [];
+    const result = videoMatch
+      ? allItems.find(v => v.videoId === videoMatch[1]) || allItems[0]
+      : allItems[0];
+
+    if (!result) throw 'No se encontraron resultados.';
+
+    const { title = 'Desconocido', thumbnail, timestamp = 'N/A', views, ago = 'N/A', url = query, author = {} } = result;
+    const vistas = formatViews(views);
+
+    const res3 = await fetch("https://files.catbox.moe/wfd0ze.jpg");
+    const thumb3 = Buffer.from(await res3.arrayBuffer());
+
+    const fkontak2 = {
+      key: { fromMe: false, participant: "0@s.whatsapp.net" },
+      message: {
+        documentMessage: {
+          title: "𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔𝗡𝗗𝗢.... ..",
+          fileName: "🥗 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔𝗡𝗗𝗢.... .. 🍃",
+          jpegThumbnail: thumb3
+        }
+      }
+    };
+
+    const info = `ㅤ       ࣪      𓈒      𔓗𓏸    ࣪     ׅ
+᱒᱒     𝒀𝒐𝒖𝑻𝒖𝒃𝒆 - 𝑫𝒐𝒄𝒔 ބ  ࣪ ㅤ
+
+๑ ˙•.   ⃝͈ٝ🍒̰ࠛ  𝐓𝐢𝐭𝐮𝐥𝐨: ${title}
+๑ ˙•.   ⃝͈ٝ⚡̰ࠛ  𝐂𝐚𝐧𝐚𝐥: ${author.name || '❄️ Desconocido'}
+๑ ˙•.   ⃝͈ٝ🎋̰ࠛ   𝐕𝐢𝐬𝐭𝐚𝐬: ${vistas}
+๑ ˙•.   ⃝͈ٝ🌾̰ࠛ  𝐃𝐮𝐫𝐚𝐜𝐢𝐨𝐧: ${timestamp}
+๑ ˙•.   ⃝͈ٝ🍁̰ࠛ  𝐏𝐮𝐛𝐥𝐢𝐜𝐚𝐝𝐨: ${ago}
+๑ ˙•.   ⃝͈ٝ🪽̰ࠛ 𝐋𝐢𝐧𝐤: ${url}
+
+﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌`;
+
+    const thumb = (await conn.getFile(thumbnail)).data;
+    await conn.sendMessage(m.chat, { image: thumb, caption: info }, { quoted: fkontak2 });
+
+    const audio = await savetube.download(url);
+    if (!audio?.status) throw `Error al obtener el audio: ${audio?.error || 'Desconocido'}`;
+
+    let thumbDoc = null;
+    try {
+      const img = await Jimp.read(result.thumbnail);
+      img.resize(300, Jimp.AUTO).quality(70);
+      thumbDoc = await img.getBufferAsync(Jimp.MIME_JPEG);
+    } catch (err) {
+      console.log("⚠️ Error al procesar miniatura:", err.message);
+      thumbDoc = Buffer.alloc(0);
+    }
+
+    const Shadow_url = await (await fetch("https://raw.githubusercontent.com/AkiraDevX/uploads/main/uploads/1763384842220_234152.jpeg")).buffer();
+    const fkontak = {
+      key: {
+        fromMe: false,
+        participant: "0@s.whatsapp.net",
+        remoteJid: "status@broadcast"
+      },
+      message: {
+        productMessage: {
+          product: {
+            productImage: {
+              mimetype: "image/jpeg",
+              jpegThumbnail: Shadow_url
+            },
+            title: "⚡ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀 𝐂𝐎𝐌𝐏𝐋𝐄𝐓𝐀 ⚡",
+            description: "",
+            currencyCode: "USD",
+            priceAmount1000: 100000,
+            retailerId: "descarga-premium"
+          },
+          businessOwnerJid: "51919199620@s.whatsapp.net"
+        }
+      }
+    };
+
+    const fileSize = await getFileSize(audio.result.download);
+
+    await conn.sendMessage(
+      m.chat,
+      {
+        document: { url: audio.result.download },
+        mimetype: "audio/mpeg",
+        fileName: `${title}.mp3`,
+        caption: `> 🌴 \`ᴛɪᴛᴜʟᴏ:\` *${title}*
+> 🌾 \`ᴛᴀᴍᴀɴ̃ᴏ:\` *${fileSize}*`,
+        ...(thumbDoc ? { jpegThumbnail: thumbDoc } : {})
+      },
+      { quoted: fkontak }
+    );
+
+    await m.react('✔️');
+
+  } catch (e) {
+    await m.react('✖️');
+    console.error(e);
+    const msg = typeof e === 'string'
+      ? e
+      : `🎄 Ocurrió un error inesperado.\n> Usa *${usedPrefix}report* para informarlo.\n\n${e?.message || JSON.stringify(e)}`;
+    return conn.reply(m.chat, msg, m, fake);
+  }
+};
+
+handler.command = ['ytmp3doc', 'ytadoc', 'mp3doc'];
+handler.help = ['ytmp3doc <texto>'];
+handler.tags = ['download'];
+handler.group = true;
+handler.register = true;
+
+export default handler;
+
+const savetube = {
+  api: {
+    base: "https://media.savetube.me/api",
+    info: "/v2/info",
+    download: "/download",
+    cdn: "/random-cdn"
+  },
+  headers: {
+    accept: "*/*",
+    "content-type": "application/json",
+    origin: "https://yt.savetube.me",
+    referer: "https://yt.savetube.me/",
+    "user-agent": "Mozilla/5.0"
+  },
+  crypto: {
+    hexToBuffer: (hexString) => Buffer.from(hexString.match(/.{1,2}/g).join(""), "hex"),
+    decrypt: async (enc) => {
+      const secretKey = "C5D58EF67A7584E4A29F6C35BBC4EB12";
+      const data = Buffer.from(enc, "base64");
+      const iv = data.slice(0, 16);
+      const content = data.slice(16);
+      const key = savetube.crypto.hexToBuffer(secretKey);
+      const decipher = crypto.createDecipheriv("aes-128-cbc", key, iv);
+      let decrypted = decipher.update(content);
+      decrypted = Buffer.concat([decrypted, decipher.final()]);
+      return JSON.parse(decrypted.toString());
+    }
+  },
+  youtube: (url) => {
+    const patterns = [
+      /youtube.com\/watch\?v=([a-zA-Z0-9_-]{11})/,
+      /youtube.com\/embed\/([a-zA-Z0-9_-]{11})/,
+      /youtu.be\/([a-zA-Z0-9_-]{11})/
+    ];
+    for (const pattern of patterns) {
+      if (pattern.test(url)) return url.match(pattern)[1];
+    }
+    return null;
+  },
+  request: async (endpoint, data = {}, method = "post") => {
+    try {
+      const url = endpoint.startsWith("http") ? endpoint : `${savetube.api.base}${endpoint}`;
+      const { data: response } = await axios({
+        method,
+        url,
+        data: method === "post" ? data : undefined,
+        params: method === "get" ? data : undefined,
+        headers: savetube.headers
+      });
+      return { status: true, data: response };
+    } catch (error) {
+      return { status: false, error: error.message };
+    }
+  },
+  getCDN: async () => {
+    const res = await savetube.request(savetube.api.cdn, {}, "get");
+    if (!res.status) return res;
+    return { status: true, data: res.data.cdn };
+  },
+  download: async (link) => {
+    const id = savetube.youtube(link);
+    if (!id) return { status: false, error: "No se pudo obtener ID del video" };
+    try {
+      const cdnRes = await savetube.getCDN();
+      if (!cdnRes.status) return cdnRes;
+      const cdn = cdnRes.data;
+
+      const info = await savetube.request(`https://${cdn}${savetube.api.info}`, { url: `https://www.youtube.com/watch?v=${id}` });
+      if (!info.status) return info;
+
+      const decrypted = await savetube.crypto.decrypt(info.data.data);
+      const dl = await savetube.request(`https://${cdn}${savetube.api.download}`, {
+        id,
+        downloadType: "audio",
+        quality: "mp3",
+        key: decrypted.key
+      });
+
+      if (!dl.data?.data?.downloadUrl)
+        return { status: false, error: "No se pudo obtener link de descarga" };
+
+      return { status: true, result: { download: dl.data.data.downloadUrl, title: decrypted.title } };
+    } catch (err) {
+      return { status: false, error: err.message };
+    }
+  }
+};
+
+function formatViews(views) {
+  if (views === undefined) return "No disponible";
+  if (views >= 1e9) return `${(views / 1e9).toFixed(1)}B (${views.toLocaleString()})`;
+  if (views >= 1e6) return `${(views / 1e6).toFixed(1)}M (${views.toLocaleString()})`;
+  if (views >= 1e3) return `${(views / 1e3).toFixed(1)}K (${views.toLocaleString()})`;
+  return views.toString();
 }
-
-if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://youtube.com/xxx` }, { quoted: m })
-try {
-await m.react("⏰")
-const res = await fetch(`https://sylphy.xyz/download/v2/ytmp3?url=${text}&api_key=sylphy-c0ZDE6V`)
-const json = await res.json()
-const toru = json.status
-
-if (!toru?.status) {
-return conn.sendMessage(m.chat, { text: mess.noapi }, { quoted: m })
-}
-
-if (!/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.ve)\//i.test(text)) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
-
-let mensaje = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
-
-\t＃ *Titulo* : ${toru.result.title}
-\t＃ *Fuente* : YouTube
-
-> ${textbot}`
-const thumb = Buffer.from(await (await fetch(`https://files.catbox.moe/d9picr.jpg`)).arrayBuffer())
-(await conn.getFile(toru.image))?.data
-await conn.sendMessage(m.chat, { text: mensaje, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ YouTube : Download ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
-await conn.sendMessage(m.chat, { audio: { url: toru.result.dl_url }, mimetype: "audio/mpeg", fileName: toru.title }, { quoted: m })
-//await m.react("✅")
-} catch (e) {
-await conn.sendMessage(m.chat, { text: `${e.message}` }, { quoted: m })
-}}
-
-handler.command = ['ytpru']
-export default handler
-
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-
-function secondString(seconds) {
-seconds = Number(seconds)
-const d = Math.floor(seconds / (3600 * 24))
-const h = Math.floor((seconds % (3600 * 24)) / 3600)
-const m = Math.floor((seconds % 3600) / 60)
-const s = Math.floor(seconds % 60)
-const dDisplay = d > 0 ? d + (d == 1 ? 'd:' : 'd:') : ''
-const hDisplay = h > 0 ? h + (h == 1 ? 'h:' : 'h:') : ''
-const mDisplay = m > 0 ? m + (m == 1 ? 'm:' : 'm:') : ''
-const sDisplay = s > 0 ? s + (s == 1 ? 's' : 's') : ''
-return dDisplay + hDisplay + mDisplay + sDisplay
-}
-
-    

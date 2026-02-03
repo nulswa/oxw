@@ -55,7 +55,7 @@ const audioApis = [
 { url: () => fetch(`https://api.neoxr.eu/api/youtube?url=${userVideoData.url}&type=audio&quality=128kbps&apikey=GataDios`).then((res) => res.json()), extract: (data) => ({data: data.data.url, isDirect: false}) },
 { url: () => fetch(`https://api-shadowxyz.vercel.app/download/ytmp3V2?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data?.result?.download_url, isDirect: false}) },
 { url: () => fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.dl, isDirect: false}) },
-{ url: () => fetch(`https://api-hasumi.vercel.app/api/youtube/ytmp3?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.dl_url : null, isDirect: false}) },
+{ url: () => fetch(`https://sylphy.xyz/download/v2/ytmp3url=${userVideoData.url}&api_key=sylphy-c0ZDE6V`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.result.dl_url : null, isDirect: false}) },
 { url: () => fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.result.download.url, isDirect: false}) }
 ]
 
@@ -64,7 +64,7 @@ const videoApis = [
 { url: () => ytmp4(userVideoData.url), extract: (data) => ({data, isDirect: false})},
 { url: () => fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.dl, isDirect: false}) },
 { url: () => fetch(`https://api.neoxr.eu/api/youtube?url=${userVideoData.url}&type=video&quality=720p&apikey=GataDios`).then((res) => res.json()), extract: (data) => ({data: data.data.url, isDirect: false}) },
-{ url: () => fetch(`https://sylphy.xyz/download/ytmp4?url=${userVideoData.url}&q=480p&api_key=sylphy-vOjFUm7`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.result.dl_url : null, isDirect: false}) },
+{ url: () => fetch(`https://sylphy.xyz/download/ytmp4?url=${userVideoData.url}&api_key=sylphy-c0ZDE6V`).then((res) => res.json()), extract: (data) => ({data: data.status ? data.result.dl_url : null, isDirect: false}) },
 { url: () => fetch(`https://exonity.tech/api/ytdlp2-faster?apikey=adminsepuh&url=${userVideoData.url}`).then((res) => res.json()), extract: (data) => ({data: data.result.media.mp4, isDirect: false}) }
 ]
 
@@ -98,10 +98,10 @@ if (mediaData) {
 const fileSize = await getFileSize(mediaData)
 if (fileSize > LimitAud) {
 await conn.sendMessage(m.chat, {document: isDirect ? mediaData : {url: mediaData}, mimetype: 'audio/mpeg', fileName: `${userVideoData.title}.mp3`}, {quoted: m || null})
-await m.react("✅")
+//await m.react("✅")
 } else {
 await conn.sendMessage(m.chat, {audio: isDirect ? mediaData : {url: mediaData}, mimetype: 'audio/mpeg'}, {quoted: m || null})
-await m.react("✅")
+//await m.react("✅")
 }
 } else {
 await conn.sendMessage(m.chat, { text: mess.noapi }, { quoted: m || null })
@@ -114,10 +114,10 @@ const fileSize = await getFileSize(mediaData)
 const messageOptions = {fileName: `${userVideoData.title}.mp4`, caption: `${botname}\n> ${textbot}`, mimetype: 'video/mp4'}
 if (fileSize > LimitVid) {
 await conn.sendMessage(m.chat, {document: isDirect ? mediaData : {url: mediaData}, ...messageOptions}, {quoted: m || null})
-await m.react("✅")
+//await m.react("✅")
 } else {
 await conn.sendMessage(m.chat, {video: isDirect ? mediaData : {url: mediaData}, ...messageOptions}, {quoted: m || null})
-await m.react("✅")
+//await m.react("✅")
 }
 } else {
 conn.sendMessage(m.chat, { text: mess.noapi }, { quoted: m || null })

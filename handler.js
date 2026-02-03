@@ -40,7 +40,7 @@ if (!("toruexp" in user) || !isNumber(user.toruexp)) user.toruexp = 0
 if (!("torumana" in user) || !isNumber(user.torumana)) user.torumana = 0
 if (!("torupoder" in user) || !isNumber(user.torupoder)) user.torupoder = 0
 if (!("torufuerza" in user) || !isNumber(user.torufuerza)) user.torufuerza = 0
-if (!("toruveloz" in user) || !isNumber(user.toruveloz)) user.toruveloz = 0
+if (!("toruvelos" in user) || !isNumber(user.toruvelos)) user.toruvelos = 0
 if (!("resistent" in user) || !isNumber(user.resistent)) user.resistent = 0
 if (!("toruopti" in user) || !isNumber(user.toruopti)) user.toruopti = 0
 if (!("torupico" in user) || !isNumber(user.torupico)) user.torupico = 0
@@ -48,6 +48,7 @@ if (!("toruach" in user) || !isNumber(user.toruach)) user.toruach = 0
 if (!("toruesp" in user) || !isNumber(user.toruesp)) user.toruesp = 0
 if (!("piesas" in user) || !isNumber(user.piesas)) user.piesas = 0
 if (!("llaves" in user) || !isNumber(user.llaves)) user.llaves = 0
+if (!("torupesc" in user) || !isNumber(user.torupesc)) user.torupesc = 0
 if (!("regalos" in user) || !isNumber(user.regalos)) user.regalos = 0
 if (!("nivele" in user) || !isNumber(user.nivele)) user.nivele = 0
 if (!("rangos" in user) || !isNumber(user.rangos)) user.rangos = 0
@@ -92,7 +93,7 @@ toruexp: 0,
 torumana: 0,
 torupoder: 0,
 torufuerza: 0,
-toruveloz: 0,
+toruvelos: 0,
 resistent: 0,
 toruopti: 0,
 torupico: 0,
@@ -100,6 +101,7 @@ toruach: 0,
 toruesp: 0,
 piesas: 0,
 llaves: 0,
+torupesc: 0,
 regalos: 0,
 nivele: 0,
 rangos: 0,
@@ -215,13 +217,13 @@ global.db.data.settings[this.user.jid] = {}
 if (settings) {
 if (!("self" in settings)) settings.self = false
 if (!("restrict" in settings)) settings.restrict = true
-if (!("fRentbot" in settings)) settings.fRentbot = true
+if (!("fRentbot" in settings)) settings.fRentbot = false
 if (!("fPrivado" in settings)) settings.fPrivado = false
 if (!("gponly" in settings)) settings.gponly = false
 } else global.db.data.settings[this.user.jid] = {
 self: false,
 restrict: true,
-fRentbot: true,
+fRentbot: false,
 fPrivado: false,
 gponly: false
 }} catch (e) {
@@ -474,17 +476,17 @@ let edadaleatoria = ['10', '28', '20', '40', '18', '21', '15', '11', '9', '17', 
 let user2 = m.pushName || 'Anónimo'
 let verifyaleatorio = ['reg', 'verify'].getRandom()
  const msg = {
-rowner: fargs.prop,
-owner: fargs.dAdmin,
-mods: fargs.moder,
-premium: fargs.prem,
-group: fargs.grupo,
-private: fargs.privado,
-admin: fargs.admins,
-botAdmin: fargs.bAdmin,
-unreg: fargs.registro, 
-friends: fargs.amigos,
-restrict: fargs.estric
+rowner: mssg.proph,
+owner: mssg.dAdminh,
+mods: mssg.moderh,
+premium: mssg.premh,
+group: mssg.grupoh,
+private: mssg.privadoh,
+admin: mssg.adminsh,
+botAdmin: mssg.bAdminh,
+unreg: mssg.registroh, 
+friends: mssg.amigosh,
+restrict: mssg.estrich
  }[type]
 if (msg) return conn.reply(m.chat, msg, m).then(_ => m.react('📍'))
 }

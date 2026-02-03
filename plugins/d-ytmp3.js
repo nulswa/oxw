@@ -35,8 +35,10 @@ ${title}
 \t＃ *Tipo* : Audio *(mp3)*
 
 > ${textbot}`;
-const toruYt = "https://files.catbox.moe/d9picr.jpg";
-const toruEstilo = { key: { fromMe: false, participant: "0@s.whatsapp.net" }, message: { documentMessage: { title: textbot, fileName: "⧿ YouTube : Download ⧿", jpegThumbnail: "https://files.catbox.moe/d9picr.jpg" }}};
+
+const toruYt = await fetch("https://files.catbox.moe/d9picr.jpg");
+  const thumb3 = Buffer.from(await toruYt.arrayBuffer());
+  const toruEstilo = { key: { fromMe: false, participant: "0@s.whatsapp.net" }, message: { documentMessage: { title: textbot, fileName: "⧿ YouTube : Download ⧿", jpegThumbnail: thumb3 }}};
 await conn.sendMessage(m.chat, { text: toruWa }, { quoted: toruEstilo });
   
 let head = await fetch(dl_url, { method: "HEAD" });

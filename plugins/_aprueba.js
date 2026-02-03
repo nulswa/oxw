@@ -6,33 +6,79 @@ const toruYt = await fetch("https://files.catbox.moe/d9picr.jpg");
 const thumb = Buffer.from(await toruYt.arrayBuffer());
 
 // ═══════════════════════════════════════
-// DIFERENTES ESTILOS DE FAKES
+// FAKES QUE SÍ MUESTRAN LA IMAGEN
 // ═══════════════════════════════════════
 
-// 1. ESTILO DOCUMENTO (El que ya tienes)
+// 1. ESTILO DOCUMENTO ✅ (FUNCIONA)
 const fakeDocument = { 
-    key: { fromMe: false, participant: "0@s.whatsapp.net" }, 
+    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" }, 
     message: { 
         documentMessage: { 
-            title: textbot, 
-            fileName: "⧿ TORU ⧿", 
+            url: "https://mmg.whatsapp.net/v/t62.7119-24/12345678_123456789012345_1234567890123456789_n.enc?ccb=11-4&oh=01_Q5AaABCDEFGHIJKLMNOPQRSTUVWXYZ&oe=67890ABC&_nc_sid=5e03e0&mms3=true",
+            mimetype: "application/pdf",
+            title: "⧿ TORU BOT ⧿", 
+            pageCount: 1,
+            fileName: "TORU.pdf", 
             jpegThumbnail: thumb 
         }
     }
 };
 
-// 2. ESTILO CONTACTO
-const fakeContact = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
+// 2. ESTILO IMAGEN ✅ (FUNCIONA PERFECTAMENTE)
+const fakeImage = {
+    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
     message: {
-        contactMessage: {
-            displayName: "⧿ TORU BOT ⧿",
-            vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;TORU;;;\nFN:TORU BOT\nitem1.TEL;waid=123456789:+1 234 567 89\nitem1.X-ABLabel:Mobile\nEND:VCARD`
+        imageMessage: {
+            url: "https://mmg.whatsapp.net/v/t62.7118-24/12345678_123456789012345_1234567890123456789_n.enc?ccb=11-4&oh=01_Q5AaABCDEFGHIJKLMNOPQRSTUVWXYZ&oe=67890ABC&_nc_sid=5e03e0&mms3=true",
+            mimetype: "image/jpeg",
+            caption: "⧿ TORU BOT ⧿",
+            jpegThumbnail: thumb,
+            fileLength: 99999999999
         }
     }
 };
 
-// 3. ESTILO PRODUCTO/CATÁLOGO (Business)
+// 3. ESTILO VIDEO ✅ (FUNCIONA)
+const fakeVideo = {
+    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
+    message: {
+        videoMessage: {
+            url: "https://mmg.whatsapp.net/v/t62.7161-24/12345678_123456789012345_1234567890123456789_n.enc?ccb=11-4&oh=01_Q5AaABCDEFGHIJKLMNOPQRSTUVWXYZ&oe=67890ABC&_nc_sid=5e03e0&mms3=true",
+            mimetype: "video/mp4",
+            caption: "⧿ TORU BOT ⧿",
+            jpegThumbnail: thumb,
+            fileLength: 99999999999,
+            seconds: 60
+        }
+    }
+};
+
+// 4. ESTILO UBICACIÓN ✅ (FUNCIONA)
+const fakeLocation = {
+    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
+    message: {
+        locationMessage: {
+            degreesLatitude: 24.121231,
+            degreesLongitude: 55.1121221,
+            name: "⧿ TORU BOT ⧿",
+            address: "Servidor Oficial TORU",
+            jpegThumbnail: thumb
+        }
+    }
+};
+
+// 5. ESTILO CONTACTO ✅ (FUNCIONA - pero sin imagen directa)
+const fakeContact = {
+    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
+    message: {
+        contactMessage: {
+            displayName: "⧿ TORU BOT ⧿",
+            vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;TORU BOT;;;\nFN:⧿ TORU BOT ⧿\nitem1.TEL;waid=5219999999999:+52 1 999 999 9999\nitem1.X-ABLabel:Móvil\nEND:VCARD`
+        }
+    }
+};
+
+// 6. ESTILO PRODUCTO/CATÁLOGO ✅ (BUSINESS - FUNCIONA)
 const fakeProduct = {
     key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
     message: {
@@ -43,10 +89,10 @@ const fakeProduct = {
                     jpegThumbnail: thumb
                 },
                 title: "⧿ TORU BOT ⧿",
-                description: "Bot Oficial",
+                description: "Bot Oficial Premium",
                 currencyCode: "USD",
-                priceAmount1000: "1000",
-                retailerId: "TORU",
+                priceAmount1000: "50000",
+                retailerId: "TORU Shop",
                 url: "https://github.com"
             },
             businessOwnerJid: "0@s.whatsapp.net"
@@ -54,200 +100,100 @@ const fakeProduct = {
     }
 };
 
-// 4. ESTILO ORDEN/PEDIDO (Business Order)
+// 7. ESTILO ORDEN ✅ (BUSINESS - FUNCIONA)
 const fakeOrder = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
+    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
     message: {
         orderMessage: {
-            orderId: "123456789",
+            orderId: "594071700156509",
             thumbnail: thumb,
-            itemCount: 1,
+            itemCount: 100,
             status: "INQUIRY",
             surface: "CATALOG",
-            message: "⧿ TORU BOT ⧿",
+            message: "⧿ ORDEN TORU BOT ⧿",
+            orderTitle: "Pedido Premium",
             sellerJid: "0@s.whatsapp.net",
-            token: "AR6z9PAvPk8Yo1"
+            token: "AR6z9PAvPk8Yo1eXsXCj6"
         }
     }
 };
 
-// 5. ESTILO UBICACIÓN
-const fakeLocation = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
-    message: {
-        locationMessage: {
-            degreesLatitude: 0,
-            degreesLongitude: 0,
-            name: "⧿ TORU BOT ⧿",
-            address: "Servidor Oficial",
-            jpegThumbnail: thumb
-        }
-    }
-};
-
-// 6. ESTILO LIVE LOCATION (Ubicación en vivo)
-const fakeLiveLocation = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
-    message: {
-        liveLocationMessage: {
-            degreesLatitude: 0,
-            degreesLongitude: 0,
-            caption: "⧿ TORU BOT ⧿",
-            sequenceNumber: 1,
-            jpegThumbnail: thumb
-        }
-    }
-};
-
-// 7. ESTILO IMAGEN
-const fakeImage = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
-    message: {
-        imageMessage: {
-            mimetype: "image/jpeg",
-            caption: "⧿ TORU BOT ⧿",
-            jpegThumbnail: thumb,
-            viewOnce: false
-        }
-    }
-};
-
-// 8. ESTILO VIDEO
-const fakeVideo = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
+// 8. ESTILO GIF ✅ (FUNCIONA)
+const fakeGif = {
+    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
     message: {
         videoMessage: {
+            url: "https://mmg.whatsapp.net/v/t62.7161-24/12345678_123456789012345_1234567890123456789_n.enc?ccb=11-4&oh=01_Q5AaABCDEFGHIJKLMNOPQRSTUVWXYZ&oe=67890ABC&_nc_sid=5e03e0&mms3=true",
             mimetype: "video/mp4",
-            caption: "⧿ TORU BOT ⧿",
+            caption: "⧿ TORU GIF ⧿",
             jpegThumbnail: thumb,
-            viewOnce: false
+            gifPlayback: true,
+            fileLength: 99999999999
         }
     }
 };
 
-// 9. ESTILO STICKER
+// 9. ESTILO STICKER ✅ (Muestra como sticker)
 const fakeSticker = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
+    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
     message: {
         stickerMessage: {
+            url: "https://mmg.whatsapp.net/v/t62.15575-24/12345678_123456789012345_1234567890123456789_n.enc?ccb=11-4&oh=01_Q5AaABCDEFGHIJKLMNOPQRSTUVWXYZ&oe=67890ABC&_nc_sid=5e03e0&mms3=true",
             mimetype: "image/webp",
+            height: 512,
+            width: 512,
+            directPath: "/v/t62.15575-24/12345678_123456789012345_1234567890123456789_n.enc?ccb=11-4&oh=01_Q5AaABCDEFGHIJKLMNOPQRSTUVWXYZ&oe=67890ABC&_nc_sid=5e03e0",
+            fileEncSha256: thumb,
             isAnimated: false
         }
     }
 };
 
-// 10. ESTILO AUDIO/NOTA DE VOZ
-const fakeAudio = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
-    message: {
-        audioMessage: {
-            mimetype: "audio/ogg; codecs=opus",
-            seconds: 60,
-            ptt: true // true = nota de voz, false = audio normal
-        }
-    }
-};
-
-// 11. ESTILO GIF
-const fakeGif = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
-    message: {
-        videoMessage: {
-            mimetype: "video/mp4",
-            caption: "⧿ TORU BOT ⧿",
-            jpegThumbnail: thumb,
-            gifPlayback: true,
-            viewOnce: false
-        }
-    }
-};
-
-// 12. ESTILO NEWSLETTER/CANAL (Nuevo)
-const fakeNewsletter = {
+// 10. ESTILO INVOICE/FACTURA ✅ (BUSINESS - FUNCIONA BIEN)
+const fakeInvoice = {
     key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
-    message: {
-        newsletterAdminInviteMessage: {
-            newsletterJid: "123456789@newsletter",
-            newsletterName: "⧿ TORU BOT ⧿",
-            jpegThumbnail: thumb,
-            caption: "Canal Oficial",
-            inviteExpiration: Date.now() + 86400000
-        }
-    }
-};
-
-// 13. ESTILO PAYMENT/PAGO (Business)
-const fakePayment = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
     message: {
         requestPaymentMessage: {
             currencyCodeIso4217: "USD",
-            amount1000: 1000,
+            amount1000: 50000,
             requestFrom: "0@s.whatsapp.net",
             noteMessage: {
                 extendedTextMessage: {
-                    text: "⧿ TORU BOT ⧿"
+                    text: "⧿ FACTURA TORU BOT ⧿\n\nPago de servicios premium"
                 }
+            },
+            expiryTimestamp: Date.now() + 86400000,
+            amount: {
+                value: 50000,
+                offset: 1000,
+                currencyCode: "USD"
             }
         }
     }
 };
 
-// 14. ESTILO POLL/ENCUESTA
-const fakePoll = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net" },
-    message: {
-        pollCreationMessage: {
-            name: "⧿ TORU BOT ⧿",
-            options: [
-                { optionName: "Opción 1" },
-                { optionName: "Opción 2" }
-            ],
-            selectableOptionsCount: 1
-        }
-    }
-};
-
-// 15. ESTILO LLAMADA/CALL
-const fakeCall = {
-    key: { fromMe: false, participant: "0@s.whatsapp.net", remoteJid: "status@broadcast" },
-    message: {
-        callLogMesssage: {
-            isVideo: false,
-            callOutcome: "1",
-            durationSecs: "0",
-            callType: "REGULAR",
-            participants: [{
-                jid: "0@s.whatsapp.net",
-                callOutcome: "1"
-            }]
-        }
-    }
-};
-
 // ═══════════════════════════════════════
-// EJEMPLO DE USO CON DIFERENTES ESTILOS
+// USO DEL COMANDO
 // ═══════════════════════════════════════
 
-let xd = `Selecciona el estilo que quieres probar:
+let xd = `╭━━━━━━━━━⬣
+┃ 🎨 *ESTILOS DISPONIBLES*
+┃
+┃ ✅ Los que mejor muestran imagen:
+┃ • fakeDocument
+┃ • fakeImage 
+┃ • fakeVideo
+┃ • fakeProduct (Business)
+┃ • fakeOrder (Business)
+┃ • fakeLocation
+┃ • fakeGif
+╰━━━━━━━━━⬣`;
 
-1. Documento
-2. Contacto
-3. Producto (Business)
-4. Orden (Business)
-5. Ubicación
-6. Imagen
-7. Video
-8. Audio
-9. Encuesta
-10. Newsletter/Canal`;
-
-// Puedes cambiar el fake según lo que necesites:
-const estiloSeleccionado = fakeOrder; // Cambia este según el estilo que quieras
+// CAMBIA ESTE para probar diferentes estilos
+const estiloSeleccionado = fakeOrder; // ⬅️ CAMBIA AQUÍ
 
 await conn.sendMessage(m.chat, { text: xd }, { quoted: estiloSeleccionado });
 
 }
 handler.command = ['fake', 'estilos'];
 export default handler;
-

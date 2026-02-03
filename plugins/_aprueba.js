@@ -16,7 +16,7 @@ if (!toru?.status) {
 return conn.sendMessage(m.chat, { text: mess.noapi }, { quoted: m })
 }
 
-if (!/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.ve|youtube\.com\/shorts)\//i.test(text)) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
+if (!/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.ve)\//i.test(text)) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
 
 let mensaje = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
 

@@ -20,7 +20,7 @@ await conn.sendMessage(m.chat, {
     text: mensaje,
     contextInfo: {
         externalAdReply: {
-            showAdAttribution: true,
+            showAdAttribution: false,
             title: "💰 PAGO PENDIENTE",
             body: "$50.00 USD - Factura #12345",
             mediaType: 1,

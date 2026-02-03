@@ -2,8 +2,8 @@ let handler = async (m, { args, usedPrefix, command }) => {
 let user = global.db.data.users[m.sender]
 const tusCoins = `
 ╭──────────────۰
-│${toem} *${currency}* : ${user.torucoins}
-│${toem2} *${currency2}* : ${user.toruexp}
+│${toem} *${currency}* : ${user.torucoin.toLocaleString()}
+│${toem2} *${currency2}* : ${user.toruexp.toLocaleString()}
 ╰──────────────۰
 
 > ${textbot}`

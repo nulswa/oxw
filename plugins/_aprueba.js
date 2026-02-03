@@ -19,17 +19,20 @@ let mensaje = `╭━━━━━━━━━⬣
 await conn.sendMessage(m.chat, { 
     text: mensaje,
     contextInfo: {
+        businessMessageForwardInfo: {
+            businessOwnerJid: "0@s.whatsapp.net"
+        },
         externalAdReply: {
             showAdAttribution: false,
-            title: "💰 PAGO PENDIENTE",
-            body: "$50.00 USD - Factura #12345",
+            title: "🛍️ VER CATÁLOGO",
+            body: "100+ Productos Disponibles",
             mediaType: 1,
             thumbnailUrl: thumbnailUrl,
-            sourceUrl: "https://payment.example.com",
-            renderLargerThumbnail: false
+            sourceUrl: "https://catalogo.example.com",
+            renderLargerThumbnail: true
         }
     }
-}, m );
+}, { quoted: m });
 };
 handler.command = ['fake2', 'ads', 'estilos'];
 export default handler;

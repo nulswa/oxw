@@ -22,7 +22,7 @@ const fakeAdReply = {
             body: "Bot Oficial Premium",
             description: "Descripción del bot",
             mediaType: 1, // 1 = imagen, 2 = video
-            thumbnailUrl: thumbnailUrl,
+            thumbnailUrl: thumb,
             sourceUrl: "https://github.com/tuusuario",
             renderLargerThumbnail: true,
             containsAutoReply: true
@@ -74,7 +74,7 @@ const fakeBusinessMessage = {
             title: "⧿ TORU BUSINESS ⧿",
             body: "Tienda Oficial",
             mediaType: 1,
-            thumbnailUrl: thumbnailUrl,
+            thumbnailUrl: thumb,
             sourceUrl: "https://tu-tienda.com",
             renderLargerThumbnail: true
         }
@@ -111,7 +111,7 @@ const fakePaymentMessage = {
             title: "💰 Pago Pendiente",
             body: "$50.00 USD",
             mediaType: 1,
-            thumbnailUrl: thumbnailUrl,
+            thumbnailUrl: thumb,
             sourceUrl: "https://payment.example.com",
             renderLargerThumbnail: false
         }
@@ -315,7 +315,7 @@ let mensaje = `╭━━━━━━━━━⬣
 ╰━━━━━━━━━⬣`;
 
 // PRUEBA DIFERENTES ESTILOS AQUÍ:
-await conn.sendMessage(m.chat, fakeCombo, { quoted: m });
+await conn.sendMessage(m.chat, fakePaymentMessage, { quoted: m });
 
 }
 handler.command = ['fake2', 'ads'];

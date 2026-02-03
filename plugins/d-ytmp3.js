@@ -27,7 +27,18 @@ const cleanTitle = title.replace(/[^\w\s]/gi, '').trim().replace(/\s+/g, '_');
 const fileName = `${cleanTitle}.mp3`;
 
 const caption = `${title}\n\n${botname}\n> ${textbot}`;
+let toruWa = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
 
+${title}
+
+\t＃ *Fuente* : YouTube
+\t＃ *Tipo* : Audio *(mp3)*
+
+> ${textbot}`;
+const toruYt = Buffer.from(await (await fetch(`https://files.catbox.moe/d9picr.jpg`)).arrayBuffer());
+const toruEstilo = { key: { fromMe: false, participant: "0@s.whatsapp.net" }, message: { documentMessage: { title: textbot, fileName: "⧿ YouTube : Download ⧿", jpegThumbnail: toruYt }}};
+await conn.sendMessage(m.chat, { text: toruWa }, { quoted: toruEstilo });
+  
 let head = await fetch(dl_url, { method: "HEAD" });
 let fileSize = head.headers.get("content-length") || 0;
 let fileSizeMB = (fileSize / (1024 * 1024)).toFixed(2);

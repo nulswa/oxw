@@ -137,8 +137,8 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.command = ['ytmp3doc', 'ytadoc', 'mp3doc'];
 handler.help = ['ytmp3doc <texto>'];
 handler.tags = ['download'];
-handler.group = true;
-handler.register = true;
+//handler.group = true;
+//handler.register = true;
 
 export default handler;
 

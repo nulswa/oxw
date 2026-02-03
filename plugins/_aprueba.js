@@ -19,22 +19,17 @@ let mensaje = `╭━━━━━━━━━⬣
 await conn.sendMessage(m.chat, { 
     text: mensaje,
     contextInfo: {
-        mentionedJid: [m.sender],
-        businessMessageForwardInfo: {
-            businessOwnerJid: "0@s.whatsapp.net"
-        },
         externalAdReply: {
-            showAdAttribution: false,
-            title: "⧿ TORU PRO MAX ⧿",
-            body: "Sistema Empresarial Avanzado",
+            showAdAttribution: true,
+            title: "💰 PAGO PENDIENTE",
+            body: "$50.00 USD - Factura #12345",
             mediaType: 1,
             thumbnailUrl: thumbnailUrl,
-            sourceUrl: "https://toru-bot.com",
-            renderLargerThumbnail: true,
-            containsAutoReply: false
+            sourceUrl: "https://payment.example.com",
+            renderLargerThumbnail: false
         }
     }
-}, m);
+}, m );
 };
 handler.command = ['fake2', 'ads', 'estilos'];
 export default handler;

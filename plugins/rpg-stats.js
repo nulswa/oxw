@@ -15,12 +15,12 @@ let yo = `· ┄ · ⊸ 𔓕 *STATS : RPG*
 \t👤 *Tu* : \`@${name}\`
 \t❤️ *Salud* : ${user.health}%
 \t🔮 *Mana* : ${user.torumana}%
-\t🔱 *Poder* : ^${user.torupoder.toLocaleString}.00
-\t💪🏻 *Fuerza* : ^${user.torufuerza.toLocaleString}.00
-\t⚡ *Velocidad* : ^${user.toruvelos.toLocaleString}.00
-\t🛡️ *Resistencia* : (${user.resistent.toLocaleString})
+\t🔱 *Poder* : ^${user.torupoder}.00
+\t💪🏻 *Fuerza* : ^${user.torufuerza}.00
+\t⚡ *Velocidad* : ^${user.toruvelos}.00
+\t🛡️ *Resistencia* : (${user.resistent})
 
-> 🝐 Destacado*
+> 🝐 *Destacado*
 \t🏆 *Rango* : #${user.rangos}
 \t🥇 *Nivel* : lvl_${user.nivele}
 
@@ -30,10 +30,10 @@ let yo = `· ┄ · ⊸ 𔓕 *STATS : RPG*
 \t🪓 *Hacha* : ${user.toruach}%
 
 > 🝐 *Nivel : Magia*
-🌳 *Tierra* : *#${user.ttierra.toLocaleString}^*
-💧 *Agua* : *#${user.tagua.toLocaleString}^*
-🔥 *Fuego* : *#${user.tfuego.toLocaleString}^*
-💨 *Aire* : *#${user.taire.toLocaleString}^*
+🌳 *Tierra* : *#${user.ttierra}^*
+💧 *Agua* : *#${user.tagua}^*
+🔥 *Fuego* : *#${user.tfuego}^*
+💨 *Aire* : *#${user.taire}^*
 
 > 📍  Derrota enemigos o juega comandos para ganar eatatus.`
 await conn.sendMessage(m.chat, { text: yo, mentions: await conn.parseMention(yo), contextInfo: { externalAdReply: { title: "〩  S T A T S  〩", body: botname, thumbnail: imagen, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })

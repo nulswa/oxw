@@ -21,7 +21,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
   try {
     if (!text?.trim())
-      return conn.reply(m.chat, `*💛 Por favor, ingresa el nombre o enlace del video.*`, m, rcanal);
+      return conn.reply(m.chat, `*💛 Por favor, ingresa el nombre o enlace del video.*`, m);
 
     await m.react('⏰');
     await conn.sendMessage(m.chat, { text: `> 🌳 Buscando en YouTube:\n> ${text} ` }, { quoted: m });
@@ -130,7 +130,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const msg = typeof e === 'string'
       ? e
       : `🎄 Ocurrió un error inesperado.\n> Usa *${usedPrefix}report* para informarlo.\n\n${e?.message || JSON.stringify(e)}`;
-    return conn.reply(m.chat, msg, m, fake);
+    return conn.reply(m.chat, msg, m);
   }
 };
 

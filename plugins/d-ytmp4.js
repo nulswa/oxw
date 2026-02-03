@@ -11,7 +11,7 @@ return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m });
 
 await m.react("⏰");
 
-let apiURL = `https://sylphy.xyz/download//ytmp4?url=${encodeURIComponent(args[0])}&api_key=sylphy-c0ZDE6V`;
+let apiURL = `https://sylphy.xyz/download/ytmp4?url=${encodeURIComponent(args[0])}&api_key=sylphy-c0ZDE6V`;
 let data = await tryAPI(apiURL);
 
 if (!data?.status || !data?.result?.dl_url) {

@@ -21,8 +21,8 @@ global.tiempo = d.toLocaleString('es-AR', {hour: 'numeric', minute: 'numeric', s
 
   
 global.nombre = m.pushName || 'Anónimo'
-global.sk_pack = `•ᗧ ·───── • ─────· ᗤ•\nNew Sticker : WhatsApp Bot\n•ᗧ ·───── • ─────· ᗤ•\n`
-global.sk_pack2 = `\n${botname}`
+global.skpack = `•ᗧ ·───── • ─────· ᗤ•\nNew Sticker : WhatsApp Bot\n•ᗧ ·───── • ─────· ᗤ•\n`
+global.skpack2 = `\n${global.botname}`
 
 global.fkontak = { key: { participants:"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 

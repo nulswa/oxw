@@ -315,7 +315,7 @@ let mensaje = `╭━━━━━━━━━⬣
 ╰━━━━━━━━━⬣`;
 
 // PRUEBA DIFERENTES ESTILOS AQUÍ:
-await conn.sendMessage(m.chat, fakePaymentMessage, { quoted: m });
+await conn.sendMessage(m.chat, fakeCombo, { quoted: m });
 
 }
 handler.command = ['fake2', 'ads'];

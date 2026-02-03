@@ -2,6 +2,7 @@ let handler = async (m, {conn, usedPrefix, command}) => {
 if (!global.db.data.chats[m.chat].fRpg && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ rpg ]* estan desactivados...` }, { quoted: m })
 }
+  const name = await conn.getName(m.sender)
 let who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : m.sender
 if (who == conn.user.jid) return error 
 if (!(who in global.db.data.users)) return conn.sendMessage(m.chat, { text: `El usuario mencionado no esta en la base de datos.` }, { quoted: m })
@@ -11,7 +12,7 @@ let yo = `· ┄ · ⊸ 𔓕 *STATS : RPG*
 - _Mira tus estadisticas en el modo rpg._
 
 > 🝐 *Tus estadísticas*
-\t👤 *Tu* : @${m.sender.split`@`[0]}
+\t👤 *Tu* : \`@${name}\`
 \t❤️ *Salud* : ${user.health}%
 \t🔮 *Mana* : ${user.torumana}%
 \t🔱 *Poder* : ^${user.torupoder}.00

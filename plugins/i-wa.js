@@ -4,9 +4,9 @@ if (!global.db.data.chats[m.chat].fInformation && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ información ]* estan desactivados...` }, { quoted: m })
 }
 
-const user = global.db.data.users[m.sender] || {};
-const name = await conn.getName(m.sender);
-
+const user = global.db.data.users[m.sender] || {}
+const name = await conn.getName(m.sender)
+  
 if (command === "info" || command === "infobot") {
 let infoXd = `👋🏻 Hola usuario *@${name}*.
 Espero y estes bien.
@@ -27,11 +27,11 @@ await conn.sendMessage(m.chat, { text: infoXd }, { quoted: m })
 };
 
 if (command === "creador") {
-let creador = `👋🏻  ¡Hola! @${m.sender.split`@`[0]}
+let creador = `👋🏻  ¡Hola! @${name}
 - Estos son algunos datos:
 
 > *Creador* : @Farguts
-> *Proyectos* : 3
+> *Proyectos* : 5
 > *API* : mx-api
 > *Actual-Bot* : @T O R U
 > *Actual-Baileys* : neoxr/web

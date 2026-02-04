@@ -7,11 +7,11 @@ return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ tienda ]* esta
 const user = global.db.data.users[m.sender] || {};
 const name = await conn.getName(m.sender);
 const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
-let basico = "523"
-let estandar = "873"
-let platino = "913"
-let premio = "1,024 *(1k)*
-let optima = "253"
+let basicoA = "523"
+let estandarB = "873"
+let platinoC = "913"
+let premioD = "1,024 *(1k)*"
+let optimaE = "253"
 if (!args[0]) {
 let plan = `· ┄ · ⊸ 𔓕 *Plan  :  Server*
 
@@ -70,7 +70,7 @@ let pland = `\t\t〩 *Plan : Basic* 〩
 📍  Usa *${usedPrefix}mp* o *${usedPrefix}pay* para realizar compras.`
 return conn.sendMessage(m.chat, { text: pland }, { quoted: m })
 } else if (args[0] === "2") {
-let pland2 = `\t\t〩 *Plan : Standard* 〩
+let plandA = `\t\t〩 *Plan : Standard* 〩
 
 > *Precios*
 ▢ *ARS* : $8,000
@@ -83,9 +83,9 @@ let pland2 = `\t\t〩 *Plan : Standard* 〩
 👥 *Grupos* : 1 max
 
 📍  Usa *${usedPrefix}mp* o *${usedPrefix}pay* para realizar compras.`
-return conn.sendMessage(m.chat, { text: pland2 }, { quoted: m })
+return conn.sendMessage(m.chat, { text: plandA }, { quoted: m })
 } else if (args[0] === "3") {
-let pland3 = `\t\t〩 *Plan : Platinum* 〩
+let plandB = `\t\t〩 *Plan : Platinum* 〩
 
 > *Precios*
 ▢ *ARS* : $10,000
@@ -100,9 +100,9 @@ let pland3 = `\t\t〩 *Plan : Platinum* 〩
 👥 *Grupos* : 2 max
 
 📍  Usa *${usedPrefix}mp* o *${usedPrefix}pay* para realizar compras.`
-return conn.sendMessage(m.chat, { text: pland3 }, { quoted: m })
+return conn.sendMessage(m.chat, { text: plandB }, { quoted: m })
 } else if (args[0] === "4") {
-let pland4 = `\t\t〩 *Plan : Premium* 〩
+let plandC = `\t\t〩 *Plan : Premium* 〩
 
 > *Precios*
 ▢ *ARS* : $15,000
@@ -118,9 +118,9 @@ let pland4 = `\t\t〩 *Plan : Premium* 〩
 👥 *Grupos* : 5 max
 
 📍  Usa *${usedPrefix}mp* o *${usedPrefix}pay* para realizar compras.`
-return conn.sendMessage(m.chat, { text: pland4 }, { quoted: m })
+return conn.sendMessage(m.chat, { text: plandC }, { quoted: m })
 } else if (args[0] === "5") {
-let pland5 = `\t\t〩 *Plan : Optima* 〩
+let plandD = `\t\t〩 *Plan : Optima* 〩
 
 > *Precios*
 ▢ *ARS* : $20,000
@@ -141,21 +141,21 @@ let pland5 = `\t\t〩 *Plan : Optima* 〩
 📌 *Prefijos* : Personalizado
 
 📍  Usa *${usedPrefix}mp* o *${usedPrefix}pay* para realizar compras.`
-return conn.sendMessage(m.chat, { text: pland5 }, { quoted: m })
+return conn.sendMessage(m.chat, { text: plandD }, { quoted: m })
 } else if (args[0] === "stats") {
-let estados = `📍  Estadísticas segun las compras de este mes.
+let estadosX = `📍  Estadísticas segun las compras de este mes.
 
 • \`Detalles de servidores\`
 - Bots comprados segun la API de información:
 
-> *Plan Basic* : ${basico}
-> *Plan Standard* : ${estandar}
-> *Plan Platinum* : ${platino}
-> *Plan Premium* : ${premio}
-> *Plan Optima* : ${optima}
+> *Plan Basic* : ${basicoA}
+> *Plan Standard* : ${estandarB}
+> *Plan Platinum* : ${platinoC}
+> *Plan Premium* : ${premioD}
+> *Plan Optima* : ${optimaE}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: estados }, { quoted: m })
+return conn.sendMessage(m.chat, { text: estadosX }, { quoted: m })
 } else { 
 let noXd = `No hay otra categoria para ver en este comando.`
 return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })

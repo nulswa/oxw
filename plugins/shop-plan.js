@@ -159,9 +159,7 @@ return conn.sendMessage(m.chat, { text: estadosX }, { quoted: m })
 } else { 
 let noXd = `No hay otra categoria para ver en este comando.`
 return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
- } catch (e) {
-conn.sendMessage(m.chat, { text: e.message }, { quoted: m })
- }
+ } 
 };
 
 handler.command = ['plan'];

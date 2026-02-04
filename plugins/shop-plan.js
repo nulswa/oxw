@@ -7,11 +7,11 @@ return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ tienda ]* esta
 const user = global.db.data.users[m.sender] || {};
 const name = await conn.getName(m.sender);
 const thumb = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
-let basicoA = "36"
+let basicoA = "38"
 let estandarB = "14"
-let platinoC = "11"
-let premioD = "26"
-let optimaE = "6"
+let platinoC = "13"
+let premioD = "27"
+let optimaE = "7"
 if (!args[0]) {
 let plan = `· ┄ · ⊸ 𔓕 *Plan  :  Server*
 

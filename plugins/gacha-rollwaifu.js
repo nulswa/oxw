@@ -70,15 +70,14 @@ time: Date.now()
 
 const message = `· ┄ · ⊸ 𔓕 *Gacha  :  Roll*
 
-🆔 *ID* ${randomCharacter.id}
-
+▢ *ID* : ${randomCharacter.id}
 ▢ *Nombre* : ${randomCharacter.name}
 ▢ *Genero* : ${randomCharacter.gender}
 ▢ *Valor* : ${randomCharacter.value}
 ▢ *Fuente* : ${randomCharacter.source}
 ▢ ${statusMessage}
 
-> 📍 Reclama con *"c"* o *#c*.`;
+> 📍 Reclama con *#c*`;
 
 const mentions = statusMessage.includes('@') ? [randomCharacter.user] : [];
 await conn.sendFile(m.chat, randomImage, `${randomCharacter.name}.jpg`, message, m, { mentions });

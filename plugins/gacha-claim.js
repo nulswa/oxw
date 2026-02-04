@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 
 const charactersFilePath = './scrapers/personajes.json';
-const claimMsgFile = './scrapers/reclamados.json';
+const claimMsgFile = './scrapers/claims.json';
 export const cooldowns = {};
 
 async function loadCharacters() {
@@ -45,7 +45,7 @@ return conn.sendMessage(m.chat, { text: `ᗢ Responda a un personaje usando vali
 
 try {
 const characters = await loadCharacters();
-const match = m.quoted.text.match(/🆔.*?\*(\d+)\*/);
+const match = m.quoted.text.match(/\*ID\* : \*(.+?)\*/);
 if (!match) return conn.sendMessage(m.chat, { text: `📍  No se ha podido detectar el ID del personaje.` }, { quoted: m });
 
 const id = match[1].trim();

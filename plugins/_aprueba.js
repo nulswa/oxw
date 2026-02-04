@@ -37,12 +37,14 @@ return `· ┄ · ⊸ 𔓕 *TikTok  :  Search*
 
 ⏍ Tipo : *Search*
 ⏍ Fuente : *TikTok*
-⏍ Resultados : *10* videos`
+⏍ Resultados : *10* videos
+
+> ${textbot}`
 }
 
 handler.help = ['tiktoks', 'tts']
 handler.tags = ['buscadores']
-handler.command = ['tiktoks', 'tts']
+handler.command = ['tiktoks', 'tiktoksearch', 'tts']
 
 export default handler
 

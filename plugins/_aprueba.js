@@ -1,40 +1,47 @@
-let handler = async (m, { args, text, usedPrefix, command }) => {
+import { createHash } from 'crypto'
+const { proto, generateWAMessageFromContent, prepareWAMessageMedia } = (await import("@whiskeysockets/baileys")).default
+
+let handler = async function (m, { conn, text, usedPrefix, command }) {
+
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let user = global.db.data.users[m.sender]
-let noXd, datos
-const bossWa = `\t\t【 *Boss : RPG* 】
-- Elije el tipo de jefe segun tu estadística.
+let name2 = conn.getName(m.sender)
 
-\`\`\`1.  Gorgoth : (lvl_6)
-2.  Drakon  : (lvl_14)
-3.  Xarath  : (lvl_19)
-4.  Thorgrim: (lvl_26)
-5.  Lirael  : (lvl_33)
-6.  Kraxus  : (lvl_42)
-7.  Arachne : (lvl_50)
-8.  Zarith  : (lvl_63)
-9.  Valthor : (lvl_85)
-10. Malakai : (lvl_100)\`\`\`
+if (user.registered === true) return conn.reply(m.chat, "Ya haz puesto tu nombre en la lista de usuarios.", m)
+if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* @${name2}` }, { quoted: m })
+if (text.length >= 20) return conn.sendMessage(m.chat, { text: `Maximo 20 caracteres...` }, { quoted: m })
 
-${mess.example}
-*${usedPrefix + command}* 1`
+user.name = text.trim()
+user.regTime = +new Date
+user.registered = true
 
-if (!args[0]) {
-conn.sendMessage(m.chat, { text: bossWa }, { quoted: m });
-} else if (args[0] === "1" || args[0] === "gorgoth") {
-if (user.nivele >= 6 ) {
-datos = `Batalla finalizada`
-return conn.sendMessage(m.chat, { text: datos }, { quoted: m })
-} else {
-noXd = `No tienes el nivel suficiente.`
-return conn.reply(m.chat, noXd, m)
- }
-} else {
-noXd = `📍 No hay un jefe con esa categoría.`
-return conn.sendMessage(m.chat, { text: noXd }, { quoted: m })
- }
+//Magia
+user.tfuego += 5
+user.taire += 5
+user.tagua += 5
+user.ttierra += 5
+
+//Estatus
+user.torufuerza += 6
+user.toruvelos += 3
+user.torupoder += 4
+user.resistent += 2
+user.torumana += 10
+
+//Destacado
+user.nivele += 1
+user.rangos += 1
+
+
+if (global.db && global.db.write) {
+await global.db.write()
 }
 
-handler.command = ['boss', 'jefe'];
-handler.group = true;
-export default handler;
+let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 20)
+
+await conn.sendMessage(m.chat, { text: `✅  Registrado en la lista.\n- Nombre *( ${text} )* y codigo de serie *[${sn}]*` }, { quoted: m })
+}
+
+handler.command = ['new', 'nuevo', 'nueva']
+export default handler
 

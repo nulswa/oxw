@@ -26,7 +26,7 @@ const userId = m.sender;
 
 // Verificar que se haya proporcionado un nombre o ID
 if (!text) {
-return await conn.reply(m.chat, `${mess.example}\n*${usedPrefix + command}* Endeavor\n*${usedPrefix + command}* RW5kZWF2b3I=`, m);
+return await conn.reply(m.chat, `${mess.example}\n*${usedPrefix + command}* Endeavor\n*${usedPrefix + command}* RW5kZWF2b3I=\n\n> 📍 Usa el nombre o ID...`, m);
 }
 
 try {
@@ -54,35 +54,31 @@ loTiene = userColeccion.personajes.some(p => p.id === personaje.id);
 }
 
 // Construir mensaje con los detalles del personaje
-let mensaje = `✨ *INFORMACIÓN DEL PERSONAJE* ✨\n\n`;
-mensaje += `📛 *Nombre:* ${personaje.name}\n`;
-mensaje += `🆔 *ID:* ${personaje.id}\n`;
-mensaje += `👤 *Género:* ${personaje.gender}\n`;
-mensaje += `📺 *Anime:* ${personaje.anime}\n`;
-mensaje += `💎 *Rareza:* ${personaje.rarity}\n`;
-mensaje += `📊 *Estado:* ${personaje.status}\n\n`;
-
-mensaje += `⚔️ *ESTADÍSTICAS:*\n`;
-mensaje += `⚡ Poder: ${personaje.poder}\n`;
-mensaje += `💪 Fuerza: ${personaje.fuerza}\n`;
-mensaje += `✨ Magia: ${personaje.magia}\n`;
-mensaje += `🎯 Base: ${personaje.base}\n\n`;
-
-mensaje += `🎯 *HABILIDADES:*\n`;
-mensaje += `${personaje.habili}\n\n`;
-
-mensaje += `💰 *Valor:* ${personaje.value} ToruCoins\n`;
-mensaje += `⭐ *Votos:* ${personaje.vote}\n\n`;
+let mensaje = `\t\t〤 \`Personaje : Info\`\n\n`;
+mensaje += `> 📍 ${personaje.habili}\n\n`;
+mensaje += `▢ *ID* : ${personaje.id}\n`;
+mensaje += `▢ *Nombre* : ${personaje.name}\n`;
+mensaje += `▢ *Género* : ${personaje.gender}\n`;
+mensaje += `▢ *Anime* : ${personaje.anime}\n`;
+mensaje += `▢ *Rareza* : ${personaje.rarity}\n`;
+mensaje += `▢ *Estado* : ${personaje.status}\n\n`;
+mensaje += `\t\t〤 \`Detalles\`\n`;
+mensaje += `▢ *Poder* : ${personaje.poder}\n`;
+mensaje += `▢ *Fuerza* : ${personaje.fuerza}\n`;
+mensaje += `▢ *Magia* : ${personaje.magia}\n`;
+mensaje += `▢ *Base* : ${personaje.base}\n`;
+mensaje += `▢ *Valor* : ${personaje.value} ${toem} ${currency}\n`;
+mensaje += `▢ *Votos* : ${personaje.vote}\n\n`;
 
 // Indicar si el usuario tiene o no el personaje
 if (loTiene) {
 mensaje += `✅ *¡Ya tienes este personaje en tu colección!*`;
 } else {
-mensaje += `❌ *No tienes este personaje*\n`;
+mensaje += `📍 *No tienes este personaje*\n`;
 if (personaje.status === 'Disponible') {
-mensaje += `📍 _Puedes comprarlo con *${usedPrefix}cbuy ${personaje.name}*_`;
+mensaje += `- _Puedes comprarlo con *${usedPrefix}cbuy ${personaje.name}*_`;
 } else {
-mensaje += `📍 _Este personaje no está disponible actualmente_`;
+mensaje += `- _Este personaje no está disponible actualmente_`;
 }
 }
 
@@ -90,8 +86,8 @@ mensaje += `📍 _Este personaje no está disponible actualmente_`;
 const imagenUrl = personaje.dfoto || personaje.pfoto;
 
 if (imagenUrl) {
-await //conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${personaje.name} : ${personaje.status}`, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: personaje.dfoto, sourceUrl: null }}}, { quoted: m })
-  conn.sendFile(m.chat, personaje.pfoto, 'toru.jpg', mensaje, m);
+await //conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${personaje.name} : ${personaje.status}`, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: imagenUrl, sourceUrl: null }}}, { quoted: m })
+conn.sendFile(m.chat, personaje.pfoto, 'toru.jpg', mensaje, m);
 } else {
 await conn.reply(m.chat, mensaje, m);
 }
@@ -106,3 +102,4 @@ handler.command = ['dinfo', 'charinfo', 'personajeinfo'];
 handler.group = true;
 
 export default handler;
+

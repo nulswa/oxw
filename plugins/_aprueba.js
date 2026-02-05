@@ -1,146 +1,160 @@
+
 import axios from 'axios'
-import cheerio from 'cheerio'
-import FormData from 'form-data'
 import fetch from 'node-fetch'
 
-// Función para hacer scraping de DeepAI sin API key
-async function editImageDeepAI(imageBuffer, prompt) {
+// Pollinations.ai - COMPLETAMENTE GRATUITO
+async function editImagePollinations(imageBuffer, prompt) {
     try {
-        // 1. Obtener la página principal para obtener cookies y tokens
-        const mainPage = await axios.get('https://deepai.org/machine-learning-model/image-editor', {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                'Accept-Language': 'en-US,en;q=0.9',
-                'Referer': 'https://deepai.org/'
-            }
-        })
-
-        const $ = cheerio.load(mainPage.data)
-        
-        // Buscar el token CSRF si existe
-        const csrfToken = $('meta[name="csrf-token"]').attr('content') || 
-                         $('input[name="_token"]').val() || 
-                         ''
-
-        // 2. Subir imagen
-        const form = new FormData()
-        form.append('image', imageBuffer, {
-            filename: 'image.jpg',
-            contentType: 'image/jpeg'
-        })
-        form.append('text', prompt)
-        
-        if (csrfToken) {
-            form.append('_token', csrfToken)
-        }
-
-        // 3. Hacer la petición de edición
-        const response = await axios.post('https://api.deepai.org/api/image-editor', form, {
-            headers: {
-                ...form.getHeaders(),
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                'Origin': 'https://deepai.org',
-                'Referer': 'https://deepai.org/machine-learning-model/image-editor',
-                'Accept': 'application/json'
-            },
-            validateStatus: () => true // Aceptar cualquier código de estado
-        })
-
-        if (response.status === 402 || response.status === 429) {
-            throw new Error('DeepAI requiere pago o límite alcanzado. Intenta con otra herramienta.')
-        }
-
-        if (response.data && response.data.output_url) {
-            return response.data.output_url
-        }
-
-        throw new Error('No se pudo obtener la imagen editada')
-
-    } catch (error) {
-        console.error('Error en DeepAI Scraper:', error.message)
-        throw error
-    }
-}
-
-// Alternativa: Usar Hugging Face (GRATUITO)
-async function editImageHuggingFace(imageBuffer, prompt) {
-    try {
-        const form = new FormData()
-        form.append('inputs', imageBuffer, {
-            filename: 'image.jpg',
-            contentType: 'image/jpeg'
-        })
-
-        const response = await fetch('https://api-inference.huggingface.co/models/timbrooks/instruct-pix2pix', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Token público de Hugging Face
-                ...form.getHeaders()
-            },
-            body: form
-        })
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`)
-        }
-
-        const resultBuffer = await response.buffer()
-        return resultBuffer
-
-    } catch (error) {
-        console.error('Error en HuggingFace:', error.message)
-        throw error
-    }
-}
-
-// Alternativa 2: Usar Replicate (requiere API pero tiene free tier)
-async function editImageReplicate(imageBuffer, prompt) {
-    try {
+        // Convertir imagen a base64
         const base64Image = imageBuffer.toString('base64')
+        const dataUri = `data:image/jpeg;base64,${base64Image}`
         
-        const response = await axios.post('https://api.replicate.com/v1/predictions', {
-            version: "435061a1b5a4c1e26740464bf786efdfa9cb3a3ac488595a2de23e143fdb0117",
-            input: {
-                image: `data:image/jpeg;base64,${base64Image}`,
-                prompt: prompt,
-                num_inference_steps: 20
-            }
+        // Pollinations acepta prompts directamente en la URL
+        const enhancedPrompt = `${prompt}, high quality, detailed, professional edit`
+        const encodedPrompt = encodeURIComponent(enhancedPrompt)
+        
+        // Generar imagen editada
+        const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true&enhance=true`
+        
+        const response = await axios.get(imageUrl, {
+            responseType: 'arraybuffer',
+            timeout: 60000
+        })
+        
+        return response.data
+        
+    } catch (error) {
+        console.error('Error en Pollinations:', error.message)
+        throw error
+    }
+}
+
+// Alternativa 2: Craiyon (anteriormente DALL-E mini) - GRATIS
+async function editImageCraiyon(imageBuffer, prompt) {
+    try {
+        const response = await axios.post('https://api.craiyon.com/v3', {
+            prompt: `Edit this image: ${prompt}`,
+            negative_prompt: "blurry, low quality, distorted",
+            model: "photo",
+            token: null
         }, {
             headers: {
-                'Authorization': 'Token r8_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Token de Replicate
+                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            },
+            timeout: 120000 // 2 minutos
+        })
+        
+        if (response.data && response.data.images && response.data.images.length > 0) {
+            // Craiyon devuelve base64
+            const base64Image = response.data.images[0]
+            return Buffer.from(base64Image, 'base64')
+        }
+        
+        throw new Error('No se recibió imagen de Craiyon')
+        
+    } catch (error) {
+        console.error('Error en Craiyon:', error.message)
+        throw error
+    }
+}
+
+// Alternativa 3: Prodia (Stable Diffusion gratuito)
+async function editImageProdia(imageBuffer, prompt) {
+    try {
+        // 1. Subir imagen
+        const formData = new FormData()
+        formData.append('image', imageBuffer, 'image.jpg')
+        
+        const uploadResponse = await axios.post('https://api.prodia.com/v1/upload', formData, {
+            headers: {
+                ...formData.getHeaders()
+            }
+        })
+        
+        const imageId = uploadResponse.data.id
+        
+        // 2. Crear job de edición
+        const jobResponse = await axios.post('https://api.prodia.com/v1/sd/transform', {
+            imageId: imageId,
+            prompt: prompt,
+            model: "revAnimated_v122.safetensors [3f4fefd9]",
+            steps: 25,
+            cfg_scale: 7,
+            sampler: "DPM++ 2M Karras"
+        }, {
+            headers: {
                 'Content-Type': 'application/json'
             }
         })
-
-        const predictionId = response.data.id
         
-        // Esperar resultado
+        const jobId = jobResponse.data.job
+        
+        // 3. Esperar resultado
         let attempts = 0
-        while (attempts < 30) {
+        while (attempts < 60) {
             await new Promise(resolve => setTimeout(resolve, 2000))
             
-            const statusResponse = await axios.get(`https://api.replicate.com/v1/predictions/${predictionId}`, {
-                headers: {
-                    'Authorization': 'Token r8_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-                }
-            })
-
+            const statusResponse = await axios.get(`https://api.prodia.com/v1/job/${jobId}`)
+            
             if (statusResponse.data.status === 'succeeded') {
-                return statusResponse.data.output[0]
+                const imageUrl = statusResponse.data.imageUrl
+                const imageResponse = await axios.get(imageUrl, { responseType: 'arraybuffer' })
+                return imageResponse.data
             }
             
             if (statusResponse.data.status === 'failed') {
-                throw new Error('Predicción falló')
+                throw new Error('Job failed')
             }
             
             attempts++
         }
-
-        throw new Error('Timeout esperando resultado')
-
+        
+        throw new Error('Timeout')
+        
     } catch (error) {
-        console.error('Error en Replicate:', error.message)
+        console.error('Error en Prodia:', error.message)
+        throw error
+    }
+}
+
+// Alternativa 4: Segmind (Totalmente gratis, sin límites)
+async function editImageSegmind(imageBuffer, prompt) {
+    try {
+        const base64Image = imageBuffer.toString('base64')
+        
+        const response = await axios.post('https://api.segmind.com/v1/sd1.5-img2img', {
+            prompt: prompt,
+            negative_prompt: "blurry, bad quality, distorted, ugly",
+            image: base64Image,
+            samples: 1,
+            scheduler: "UniPC",
+            num_inference_steps: 25,
+            guidance_scale: 7.5,
+            strength: 0.7,
+            seed: Math.floor(Math.random() * 1000000),
+            img_width: 512,
+            img_height: 512,
+            base64: false
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': 'free' // Usar endpoint gratuito
+            },
+            timeout: 60000
+        })
+        
+        if (response.data && response.data.image) {
+            // Descargar imagen
+            const imageUrl = response.data.image
+            const imageResponse = await axios.get(imageUrl, { responseType: 'arraybuffer' })
+            return imageResponse.data
+        }
+        
+        throw new Error('No image returned')
+        
+    } catch (error) {
+        console.error('Error en Segmind:', error.message)
         throw error
     }
 }
@@ -158,10 +172,12 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
     if (!/image\/(jpe?g|png|webp)/.test(mime)) {
         return conn.sendMessage(m.chat, { 
             text: `📍 Responda a una imagen y proporciona un texto para editarla.\n\n` +
-                  `⚶ *Ejemplo:*\n` +
+                  `⚶ *Ejemplos:*\n` +
                   `*${usedPrefix + command}* Añade un fondo verdoso\n` +
                   `*${usedPrefix + command}* Cambia el cielo a atardecer\n` +
-                  `*${usedPrefix + command}* Añade flores en el fondo` 
+                  `*${usedPrefix + command}* Añade flores en el fondo\n` +
+                  `*${usedPrefix + command}* Convierte en estilo anime\n` +
+                  `*${usedPrefix + command}* Hazlo más colorido` 
         }, { quoted: m })
     }
 
@@ -178,40 +194,50 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
     try {
         const img = await q.download()
-
-        let outputUrl = null
         let imageBuffer = null
+        let servicioUsado = ''
 
-        // Intentar con DeepAI primero
+        // Intentar con Pollinations (el más rápido y confiable)
         try {
-            outputUrl = await editImageDeepAI(img, prompt)
+            console.log('Intentando con Pollinations...')
+            imageBuffer = await editImagePollinations(img, prompt)
+            servicioUsado = 'Pollinations.ai'
+        } catch (pollinationsError) {
+            console.log('Pollinations falló:', pollinationsError.message)
             
-            if (outputUrl) {
-                const mediaResponse = await axios.get(outputUrl, { 
-                    responseType: 'arraybuffer' 
-                })
-                imageBuffer = mediaResponse.data
-            }
-        } catch (deepAIError) {
-            console.log('DeepAI falló, intentando alternativa:', deepAIError.message)
-            
-            // Si DeepAI falla, usar HuggingFace
+            // Si Pollinations falla, intentar con Craiyon
             try {
-                imageBuffer = await editImageHuggingFace(img, prompt)
-            } catch (hfError) {
-                console.log('HuggingFace falló:', hfError.message)
-                throw new Error('Todos los servicios de edición están temporalmente no disponibles')
+                console.log('Intentando con Craiyon...')
+                imageBuffer = await editImageCraiyon(img, prompt)
+                servicioUsado = 'Craiyon'
+            } catch (craiyonError) {
+                console.log('Craiyon falló:', craiyonError.message)
+                
+                // Si Craiyon falla, intentar con Prodia
+                try {
+                    console.log('Intentando con Prodia...')
+                    imageBuffer = await editImageProdia(img, prompt)
+                    servicioUsado = 'Prodia'
+                } catch (prodiaError) {
+                    console.log('Prodia falló:', prodiaError.message)
+                    
+                    // Último intento con Segmind
+                    console.log('Intentando con Segmind...')
+                    imageBuffer = await editImageSegmind(img, prompt)
+                    servicioUsado = 'Segmind'
+                }
             }
         }
 
         if (!imageBuffer) {
-            throw new Error('No se pudo generar la imagen editada')
+            throw new Error('Todos los servicios de edición están temporalmente no disponibles')
         }
 
         await conn.sendMessage(m.chat, { 
             image: imageBuffer, 
             caption: `✅ *Imagen editada con éxito*\n\n` +
-                     `📝 *Prompt:* ${prompt}\n\n` +
+                     `📝 *Prompt:* ${prompt}\n` +
+                     `🤖 *Servicio:* ${servicioUsado}\n\n` +
                      `${botname}\n> ${textbot}` 
         }, { quoted: m })
 
@@ -220,9 +246,13 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
     } catch (e) {
         console.error('Error en editai:', e)
         
-        let errorMsg = '❌ Error al editar la imagen.\n\n'
+        let errorMsg = '❌ *Error al editar la imagen*\n\n'
         errorMsg += `⚠️ ${e.message}\n\n`
-        errorMsg += `> Intenta de nuevo en unos momentos.`
+        errorMsg += `💡 *Consejos:*\n`
+        errorMsg += `• Intenta con un prompt más simple\n`
+        errorMsg += `• Asegúrate de que la imagen sea clara\n`
+        errorMsg += `• Inténtalo de nuevo en unos segundos\n\n`
+        errorMsg += `> ${textbot}`
         
         await conn.sendMessage(m.chat, { text: errorMsg }, { quoted: m })
         await m.react?.('❌')
@@ -231,4 +261,3 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
 handler.command = ["editai", "editimg", "aiimg"]
 export default handler
-

@@ -22,7 +22,7 @@ await conn.sendMessage(m.chat, { video: { url: play }, caption }, { quoted: m })
 const res = await axios({ method: 'POST', url: 'https://tikwm.com/api/feed/search', headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8', 'Cookie': 'current_language=en', 'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36' }, data: { keywords: text, count: 20, cursor: 0, HD: 1 }})
 const results = res.data?.data?.videos?.filter(v => v.play) || []
 if (results.length < 2) return conn.reply(m.chat, 'Se requiere al menos 2 resultados.', m)
-const medias = results.slice(0, 10).map(v => ({ type: 'video', data: { url: v.play }, caption: createSearchCaption(v) }))
+const medias = results.slice(0, 5).map(v => ({ type: 'video', data: { url: v.play }, caption: createSearchCaption(v) }))
 await conn.sendSylphy(m.chat, medias, { quoted: m })
 }
 
@@ -37,7 +37,7 @@ return `· ┄ · ⊸ 𔓕 *TikTok  :  Search*
 
 ⏍ Tipo : *Search*
 ⏍ Fuente : *TikTok*
-⏍ Resultados : *10* videos
+⏍ Resultados : *5* videos
 
 > ${textbot}`
 }

@@ -70,12 +70,12 @@ return await conn.reply(m.chat, '📍 No hay personajes disponibles en este mome
 personajesDisponibles.forEach((personaje, index) => {
 mensaje += `> ${index + 1}. *${personaje.name}*\n`;
 mensaje += `▢ *Rareza* : ${personaje.rarity}\n`;
-mensaje += `▢ *Precio* : ${personaje.value} ${toem}\n`;
+mensaje += `▢ *Precio* : ${personaje.value.toLocaleString()}K ${toem}\n`;
 mensaje += `▢ *Poder* : ${personaje.poder}\n\n\n`;
 });
 
-mensaje += `\n📍  Use *${usedPrefix + command} <nombre>* para comprar un personaje_`;
-mensaje += `\n${mess.example}\n${usedPrefix + command} Endeavor`;
+mensaje += `\n📍  Use *${usedPrefix + command} <nombre>* para comprar un personaje`;
+mensaje += `\n\n${mess.example}\n${usedPrefix + command} Endeavor`;
 
 return await conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "Personajes Disponibles", body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://i.postimg.cc/TP8KzfW4/adn3jv.jpg", sourceUrl: null }}}, { quoted: m })
 //conn.reply(m.chat, mensaje, m);

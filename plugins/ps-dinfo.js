@@ -91,7 +91,7 @@ const imagenUrl = personaje.dfoto || personaje.pfoto;
 
 if (imagenUrl) {
 await //conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${personaje.name} : ${personaje.status}`, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: personaje.dfoto, sourceUrl: null }}}, { quoted: m })
-  conn.sendFile(m.chat, personaje.dfoto, 'toru.jpg', mensaje, m);
+  conn.sendFile(m.chat, personaje.pfoto, 'toru.jpg', mensaje, m);
 } else {
 await conn.reply(m.chat, mensaje, m);
 }

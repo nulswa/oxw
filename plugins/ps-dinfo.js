@@ -90,7 +90,8 @@ mensaje += `📍 _Este personaje no está disponible actualmente_`;
 const imagenUrl = personaje.dfoto || personaje.pfoto;
 
 if (imagenUrl) {
-await conn.sendFile(m.chat, imagenUrl, 'toru.jpg', mensaje, m);
+await await conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${personaje.name} : ${personaje.status}`, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: imagenUrl, sourceUrl: null }}}, { quoted: m })
+  //conn.sendFile(m.chat, imagenUrl, 'toru.jpg', mensaje, m);
 } else {
 await conn.reply(m.chat, mensaje, m);
 }

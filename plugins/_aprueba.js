@@ -70,8 +70,8 @@ return await conn.reply(m.chat, '📍 No hay personajes disponibles en este mome
 personajesDisponibles.forEach((personaje, index) => {
 mensaje += `> ${index + 1}. *${personaje.name}*\n`;
 mensaje += `▢ *Rareza* : ${personaje.rarity}\n`;
-mensaje += `▢ *Precio* : ${personaje.value.toLocaleString()}K ${toem}\n`;
-mensaje += `▢ *Poder* : ${personaje.poder}\n\n\n`;
+mensaje += `▢ *Precio* : ${personaje.value} ${toem}\n`;
+mensaje += `▢ *Poder* : ${personaje.poder}\n\n`;
 });
 
 mensaje += `\n📍  Use *${usedPrefix + command} <nombre>* para comprar un personaje`;

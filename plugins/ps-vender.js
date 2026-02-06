@@ -1,8 +1,8 @@
 import { promises as fs } from 'fs';
 
-const personajePath = './scrapers/oxw/personajes.json';
-const ccFilePath = './scrapers/oxw/cc.json';
-const ventFilePath = './scrapers/oxw/vent.json';
+const personajePath = './scrapers/ows/personajes.json';
+const ccFilePath = './scrapers/ows/cc.json';
+const ventFilePath = './scrapers/ows/vent.json';
 
 async function loadPersonaje() {
 try {

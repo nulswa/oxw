@@ -16,7 +16,7 @@ let listaPrincipal = `\`\`\`⧡ menu » all       [0]
 ⧡ menu » utils     [8]
 ⧡ menu » stickers  [9]
 ⧡ menu » logos     [10]
-⧡ menu » gacha     [11]
+⧡ menu » cc     [11]
 ⧡ menu » random    [12]
 ⧡ menu » reac      [13]
 ⧡ menu » ai        [14]
@@ -171,7 +171,11 @@ let menuLogos = `│⧡ *${usedPrefix}logo1*   [text]
 │⧡ *${usedPrefix}logo36*   [text]
 │⧡ *${usedPrefix}logo37*   [text]
 ╰────────────────•`
-let menuGacha = `│⧡ *Update...*
+let menuColec = `│⧡ *${usedPrefix}cs*
+│⧡ *${usedPrefix}cpay*   [name]
+│⧡ *${usedPrefix}dinfo*   [name/id]
+│⧡ *${usedPrefix}vender*   [name]
+│⧡ *${usedPrefix}comprar*   [name]
 ╰────────────────•`
 let menuRandom = `│⧡ *${usedPrefix}wallp*
 │⧡ *${usedPrefix}rd messi*
@@ -230,10 +234,8 @@ let menuReac = `│⧡ *${usedPrefix}angry*   [mention]
 │⧡ *${usedPrefix}wave*   [mention]
 ╰────────────────•`
 let menuAi = `│⧡ *${usedPrefix}toru*   [text]
-│⧡ *${usedPrefix}chatgpt*   [text]
 │⧡ *${usedPrefix}codex*   [text]
 │⧡ *${usedPrefix}venice*   [text]
-│⧡ *${usedPrefix}dolphin*   [text]
 │⧡ *${usedPrefix}imagina*   [text]
 ╰────────────────•`
 let menuEdit = `│⧡ *${usedPrefix}new-name*   [text]
@@ -251,7 +253,7 @@ let menuPrem = `│⧡ *${usedPrefix}temblor*
 │⧡ *${usedPrefix}editai*   [reply]
 │⧡ *${usedPrefix}clima*   [query]
 ╰────────────────•`
-let menuJuegos = `│⧡ *${usedPrefix}ahorcado*
+let menuJuegos = `│⧡ *${usedPrefix}wix*
 ╰────────────────•`
 let menuOwn = `│⧡ *${usedPrefix}fix*
 │⧡ *${usedPrefix}err*
@@ -443,19 +445,19 @@ ${menuLogos}
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: categoLogos, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
-} else if (args[0] === 'gacha' || args[0] === '11') {
-let categoGacha = `> ${hora}, ${dia} ${fechaTxt}
+} else if (args[0] === 'cc' || args[0] === '11') {
+let categoCol = `> ${hora}, ${dia} ${fechaTxt}
 
 ⧨ Modo : *Privado*
 🜲 Usuario : @${name}
 ＃ Prefix : *(/ ! # - .)*
 ✦ Version : *${vs}*
 ${readMore}
-╭•[ 𔒝 ] ⧿ \`Coleccion\` \`\`\`[ Actualizando... ]\`\`\`
-${menuGacha}
+╭•[ 𔒝 ] ⧿ \`Coleccion\`
+${menuColec}
 
 > ${textbot}`
-return conn.sendMessage(m.chat, { text: categoGacha, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+return conn.sendMessage(m.chat, { text: categoCol, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'random' || args[0] === '12') {
 let categoRandom = `> ${hora}, ${dia} ${fechaTxt}
 

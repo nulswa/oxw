@@ -599,8 +599,8 @@ ${menuStick}
 ${menuLogos}
 
 
-╭•[ 𔒝 ] ⧿ \`Gacha\`
-${menuGacha}
+╭•[ 𔒝 ] ⧿ \`Coleccion\`
+${menuColec}
 
 
 ╭•[ 𔒝 ] ⧿ \`Random\`

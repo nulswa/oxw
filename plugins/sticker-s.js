@@ -15,8 +15,8 @@ let mime = (q.msg || q).mimetype || q.mediaType || ''
 let txt = args.join(' ')
 
 if (/webp|image|video/g.test(mime) && q.download) {
-if (/video/.test(mime) && (q.msg || q).seconds > 7)
-return conn.reply(m.chat, 'El video no puede durar mas de 7 segundos...', m)
+if (/video/.test(mime) && (q.msg || q).seconds > 11)
+return conn.reply(m.chat, 'El video no puede durar mas de 10 segundos...', m)
 let buffer = await q.download()
 await m.react('⏰')
 

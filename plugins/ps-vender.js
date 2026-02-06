@@ -161,8 +161,9 @@ await saveVentas(ventas);
 let mensaje = `✅ *PERSONAJE PUESTO EN VENTA* ✅
 
 > *Basico:*
-▢ *Nombre* : ${personaje.nombre}
-▢ *Genero* : ${personaje.genero}
+▢ *ID* : ${personaje.id}
+▢ *Nombre* : ${personaje.name}
+▢ *Genero* : ${personaje.gender}
 ▢ *Anime* : ${personaje.anime}
 ▢ *Rareza* : ${personaje.rarity}
 ▢ *Valor org* : ${precioOriginal} ${currency} ${toem}
@@ -176,7 +177,7 @@ let mensaje = `✅ *PERSONAJE PUESTO EN VENTA* ✅
 > ✅  *Se ha aplicado un *30%* de descuento. *(${toem} -${descuento} ${currency})*
 - Ahora disponible en: *${usedPrefix}buy*`;
 
-await conn.sendFile(m.chat, personaje.dfoto, 'toru.jpg', mensaje, m);
+await conn.sendFile(m.chat, personaje.pfoto, 'toru.jpg', mensaje, m);
 //conn.reply(m.chat, mensaje, m);
 
 } catch (error) {

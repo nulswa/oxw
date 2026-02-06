@@ -149,7 +149,7 @@ return await conn.reply(m.chat, `📍  Ya tienes a *[ ${venta.name} ]* en tu col
 // Verificar que el comprador tenga suficientes ToruCoins
 const precio = parseInt(venta.precioVenta);
 if (!user.torucoin || user.torucoin < precio) {
-return await conn.reply(m.chat, `Necesitas *[ ${toem} ${precio - (user.torucoin || 0)} ${currency} ]* para comprarlo.\n- Solo tienes ${toem} ${user.torucoin || 0} ${currency} en tu inventario.`, m);
+return await conn.reply(m.chat, `Necesitas *[ ${toem} ${precio - (user.torucoin || 0)} ${currncy} ]* para comprarlo.\n- Solo tienes ${toem} ${user.torucoin || 0} ${currency} en tu inventario.`, m);
 }
 
 // Realizar la compra
@@ -213,7 +213,7 @@ const vendedorTag = `@${vendedorId.split('@')[0]}`;
 let mensaje = `· ┄ · ⊸ 𔓕 *¡Personaje  :  Comprado!*
 
 👤 *Vendedor* : ${vendedorTag}
-🛒 *Precio* : ${precio} ${currency} ✅
+🛒 *Precio* : ${precio} ✅
 
 > *Basico:*
 ▢ *Nombre* : ${venta.name}
@@ -238,7 +238,7 @@ const compradorTag = `@${userId.split('@')[0]}`;
 let notificacion = `\t〩 \`¡Comprado!\` 〩\n\n`;
 notificacion += `📍  El usuario ${compradorTag} ha comprado tu personaje *[ ${venta.name} ]*\n\n`;
 notificacion += `▢ Has recibido : ${precio} ${currency} ${toem}\n`;
-notificacion += `▢ Tu saldo : ${global.db.data.users[vendedorId].torucoin} ${currency} ${toem}\n\n`;
+notificacion += `▢ Tu saldo : ${global.db.data.users[vendedorId].torucoin} ToruCoins\n\n`;
 notificacion += `> 🥳  ¡Felicidades por tu venta!`;
 
 await conn.reply(vendedorId, notificacion, null, {

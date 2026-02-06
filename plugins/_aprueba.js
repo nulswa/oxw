@@ -104,33 +104,19 @@ const attackerTag = `@${attackerId.split('@')[0]}`;
 const targetTag = `@${targetId.split('@')[0]}`;
 
 // Mensaje de inicio de batalla
-let battleMsg = `\t\t⚔️【 1 vs 1 】⚔️
-- Lucha entre dos usuarios.
+let battleMsg = `⚔️ \`[ ESTADISTICAS ]\`⚔️
+- ¡Gana el que tiene mas poder y nivel!
 
-💯 \`Iniciando una partida.\`
-- ¡Cada usuario puede batallar con otros!`
-let battleSegund = `▢ 1️⃣ ${attackerTag}
-▢ *Nivel*  »  ^${attackerPowerTotal}
-▢ *Personajes*  »  ${attackerStats.cantidadPersonajes} en total.
-
-┌[〩] *Mejor Card*
-│▢ *Nombre*  »  ${attackerBestChar.name} *(${attackerBestChar.rarity})*
-│▢ *Poder*  »  ${attackerBestChar.poder}
-│▢ *Fuerza*  »  ${attackerBestChar.fuerza}
-│▢ *Magia*  »  ${attackerBestChar.magia}
-└──────────
+▢ 1️⃣ ${attackerTag} *(lvl_${attackerPowerTotal})*
+▢ *PS*  »  ${attackerStats.cantidadPersonajes} en total.
+⚔️ *Mejor Card:*
+> N-${attackerBestChar.name} *(${attackerBestChar.rarity})* / P-${attackerBestChar.poder} / F-${attackerBestChar.fuerza} / M-${attackerBestChar.magia}
 
 
-▢ 2️⃣ ${targetTag}
-▢ *Nivel*  »  ^${targetPowerTotal}
-▢ *Personajes*  »  ${targetStats.cantidadPersonajes}
-
-┌[〩] *Mejor Card*
-│▢ *Nombre*  »  ${targetBestChar.name} *(${targetBestChar.rarity})*
-│▢ *Poder*  »  ${targetBestChar.poder}
-│▢ *Fuerza*  »  ${targetBestChar.fuerza}
-│▢ *Magia*  »  ${targetBestChar.magia}
-└──────────`;
+▢ 2️⃣ ${targetTag} *(${targetPowerTotal})*
+▢ *PS*  »  ${targetStats.cantidadPersonajes}
+⚔️ *Mejor Card:*
+> N-${targetBestChar.name} *(${targetBestChar.rarity})* / P-${targetBestChar.poder} / F-${targetBestChar.fuerza} / M-${targetBestChar.magia}`;
 // Determinar ganador
 let winner, loser, winnerId, loserId, winnerTag, loserTag;
 
@@ -206,10 +192,9 @@ battleTercer += `🎴 ¡¡Victoria por mayor cantidad de personajes!!\n`;
 battleTercer += `🎯 ¡¡Victoria por iniciativa de combate!!\n`;
 }
 
-battleTercer += `\n\n> _¡Batalla finalizada!_`;
+battleTercer += `\n\n_¡Batalla finalizada!_`;
 
-await conn.sendMessage(m.chat, { text: battleMsg, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "⚔️  BATTLE : ALL  ⚔️", body: "🔥 ¡¡Que gane el que tenga mas poder!!!", containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://i.postimg.cc/q7FLXJX0/Picsart-26-02-06-17-36-52-725.jpg", sourceUrl: null }}}, { quoted: m })
-conn.reply(m.chat, battleSegund, m, { mentions: [attackerId, targetId] });
+conn.reply(m.chat, battleMsg, m, { mentions: [attackerId, targetId] });
 conn.reply(m.chat, battleTercer, m, { mentions: [attackerId, targetId] });
 } catch (error) {
 console.error('Error en batalla:', error);

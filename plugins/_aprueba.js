@@ -113,7 +113,7 @@ let battleMsg = `⚔️ \`[ ESTADISTICAS ]\`⚔️
 > N-${attackerBestChar.name} *(${attackerBestChar.rarity})* / P-${attackerBestChar.poder} / F-${attackerBestChar.fuerza} / M-${attackerBestChar.magia}
 
 
-▢ 2️⃣ ${targetTag} *(${targetPowerTotal})*
+▢ 2️⃣ ${targetTag} *(lvl_${targetPowerTotal})*
 ▢ *PS*  »  ${targetStats.cantidadPersonajes}
 ⚔️ *Mejor Card:*
 > N-${targetBestChar.name} *(${targetBestChar.rarity})* / P-${targetBestChar.poder} / F-${targetBestChar.fuerza} / M-${targetBestChar.magia}`;
@@ -172,13 +172,13 @@ loser.torucoin = loserCoins - reward;
 }
 
 // Mensaje de resultado
-let battleTercer = `🏆 *GANADOR: ${winnerTag}*\n\n`;
+let battleTercer = `🏆 GANADOR: ${winnerTag}\n\n`;
 
 if (reward > 0) {
-battleTercer += `${toem} Recompensa obtenida: ${reward} ${currency}\n`;
-battleTercer += `${toem} Tu saldo: ${winner.torucoin} ${currency}\n\n`;
+battleTercer += `${toem} ${winnerTag} Gano: ${reward} ${currency}\n`;
+battleTercer += `${toem} Su saldo: ${winner.torucoin} ${currency}\n\n`;
 battleTercer += `${toem} ${loserTag} perdió: ${reward} ${currency}\n`;
-battleTercer += `${toem} Su saldo ${loserTag}: ${loser.torucoin} ${currency}\n\n`;
+battleTercer += `${toem} Su saldo: ${loser.torucoin} ${currency}\n\n`;
 } else {
 battleTercer += `${loserTag} no tenía ${currency} para perder :v\n\n`;
 }

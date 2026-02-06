@@ -2,7 +2,7 @@
 
 import { promises as fs } from 'fs';
 
-const ccFilePath = './scrapers/ows/cc.json';
+const ccFilePath = './scrapers/ows/cc.json'; //Cambia la dirección segun donde pongas tu json. :v
 
 async function loadColecs() {
 try {
@@ -40,7 +40,7 @@ return (rarityOrder[a.rarity] || 999) - (rarityOrder[b.rarity] || 999);
 });
 
 personajesOrdenados.forEach((personaje, index) => {
-// Emoji según rareza jsjs :v
+// Emoji según rareza jsjs (eliminalo si quieres) :v
 let rarityEmoji = '';
 switch(personaje.rarity) {
 case 'Golden':
@@ -62,7 +62,7 @@ mensaje += `▢ *Base* : ${personaje.base} *(${personaje.value} ${toem})*\n`;
 mensaje += `> ${personaje.habili}\n\n\n`;
 });
 
-// Calcular estadísticas totales
+// Calcular estadísticas totales :3
 const totalPoder = personajesOrdenados.reduce((sum, p) => sum + parseInt(p.poder || 0), 0);
 const totalFuerza = personajesOrdenados.reduce((sum, p) => sum + parseInt(p.fuerza || 0), 0);
 const totalMagia = personajesOrdenados.reduce((sum, p) => sum + parseInt(p.magia || 0), 0);
@@ -74,7 +74,7 @@ mensaje += `💪 *Fuerza Total* : ${totalFuerza}\n`;
 mensaje += `✨ *Magia Total* : ${totalMagia}\n`;
 mensaje += `💰 *Valor Total* : ${valorTotal} ${toem} ${currency}\n\n`;
 
-// Contador por rareza (agrega mas rarezas si añades mas personajes.)
+// Contador por rareza (agrega mas rarezas si añades mas personajes.) ._.
 const goldenCount = personajesOrdenados.filter(p => p.rarity === 'Golden').length;
 const rareCount = personajesOrdenados.filter(p => p.rarity === 'Rare').length;
 const commonCount = personajesOrdenados.filter(p => p.rarity === 'Common').length;
@@ -89,7 +89,7 @@ if (commonCount > 0) mensaje += `⭐ Common: ${commonCount}\n`;
 mensaje += `\n> ${textbot}`;
 
 await conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "Coleccion : Personajes", body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: global.toruMenu, sourceUrl: null }}}, { quoted: m });
-//conn.reply(m.chat, mensaje, m);
+//conn.reply(m.chat, mensaje, m); me gusta com imagen :b
 
 } catch (error) {
 console.error(error);
@@ -102,7 +102,7 @@ handler.group = true;
 
 export default handler;
 
-const more = String.fromCharCode(8206)
+const more = String.fromCharCode(8206) //Readme, por si es molesto con todo el texto tapando el chat.
 const readMore = more.repeat(4001)
 
 /* 
@@ -121,4 +121,7 @@ Asegurate de que el codigo en cc.json quede asi cuando el usuario compra el pers
 ]
 }
 ]
+
+em fin, código tuyo :b
+
 */

@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 
-const personajePath = './scrapers/ows/personajes.json';
-const ccFilePath = './scrapers/ows/cc.json';
+const personajePath = './scrapers/ows/personajes.json'; //Cambialo segun el json.
+const ccFilePath = './scrapers/ows/cc.json'; //Cambialo segun el json.
 
 async function loadPersonaje() {
 try {
@@ -24,7 +24,8 @@ return [];
 let handler = async (m, { conn, usedPrefix, command, text }) => {
 const userId = m.sender;
 
-// Verificar que se haya proporcionado un nombre o ID
+// Verificar que se haya proporcionado un nombre o ID :v
+//Elimina el ${mess.example} ya que no existe.
 if (!text) {
 return await conn.reply(m.chat, `${mess.example}\n*${usedPrefix + command}* Endeavor\n*${usedPrefix + command}* RW5kZWF2b3I=\n\n> 📍 Usa el nombre o ID...`, m);
 }
@@ -45,7 +46,7 @@ if (!personaje) {
 return await conn.reply(m.chat, `📍  No se encontró ningún personaje con el nombre o ID *[ ${text} ]*.\n- Usa *${usedPrefix}cbuy* para ver la lista de personajes disponibles`, m);
 }
 
-// Verificar si el usuario tiene este personaje
+// Verificar si el usuario tiene este personaje ._.
 const userColeccion = colecciones.find(c => c.userId === userId);
 let loTiene = false;
 
@@ -53,7 +54,7 @@ if (userColeccion && userColeccion.personajes) {
 loTiene = userColeccion.personajes.some(p => p.id === personaje.id);
 }
 
-// Construir mensaje con los detalles del personaje
+// Construir mensaje con los detalles del personaje ._.
 let mensaje = `\t\t〤 \`Personaje : Info\`\n\n`;
 mensaje += `> 📍 ${personaje.habili}\n\n`;
 mensaje += `▢ *ID* : ${personaje.id}\n`;
@@ -70,7 +71,7 @@ mensaje += `▢ *Base* : ${personaje.base}\n`;
 mensaje += `▢ *Valor* : ${personaje.value} ${toem} ${currency}\n`;
 mensaje += `▢ *Votos* : ${personaje.vote}\n\n`;
 
-// Indicar si el usuario tiene o no el personaje
+// Indicar si el usuario tiene o no el personaje :b
 if (loTiene) {
 mensaje += `✅ *¡Ya tienes este personaje en tu colección!*`;
 } else {
@@ -82,14 +83,15 @@ mensaje += `- _Este personaje no está disponible actualmente_`;
 }
 }
 
-// Enviar imagen con los detalles
+// Enviar imagen con los detalles :3
+//Si falla, enviara otra imagen si la otra no se cargo.
 const imagenUrl = personaje.dfoto || personaje.pfoto;
 
 if (imagenUrl) {
 await //conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${personaje.name} : ${personaje.status}`, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: imagenUrl, sourceUrl: null }}}, { quoted: m })
-conn.sendFile(m.chat, personaje.pfoto, 'toru.jpg', mensaje, m);
+conn.sendFile(m.chat, personaje.pfoto, 'toru.jpg', mensaje, m); // :b
 } else {
-await conn.reply(m.chat, mensaje, m);
+await conn.reply(m.chat, mensaje, m); //Si falla na mas envia mensaje sin imagen. :b
 }
 
 } catch (error) {
@@ -103,3 +105,4 @@ handler.group = true;
 
 export default handler;
 
+//en fin código tuyo. :b

@@ -14,7 +14,7 @@ try {
 const data = await fs.readFile(personajePath, 'utf-8');
 return JSON.parse(data);
 } catch (error) {
-throw new Error('No se pudo cargar el archivo characters.json.');
+throw new Error('No se pudo cargar el archivo personajes.json.');
 }
 }
 
@@ -22,7 +22,7 @@ async function savePersonaje(personaje) {
 try {
 await fs.writeFile(personajePath, JSON.stringify(personaje, null, 2), 'utf-8');
 } catch (error) {
-throw new Error('No se pudo guardar el archivo characters.json.');
+throw new Error('No se pudo guardar el archivo personajes.json.');
 }
 }
 
@@ -48,7 +48,7 @@ const userId = m.sender;
 let user = global.db.data.users[userId];
 const now = Date.now();
 
-// Verificar cooldown
+// Verificar cooldown (en caso de que uno tenga mas coins y quiera usar seguido ._.
 if (cooldowns[userId] && now < cooldowns[userId]) {
 const remainingTime = Math.ceil((cooldowns[userId] - now) / 1000);
 const minutes = Math.floor(remainingTime / 60);
@@ -57,11 +57,11 @@ return await conn.reply(m.chat, `📍  Debes esperar *${minutes} minutos y ${sec
 }
 
 try {
-// Cargar personajes y colecciones
+// Cargar personajes y colecciones ._.
 const personajes = await loadPersonaje();
 const colecciones = await loadColecs();
 
-// Si no hay texto, mostrar lista de personajes disponibles
+// Si no hay texto, mostrar lista de personajes disponibles :v
 if (!text) {
 let mensaje = '· ┄ · ⊸ 𔓕 *Personajes  :  Compras*\n- ¡Compra personajes y sube tu estatus!\n\n';
 
@@ -82,10 +82,10 @@ mensaje += `\n📍  Use *${usedPrefix + command} <nombre>* para comprar un perso
 mensaje += `\n\n${mess.example}\n${usedPrefix + command} Endeavor`;
 
 return await conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "Personajes Disponibles", body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: "https://i.postimg.cc/TP8KzfW4/adn3jv.jpg", sourceUrl: null }}}, { quoted: m })
-//conn.reply(m.chat, mensaje, m);
+//conn.reply(m.chat, mensaje, m); me gusta mas con imagen :v
 }
 
-// Buscar el personaje por nombre (case insensitive)
+// Buscar el personaje por nombre (case insensitive) :3
 const nombreBuscado = text.trim().toLowerCase();
 const personaje = personajes.find(p => p.name.toLowerCase() === nombreBuscado);
 
@@ -93,12 +93,12 @@ if (!personaje) {
 return await conn.reply(m.chat, `📍 No se encontró ningún personaje con el nombre "*${text}*".\n- Usa *${usedPrefix}cbuy* para ver la lista de personajes disponibles.`, m);
 }
 
-// Verificar si el personaje está disponible
+// Verificar si el personaje está disponible :b
 if (personaje.status !== 'Disponible') {
 return await conn.reply(m.chat, `📍  El personaje *[ ${personaje.name} ]* no está disponible en este momento.`, m);
 }
 
-// Verificar si el usuario ya tiene este personaje
+// Verificar si el usuario ya tiene este personaje :b
 const userColeccion = colecciones.find(c => c.userId === userId);
 if (userColeccion && userColeccion.personajes) {
 const yaLoTiene = userColeccion.personajes.some(p => p.id === personaje.id);
@@ -107,20 +107,21 @@ return await conn.reply(m.chat, `📍  Ya tienes el personaje *[ ${personaje.nam
 }
 }
 
-// Verificar si el usuario tiene suficientes ToruCoins
+// Verificar si el usuario tiene suficientes coins.
+//Elimina ${toem} y user.torucoin. por que el otro no existe y el otro tampoco :v
 const precio = parseInt(personaje.value);
 if (!user.torucoin || user.torucoin < precio) {
 return await conn.reply(m.chat, `Necesitas *[ ${toem} ${precio - (user.torucoin || 0)} ${currency} ]* para comprar *[ ${personaje.name} ]*.\n- Solo tienes ${toem} ${user.torucoin} ${currency} en tu inventario.`, m);
 }
 
-// Realizar la compra
+// Realizar la compra :b
 user.torucoin -= precio;
 
-// Agregar personaje a la colección del usuario
+// Agregar personaje a la colección del usuario :3
 let coleccionIndex = colecciones.findIndex(c => c.userId === userId);
 
 if (coleccionIndex === -1) {
-// Crear nueva colección para el usuario
+// Crear nueva colección para el usuario :v
 colecciones.push({
 userId: userId,
 personajes: [personaje]
@@ -171,8 +172,9 @@ await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m });
 }
 };
 
-handler.command = ['cbuy'];
+handler.command = ['cpay', 'cbuy'];
 handler.group = true;
 
 export default handler;
 
+//En fin, código tuyo :b

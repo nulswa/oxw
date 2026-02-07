@@ -24,255 +24,291 @@ let listaPrincipal = `\`\`\`⧡ menu » all       [0]
 ⧡ menu » premium   [16]
 ⧡ menu » juegos    [17]
 ⧡ menu » owner     [own]\`\`\``
-let menuInfo = `│⧡ *${usedPrefix}anuncios*\n│⧡ *${usedPrefix}ping*\n│⧡ *${usedPrefix}plan*\n│⧡ *${usedPrefix}prems!*\n│⧡ *${usedPrefix}mods!*\n│⧡ *${usedPrefix}admins!*\n│⧡ *${usedPrefix}run*
-│⧡ *${usedPrefix}stat*
-│⧡ *${usedPrefix}info*
-│⧡ *${usedPrefix}creador*
-│⧡ *${usedPrefix}canal*
-│⧡ *${usedPrefix}donar*
-│⧡ *${usedPrefix}mp*
-│⧡ *${usedPrefix}bk*
-│⧡ *${usedPrefix}pay*
-│⧡ *${usedPrefix}speed*
-│⧡ *${usedPrefix}support*   [text]
+let menuInfo = `│⧡ *${usedPrefix}ᴀɴᴜɴᴄɪᴏs*
+│⧡ *${usedPrefix}ᴘɪɴɢ*
+│⧡ *${usedPrefix}ᴘʟᴀɴ*
+│⧡ *${usedPrefix}ᴘʀᴇᴍs!*
+│⧡ *${usedPrefix}ᴍᴏᴅs!*
+│⧡ *${usedPrefix}ᴀᴅᴍɪɴs!*
+│⧡ *${usedPrefix}ʀᴜɴ*
+│⧡ *${usedPrefix}sᴛᴀᴛ*
+│⧡ *${usedPrefix}ɪɴғᴏ*
+│⧡ *${usedPrefix}ᴄʀᴇᴀᴅᴏʀ*
+│⧡ *${usedPrefix}ᴄᴀɴᴀʟ*
+│⧡ *${usedPrefix}ᴅᴏɴᴀʀ*
+│⧡ *${usedPrefix}ᴍᴘ*
+│⧡ *${usedPrefix}ʙᴋ*
+│⧡ *${usedPrefix}ᴘᴀʏ*
+│⧡ *${usedPrefix}sᴘᴇᴇᴅ*
+│⧡ *${usedPrefix}ʀᴇᴘᴏʀᴛ*
 ╰────────────────•`
-let menuDesc = `│⧡ *${usedPrefix}ytmp3*   [link]
-│⧡ *${usedPrefix}ytmp4*   [link]
-│⧡ *${usedPrefix}play*   [link/text]
-│⧡ *${usedPrefix}facebook*   [link]
-│⧡ *${usedPrefix}instagram*   [link]
-│⧡ *${usedPrefix}twitter*   [link]
-│⧡ *${usedPrefix}tiktok*   [link]
-│⧡ *${usedPrefix}spotify*   [link]
-│⧡ *${usedPrefix}mediafire*   [link]
-│⧡ *${usedPrefix}pinterest*   [link]
-│⧡ *${usedPrefix}github*   [link]
-│⧡ *${usedPrefix}drive*   [link]
-│⧡ *${usedPrefix}sly*   [link]
+let menuDesc = `│⧡ *${usedPrefix}ᴀᴜᴅɪᴏ*
+│⧡ *${usedPrefix}ᴠɪᴅᴇᴏ*
+│⧡ *${usedPrefix}ᴘʟᴀʏ*
+│⧡ *${usedPrefix}ғᴀᴄᴇʙᴏᴏᴋ*
+│⧡ *${usedPrefix}ɪɴsᴛᴀɢʀᴀᴍ*
+│⧡ *${usedPrefix}ᴛᴡɪᴛᴛᴇʀ*
+│⧡ *${usedPrefix}ᴛɪᴋᴛᴏᴋ*
+│⧡ *${usedPrefix}sᴘᴏᴛɪғʏ*
+│⧡ *${usedPrefix}ᴍᴇᴅɪᴀғɪʀᴇ*
+│⧡ *${usedPrefix}ᴘɪɴᴛᴇʀᴇsᴛ*
+│⧡ *${usedPrefix}ɢɪᴛʜᴜʙ*
+│⧡ *${usedPrefix}ᴅʀɪᴠᴇ*
+│⧡ *${usedPrefix}sʟʏ*
 ╰────────────────•`
-let menuConv = `│⧡ *${usedPrefix}upload*
-│⧡ *${usedPrefix}hd*
-│⧡ *${usedPrefix}upmf*   [reply]
-│⧡ *${usedPrefix}turl*   [query]
-│⧡ *${usedPrefix}timg*   [reply]
-│⧡ *${usedPrefix}togif*   [reply]
-│⧡ *${usedPrefix}catbox*   [query]
+let menuConv = `│⧡ *${usedPrefix}ᴜᴘʟᴏᴀᴅ*
+│⧡ *${usedPrefix}ʜᴅ*
+│⧡ *${usedPrefix}ᴜᴘᴍғ*
+│⧡ *${usedPrefix}ᴛᴜʀʟ*
+│⧡ *${usedPrefix}ᴛɪᴍɢ*
+│⧡ *${usedPrefix}ᴛᴏɢɪғ*
+│⧡ *${usedPrefix}ᴄᴀᴛʙᴏx*
 ╰────────────────•`
-let menuSearch = `│⧡ *${usedPrefix}imagen*   [text]
-│⧡ *${usedPrefix}fdroids*   [text]
-│⧡ *${usedPrefix}apk*   [text]
-│⧡ *${usedPrefix}apples*   [text]
-│⧡ *${usedPrefix}yts*   [text]
-│⧡ *${usedPrefix}slys*   [text]
-│⧡ *${usedPrefix}pinimg*   [text]
-│⧡ *${usedPrefix}tenor*   [text]
-│⧡ *${usedPrefix}spotifys*   [text]
-│⧡ *${usedPrefix}google*   [text]
+let menuSearch = `│⧡ *${usedPrefix}ɪᴍᴀɢᴇɴ*
+│⧡ *${usedPrefix}ғᴅʀᴏɪᴅs*
+│⧡ *${usedPrefix}ᴀᴘᴋ*
+│⧡ *${usedPrefix}ᴀᴘᴘʟᴇs*
+│⧡ *${usedPrefix}ʏᴛs*
+│⧡ *${usedPrefix}sʟʏs*
+│⧡ *${usedPrefix}ᴘɪɴɪᴍɢ*
+│⧡ *${usedPrefix}ᴛᴇɴᴏʀ*
+│⧡ *${usedPrefix}sᴘᴏᴛɪғʏs*
+│⧡ *${usedPrefix}ɢᴏᴏɢʟᴇ*
 ╰────────────────•`
-let menuGroup = `│⧡ *${usedPrefix}enlace*
-│⧡ *${usedPrefix}revok*
-│⧡ *${usedPrefix}inum*
-│⧡ *${usedPrefix}dnum*
-│⧡ *${usedPrefix}linea*
-│⧡ *${usedPrefix}add*   [nro]
-│⧡ *${usedPrefix}kick*   [reply]
-│⧡ *${usedPrefix}admin+*   [mention]
-│⧡ *${usedPrefix}admin-*   [mention]
-│⧡ *${usedPrefix}warn+*   [mention]
-│⧡ *${usedPrefix}warn-*   [mention]
-│⧡ *${usedPrefix}mute+*   [mention]
-│⧡ *${usedPrefix}mute-*   [mention]
-│⧡ *${usedPrefix}g-name*   [text]
-│⧡ *${usedPrefix}g-desc*   [text]
-│⧡ *${usedPrefix}g-img*   [reply]
-│⧡ *${usedPrefix}tags*   [text]
+let menuGroup = `│⧡ *${usedPrefix}ᴇɴʟᴀᴄᴇ*
+│⧡ *${usedPrefix}ʀᴇᴠᴏᴋ*
+│⧡ *${usedPrefix}ɪɴᴜᴍ*
+│⧡ *${usedPrefix}ᴅɴᴜᴍ*
+│⧡ *${usedPrefix}ʟɪɴᴇᴀ*
+│⧡ *${usedPrefix}ᴀᴅᴅ*
+│⧡ *${usedPrefix}ᴋɪᴄᴋ*
+│⧡ *${usedPrefix}ᴀᴅᴍɪɴ+*
+│⧡ *${usedPrefix}ᴀᴅᴍɪɴ-*
+│⧡ *${usedPrefix}ᴡᴀʀɴ+*
+│⧡ *${usedPrefix}ᴡᴀʀɴ-*
+│⧡ *${usedPrefix}ᴍᴜᴛᴇ+*
+│⧡ *${usedPrefix}ᴍᴜᴛᴇ-*
+│⧡ *${usedPrefix}ɢ-ɴᴀᴍᴇ*
+│⧡ *${usedPrefix}ɢ-ᴅᴇsᴄ*
+│⧡ *${usedPrefix}ɢ-ɪᴍɢ*
+│⧡ *${usedPrefix}ᴛᴀɢs*
 ╰────────────────•`
-let menuShop = `│⧡ *${usedPrefix}plan*
-│⧡ *${usedPrefix}plan 1*
-│⧡ *${usedPrefix}plan 2*
-│⧡ *${usedPrefix}plan 3*
-│⧡ *${usedPrefix}plan 4*
-│⧡ *${usedPrefix}plan stats*
+let menuShop = `│⧡ *${usedPrefix}ᴘʟᴀɴ*
+│⧡ *${usedPrefix}ᴘʟᴀɴ 1*
+│⧡ *${usedPrefix}ᴘʟᴀɴ 2*
+│⧡ *${usedPrefix}ᴘʟᴀɴ 3*
+│⧡ *${usedPrefix}ᴘʟᴀɴ 4*
+│⧡ *${usedPrefix}ᴘʟᴀɴ sᴛᴀᴛs*
 ╰────────────────•`
-let menuRpg = `│⧡ *${usedPrefix}aventura*
-│⧡ *${usedPrefix}minar*
-│⧡ *${usedPrefix}pescar*
-│⧡ *${usedPrefix}cofre*
-│⧡ *${usedPrefix}curar*
-│⧡ *${usedPrefix}nivel*
-│⧡ *${usedPrefix}revelar*
-│⧡ *${usedPrefix}mercader*
-│⧡ *${usedPrefix}work*
-│⧡ *${usedPrefix}coins*
-│⧡ *${usedPrefix}regalo*
-│⧡ *${usedPrefix}cazar*
-│⧡ *${usedPrefix}talar*
-│⧡ *${usedPrefix}robar*   [reply]
-│⧡ *${usedPrefix}pico*   [improve]
-│⧡ *${usedPrefix}espada*   [improve]
-│⧡ *${usedPrefix}hacha*   [improve]
-│⧡ *${usedPrefix}inv*   [reply]
-│⧡ *${usedPrefix}rpg*   [query]
-│⧡ *${usedPrefix}dep/dep2*   [query]
-│⧡ *${usedPrefix}ret/ret2*   [query]
-│⧡ *${usedPrefix}shop*   [query]
-│⧡ *${usedPrefix}stats*   [reply]
+let menuRpg = `│⧡ *${usedPrefix}ᴀᴠᴇɴᴛᴜʀᴀ*
+│⧡ *${usedPrefix}ᴍɪɴᴀʀ*
+│⧡ *${usedPrefix}ᴘᴇsᴄᴀʀ*
+│⧡ *${usedPrefix}ᴄᴏғʀᴇ*
+│⧡ *${usedPrefix}ᴄᴜʀᴀʀ*
+│⧡ *${usedPrefix}ɴɪᴠᴇʟ*
+│⧡ *${usedPrefix}ʀᴇᴠᴇʟᴀʀ*
+│⧡ *${usedPrefix}ᴍᴇʀᴄᴀᴅᴇʀ*
+│⧡ *${usedPrefix}ᴡᴏʀᴋ*
+│⧡ *${usedPrefix}ᴄᴏɪɴs*
+│⧡ *${usedPrefix}ʀᴇɢᴀʟᴏ*
+│⧡ *${usedPrefix}ᴄᴀᴢᴀʀ*
+│⧡ *${usedPrefix}ᴛᴀʟᴀʀ*
+│⧡ *${usedPrefix}ʀᴏʙᴀʀ*
+│⧡ *${usedPrefix}ᴘɪᴄᴏ*
+│⧡ *${usedPrefix}ᴇsᴘᴀᴅᴀ*
+│⧡ *${usedPrefix}ʜᴀᴄʜᴀ*
+│⧡ *${usedPrefix}ɪɴᴠ*
+│⧡ *${usedPrefix}ʀᴘɢ*
+│⧡ *${usedPrefix}ᴅᴇᴘ/ᴅᴇᴘ2*
+│⧡ *${usedPrefix}ʀᴇᴛ/ʀᴇᴛ2*
+│⧡ *${usedPrefix}sʜᴏᴘ*
+│⧡ *${usedPrefix}sᴛᴀᴛs*
 ╰────────────────•`
-let menuUtils = `│⧡ *${usedPrefix}lid*
-│⧡ *${usedPrefix}lids*
-│⧡ *${usedPrefix}cid*   [link]
-│⧡ *${usedPrefix}fetch*   [link]
-│⧡ *${usedPrefix}getpic*   [mention]
-│⧡ *${usedPrefix}pais*   [country]
-│⧡ *${usedPrefix}hweb*   [link]
+let menuUtils = `│⧡ *${usedPrefix}ʟɪᴅ*
+│⧡ *${usedPrefix}ʟɪᴅs*
+│⧡ *${usedPrefix}ᴄɪᴅ*
+│⧡ *${usedPrefix}ғᴇᴛᴄʜ*
+│⧡ *${usedPrefix}ɢᴇᴛᴘɪᴄ*
+│⧡ *${usedPrefix}ᴘᴀɪs*
+│⧡ *${usedPrefix}ʜᴡᴇʙ*
 ╰────────────────•`
-let menuStick = `│⧡ *${usedPrefix}exif-*
-│⧡ *${usedPrefix}exif+*   [text|text]
-│⧡ *${usedPrefix}sticker*   [reply]
-│⧡ *${usedPrefix}emojix*   [emoji+emoji]
-│⧡ *${usedPrefix}brat*   [text]
-│⧡ *${usedPrefix}qc*   [text]
+let menuStick = `│⧡ *${usedPrefix}ᴇxɪғ-*
+│⧡ *${usedPrefix}ᴇxɪғ+*
+│⧡ *${usedPrefix}sᴛɪᴄᴋᴇʀ*
+│⧡ *${usedPrefix}ᴇᴍᴏᴊɪ*
+│⧡ *${usedPrefix}ʙʀᴀᴛ*
+│⧡ *${usedPrefix}ǫᴄ*
 ╰────────────────•`
-let menuLogos = `│⧡ *${usedPrefix}logo1*   [text]
-│⧡ *${usedPrefix}logo2*   [text]
-│⧡ *${usedPrefix}logo3*   [text]
-│⧡ *${usedPrefix}logo4*   [text]
-│⧡ *${usedPrefix}logo5*   [text]
-│⧡ *${usedPrefix}logo6*   [text]
-│⧡ *${usedPrefix}logo7*   [text]
-│⧡ *${usedPrefix}logo8*   [text]
-│⧡ *${usedPrefix}logo9*   [text]
-│⧡ *${usedPrefix}logo10*   [text]
-│⧡ *${usedPrefix}logo11*   [text]
-│⧡ *${usedPrefix}logo12*   [text]
-│⧡ *${usedPrefix}logo13*   [text]
-│⧡ *${usedPrefix}logo14*   [text]
-│⧡ *${usedPrefix}logo15*   [text]
-│⧡ *${usedPrefix}logo16*   [text]
-│⧡ *${usedPrefix}logo17*   [text]
-│⧡ *${usedPrefix}logo18*   [text]
-│⧡ *${usedPrefix}logo19*   [text]
-│⧡ *${usedPrefix}logo20*   [text]
-│⧡ *${usedPrefix}logo21*   [text]
-│⧡ *${usedPrefix}logo22*   [text]
-│⧡ *${usedPrefix}logo23*   [text]
-│⧡ *${usedPrefix}logo24*   [text]
-│⧡ *${usedPrefix}logo25*   [text]
-│⧡ *${usedPrefix}logo26*   [text]
-│⧡ *${usedPrefix}logo27*   [text]
-│⧡ *${usedPrefix}logo28*   [text]
-│⧡ *${usedPrefix}logo29*   [text]
-│⧡ *${usedPrefix}logo30*   [text]
-│⧡ *${usedPrefix}logo31*   [text]
-│⧡ *${usedPrefix}logo32*   [text]
-│⧡ *${usedPrefix}logo33*   [text]
-│⧡ *${usedPrefix}logo34*   [text]
-│⧡ *${usedPrefix}logo35*   [text]
-│⧡ *${usedPrefix}logo36*   [text]
-│⧡ *${usedPrefix}logo37*   [text]
+let menuLogos = `│⧡ *${usedPrefix}ʟᴏɢᴏ1*
+│⧡ *${usedPrefix}ʟᴏɢᴏ2*
+│⧡ *${usedPrefix}ʟᴏɢᴏ3*
+│⧡ *${usedPrefix}ʟᴏɢᴏ4*
+│⧡ *${usedPrefix}ʟᴏɢᴏ5*
+│⧡ *${usedPrefix}ʟᴏɢᴏ6*
+│⧡ *${usedPrefix}ʟᴏɢᴏ7*
+│⧡ *${usedPrefix}ʟᴏɢᴏ8*
+│⧡ *${usedPrefix}ʟᴏɢᴏ9*
+│⧡ *${usedPrefix}ʟᴏɢᴏ10*
+│⧡ *${usedPrefix}ʟᴏɢᴏ11*
+│⧡ *${usedPrefix}ʟᴏɢᴏ12*
+│⧡ *${usedPrefix}ʟᴏɢᴏ13*
+│⧡ *${usedPrefix}ʟᴏɢᴏ14*
+│⧡ *${usedPrefix}ʟᴏɢᴏ15*
+│⧡ *${usedPrefix}ʟᴏɢᴏ16*
+│⧡ *${usedPrefix}ʟᴏɢᴏ17*
+│⧡ *${usedPrefix}ʟᴏɢᴏ18*
+│⧡ *${usedPrefix}ʟᴏɢᴏ19*
+│⧡ *${usedPrefix}ʟᴏɢᴏ20*
+│⧡ *${usedPrefix}ʟᴏɢᴏ21*
+│⧡ *${usedPrefix}ʟᴏɢᴏ22*
+│⧡ *${usedPrefix}ʟᴏɢᴏ23*
+│⧡ *${usedPrefix}ʟᴏɢᴏ24*
+│⧡ *${usedPrefix}ʟᴏɢᴏ25*
+│⧡ *${usedPrefix}ʟᴏɢᴏ26*
+│⧡ *${usedPrefix}ʟᴏɢᴏ27*
+│⧡ *${usedPrefix}ʟᴏɢᴏ28*
+│⧡ *${usedPrefix}ʟᴏɢᴏ29*
+│⧡ *${usedPrefix}ʟᴏɢᴏ30*
+│⧡ *${usedPrefix}ʟᴏɢᴏ31*
+│⧡ *${usedPrefix}ʟᴏɢᴏ32*
+│⧡ *${usedPrefix}ʟᴏɢᴏ33*
+│⧡ *${usedPrefix}ʟᴏɢᴏ34*
+│⧡ *${usedPrefix}ʟᴏɢᴏ35*
+│⧡ *${usedPrefix}ʟᴏɢᴏ36*
+│⧡ *${usedPrefix}ʟᴏɢᴏ37*
 ╰────────────────•`
-let menuColec = `│⧡ *${usedPrefix}cs*
-│⧡ *${usedPrefix}cpay*   [name]
-│⧡ *${usedPrefix}dinfo*   [name/id]
-│⧡ *${usedPrefix}vender*   [name]
-│⧡ *${usedPrefix}comprar*   [name]
+let menuColec = `│⧡ *${usedPrefix}ᴄs*
+│⧡ *${usedPrefix}ᴄᴘᴀʏ*
+│⧡ *${usedPrefix}ᴅɪɴғᴏ*
+│⧡ *${usedPrefix}ʙᴀᴛᴛʟᴇ*
+│⧡ *${usedPrefix}ᴠᴇɴᴅᴇʀ*
+│⧡ *${usedPrefix}ᴄᴏᴍᴘʀᴀʀ*
 ╰────────────────•`
-let menuRandom = `│⧡ *${usedPrefix}wallp*
-│⧡ *${usedPrefix}rd messi*
-│⧡ *${usedPrefix}rd cr7*
-│⧡ *${usedPrefix}rd bts*
-│⧡ *${usedPrefix}rd navidad*
-│⧡ *${usedPrefix}rd hallowen*
-│⧡ *${usedPrefix}rd itzy*
-│⧡ *${usedPrefix}rd universo*
+let menuRandom = `│⧡ *${usedPrefix}ᴡᴀʟʟᴘ*
+│⧡ *${usedPrefix}ʀᴅ ᴍᴇssɪ*
+│⧡ *${usedPrefix}ʀᴅ ᴄʀ7*
+│⧡ *${usedPrefix}ʀᴅ ʙᴛs*
+│⧡ *${usedPrefix}ʀᴅ ɴᴀᴠɪᴅᴀᴅ*
+│⧡ *${usedPrefix}ʀᴅ ʜᴀʟʟᴏᴡᴇɴ*
+│⧡ *${usedPrefix}ʀᴅ ɪᴛᴢʏ*
+│⧡ *${usedPrefix}ʀᴅ ᴜɴɪᴠᴇʀsᴏ*
 ╰────────────────•`
-let menuReac = `│⧡ *${usedPrefix}angry*   [mention]
-│⧡ *${usedPrefix}bath*   [mention]
-│⧡ *${usedPrefix}bite*   [mention]
-│⧡ *${usedPrefix}bleh*   [mention]
-│⧡ *${usedPrefix}blush*   [mention]
-│⧡ *${usedPrefix}boted*   [mention]
-│⧡ *${usedPrefix}clap*   [mention]
-│⧡ *${usedPrefix}coffee*   [mention]
-│⧡ *${usedPrefix}cry*   [mention]
-│⧡ *${usedPrefix}cuddle*   [mention]
-│⧡ *${usedPrefix}dance*   [mention]
-│⧡ *${usedPrefix}drunk*   [mention]
-│⧡ *${usedPrefix}eat*   [mention]
-│⧡ *${usedPrefix}facepalm*   [mention]
-│⧡ *${usedPrefix}hug*   [mention]
-│⧡ *${usedPrefix}kill*   [mention]
-│⧡ *${usedPrefix}kiss*   [mention]
-│⧡ *${usedPrefix}laugh*   [mention]
-│⧡ *${usedPrefix}lick*   [mention]
-│⧡ *${usedPrefix}slap*   [mention]
-│⧡ *${usedPrefix}sleep*   [mention]
-│⧡ *${usedPrefix}smoke*   [mention]
-│⧡ *${usedPrefix}spit*   [mention]
-│⧡ *${usedPrefix}step*   [mention]
-│⧡ *${usedPrefix}think*   [mention]
-│⧡ *${usedPrefix}love*   [mention]
-│⧡ *${usedPrefix}pat*   [mention]
-│⧡ *${usedPrefix}poke*   [mention]
-│⧡ *${usedPrefix}pout*   [mention]
-│⧡ *${usedPrefix}punch*   [mention]
-│⧡ *${usedPrefix}preg*   [mention]
-│⧡ *${usedPrefix}sprint*   [mention]
-│⧡ *${usedPrefix}sad*   [mention]
-│⧡ *${usedPrefix}scared*   [mention]
-│⧡ *${usedPrefix}seduce*   [mention]
-│⧡ *${usedPrefix}shu*   [mention]
-│⧡ *${usedPrefix}walk*   [mention]
-│⧡ *${usedPrefix}dramatic*   [mention]
-│⧡ *${usedPrefix}kisscheek*   [mention]
-│⧡ *${usedPrefix}wink*   [mention]
-│⧡ *${usedPrefix}cringe*   [mention]
-│⧡ *${usedPrefix}smug*   [mention]
-│⧡ *${usedPrefix}smile*   [mention]
-│⧡ *${usedPrefix}mano*   [mention]
-│⧡ *${usedPrefix}bullying*   [mention]
-│⧡ *${usedPrefix}wave*   [mention]
+let menuReac = `│⧡ *${usedPrefix}ᴀɴɢʀʏ*
+│⧡ *${usedPrefix}ʙᴀᴛʜ*
+│⧡ *${usedPrefix}ʙɪᴛᴇ*
+│⧡ *${usedPrefix}ʙʟᴇʜ*
+│⧡ *${usedPrefix}ʙʟᴜsʜ*
+│⧡ *${usedPrefix}ʙᴏᴛᴇᴅ*
+│⧡ *${usedPrefix}ᴄʟᴀᴘ*
+│⧡ *${usedPrefix}ᴄᴏғғᴇᴇ*
+│⧡ *${usedPrefix}ᴄʀʏ*
+│⧡ *${usedPrefix}ᴄᴜᴅᴅʟᴇ*
+│⧡ *${usedPrefix}ᴅᴀɴᴄᴇ*
+│⧡ *${usedPrefix}ᴅʀᴜɴᴋ*
+│⧡ *${usedPrefix}ᴇᴀᴛ*
+│⧡ *${usedPrefix}ғᴀᴄᴇᴘᴀʟᴍ*
+│⧡ *${usedPrefix}ʜᴜɢ*
+│⧡ *${usedPrefix}ᴋɪʟʟ*
+│⧡ *${usedPrefix}ᴋɪss*
+│⧡ *${usedPrefix}ʟᴀᴜɢʜ*
+│⧡ *${usedPrefix}ʟɪᴄᴋ*
+│⧡ *${usedPrefix}sʟᴀᴘ*
+│⧡ *${usedPrefix}sʟᴇᴇᴘ*
+│⧡ *${usedPrefix}sᴍᴏᴋᴇ*
+│⧡ *${usedPrefix}sᴘɪᴛ*
+│⧡ *${usedPrefix}sᴛᴇᴘ*
+│⧡ *${usedPrefix}ᴛʜɪɴᴋ*
+│⧡ *${usedPrefix}ʟᴏᴠᴇ*
+│⧡ *${usedPrefix}ᴘᴀᴛ*
+│⧡ *${usedPrefix}ᴘᴏᴋᴇ*
+│⧡ *${usedPrefix}ᴘᴏᴜᴛ*
+│⧡ *${usedPrefix}ᴘᴜɴᴄʜ*
+│⧡ *${usedPrefix}ᴘʀᴇɢ*
+│⧡ *${usedPrefix}sᴘʀɪɴᴛ*
+│⧡ *${usedPrefix}sᴀᴅ*
+│⧡ *${usedPrefix}sᴄᴀʀᴇᴅ*
+│⧡ *${usedPrefix}sᴇᴅᴜᴄᴇ*
+│⧡ *${usedPrefix}sʜᴜ*
+│⧡ *${usedPrefix}ᴡᴀʟᴋ*
+│⧡ *${usedPrefix}ᴅʀᴀᴍᴀᴛɪᴄ*
+│⧡ *${usedPrefix}ᴋɪssᴄʜᴇᴇᴋ*
+│⧡ *${usedPrefix}ᴡɪɴᴋ*
+│⧡ *${usedPrefix}ᴄʀɪɴɢᴇ*
+│⧡ *${usedPrefix}sᴍᴜɢ*
+│⧡ *${usedPrefix}sᴍɪʟᴇ*
+│⧡ *${usedPrefix}ᴍᴀɴᴏ*
+│⧡ *${usedPrefix}ʙᴜʟʟʏɴɢ*
+│⧡ *${usedPrefix}ᴡᴀᴠᴇ*
 ╰────────────────•`
-let menuAi = `│⧡ *${usedPrefix}toru*   [text]
-│⧡ *${usedPrefix}codex*   [text]
-│⧡ *${usedPrefix}venice*   [text]
-│⧡ *${usedPrefix}imagina*   [text]
+let menuAi = `│⧡ *${usedPrefix}ᴛᴏʀᴜ*
+│⧡ *${usedPrefix}ᴄᴏᴅᴇx*
+│⧡ *${usedPrefix}ᴠᴇɴɪᴄᴇ*
+│⧡ *${usedPrefix}ɪᴍᴀɢɪɴᴀ*
 ╰────────────────•`
-let menuEdit = `│⧡ *${usedPrefix}new-name*   [text]
-│⧡ *${usedPrefix}new-desc*   [text]
-│⧡ *${usedPrefix}new-ch*   [link]
-│⧡ *${usedPrefix}new-group*   [link]
-│⧡ *${usedPrefix}new-icon*   [reply]
-│⧡ *${usedPrefix}new-menu*   [reply]
+let menuEdit = `│⧡ *${usedPrefix}ɴᴇᴡ-ɴᴀᴍᴇ*
+│⧡ *${usedPrefix}ɴᴇᴡ-ᴅᴇsᴄ*
+│⧡ *${usedPrefix}ɴᴇᴡ-ᴄʜ*
+│⧡ *${usedPrefix}ɴᴇᴡ-ɢʀᴏᴜᴘ*
+│⧡ *${usedPrefix}ɴᴇᴡ-ɪᴄᴏɴ*
+│⧡ *${usedPrefix}ɴᴇᴡ-ᴍᴇɴᴜ*
 ╰────────────────•`
-let menuPrem = `│⧡ *${usedPrefix}temblor*
-│⧡ *${usedPrefix}rv*   [reply]
-│⧡ *${usedPrefix}aivid*   [text]
-│⧡ *${usedPrefix}aivid2*   [text]
-│⧡ *${usedPrefix}txtimg*   [text]
-│⧡ *${usedPrefix}editai*   [reply]
-│⧡ *${usedPrefix}clima*   [query]
+let menuPrem = `│⧡ *${usedPrefix}ᴛᴇᴍʙʟᴏʀ*
+│⧡ *${usedPrefix}ʀᴠ*
+│⧡ *${usedPrefix}ᴀɪᴠɪᴅ*
+│⧡ *${usedPrefix}ᴀɪᴠɪᴅ2*
+│⧡ *${usedPrefix}ᴛxᴛɪᴍɢ*
+│⧡ *${usedPrefix}ᴇᴅɪᴛᴀɪ*
+│⧡ *${usedPrefix}ᴄʟɪᴍᴀ*
 ╰────────────────•`
-let menuJuegos = `│⧡ *${usedPrefix}wix*
+let menuJuegos = `│⧡ *${usedPrefix}ᴡɪx*
 ╰────────────────•`
-let menuOwn = `│⧡ *${usedPrefix}fix*
-│⧡ *${usedPrefix}err*
-│⧡ *${usedPrefix}xbot*
-│⧡ *${usedPrefix}++admin*
-│⧡ *${usedPrefix}wx-*   [query]
-│⧡ *${usedPrefix}-prem*   [mention]
-│⧡ *${usedPrefix}-mod*   [mention]
-│⧡ *${usedPrefix}-admin*   [mention]
-│⧡ *${usedPrefix}gplug*   [query]
-│⧡ *${usedPrefix}file+*   [query]
-│⧡ *${usedPrefix}file-*   [query]
-│⧡ *${usedPrefix}ban+*   [mention]
-│⧡ *${usedPrefix}ban-*   [mention]
-│⧡ *${usedPrefix}block+*   [mention]
-│⧡ *${usedPrefix}block-*   [mention]
-│⧡ *${usedPrefix}bot-name*   [text]
-│⧡ *${usedPrefix}bot-img*   [reply]
-│⧡ *${usedPrefix}bot-desc*   [text]
+let menuOption = `│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴡᴇʟᴄᴏᴍᴇ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴀᴅᴍɪɴs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴇɴʟᴀᴄᴇs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴇɴʟᴀᴄᴇs2*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ɪɴғᴏʀᴍᴀᴄɪᴏɴ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴅᴇsᴄᴀʀɢᴀs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴊᴜᴇɢᴏs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ʙᴜsᴄᴀᴅᴏʀ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴄᴏɴᴠᴇʀᴛɪᴅᴏʀ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ sᴛɪᴄᴋᴇʀs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ɢʀᴜᴘᴏs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ʀᴘɢ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ɪᴀ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴀᴊᴜsᴛᴇs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ʟᴏɢᴏs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ʀᴇᴀᴄᴛ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴀᴜᴅɪᴏs*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴡsᴛɪᴄᴋ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴀᴄᴇᴘᴛ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴅᴇɴᴇɢ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ᴀʀɢ*
+│⧡ *${usedPrefix}ᴏɴ/ᴏғғ ɢʟᴏʙᴀʟ*
+╰────────────────•`
+let menuOwn = `│⧡ *${usedPrefix}ғɪx*
+│⧡ *${usedPrefix}ᴇʀʀ*
+│⧡ *${usedPrefix}ғᴜʟʟ!*
+│⧡ *${usedPrefix}ʀ*
+│⧡ *${usedPrefix}ᴄ*
+│⧡ *${usedPrefix}ᴛʀᴜᴇ*
+│⧡ *${usedPrefix}ғᴀʟsᴇ*
+│⧡ *${usedPrefix}xʙᴏᴛ*
+│⧡ *${usedPrefix}++ᴀᴅᴍɪɴ*
+│⧡ *${usedPrefix}ᴡx-*
+│⧡ *${usedPrefix}ғʀɪᴇɴᴅ*
+│⧡ *${usedPrefix}+ᴍᴏᴅ*
+│⧡ *${usedPrefix}+ᴀᴅᴍɪɴ*
+│⧡ *${usedPrefix}-ᴘʀᴇᴍ*
+│⧡ *${usedPrefix}-ᴍᴏᴅ*
+│⧡ *${usedPrefix}-ᴀᴅᴍɪɴ*
+│⧡ *${usedPrefix}ɢᴘʟᴜɢ*
+│⧡ *${usedPrefix}ғɪʟᴇ+*
+│⧡ *${usedPrefix}ғɪʟᴇ-*
+│⧡ *${usedPrefix}ʙᴀɴ+*
+│⧡ *${usedPrefix}ʙᴀɴ-*
+│⧡ *${usedPrefix}ʙʟᴏᴄᴋ+*
+│⧡ *${usedPrefix}ʙʟᴏᴄᴋ-*
 ╰────────────────•`
 
 const user = global.db.data.users[m.sender] || {}
@@ -303,11 +339,11 @@ let menu = `> ${hora}, ${dia} ${fechaTxt}
 
 〝👋🏻  Bot automático via *(WhatsApp/Business)*, puede obtener información/datos o otras ventajas para proporcionar un uso util para todo usuario.〞
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
-⎋ URL : ${botweb}
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
+⎋ ᴜʀʟ : ${botweb}
 ${readMore}
 \t〩 \`Categorias:\`
 ${listaPrincipal}
@@ -318,10 +354,10 @@ return conn.sendMessage(m.chat, { text: menu, contextInfo: { forwardingScore: 1,
 } else if (args[0] === 'info' || args[0] === '1') {
 let categoInfo = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Informacion\`
 ${menuInfo}
@@ -331,10 +367,10 @@ return conn.sendMessage(m.chat, { text: categoInfo, mentions: [m.sender], contex
 } else if (args[0] === 'dls' || args[0] === '2') {
 let categoDesc = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Descargadores\`
 ${menuDesc}
@@ -344,10 +380,10 @@ return conn.sendMessage(m.chat, { text: categoDesc, mentions: [m.sender], contex
 } else if (args[0] === 'conv' || args[0] === '3') {
 let categoConv = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Convertidor\`
 ${menuConv}
@@ -357,10 +393,10 @@ return conn.sendMessage(m.chat, { text: categoConv, mentions: [m.sender], contex
 } else if (args[0] === 'search' || args[0] === '4') {
 let categoSearch = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Buscador\`
 ${menuSearch}
@@ -370,10 +406,10 @@ return conn.sendMessage(m.chat, { text: categoSearch, mentions: [m.sender], cont
 } else if (args[0] === 'group' || args[0] === '5') {
 let categoGroup = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Grupos\`
 ${menuGroup}
@@ -383,10 +419,10 @@ return conn.sendMessage(m.chat, { text: categoGroup, mentions: [m.sender], conte
 } else if (args[0] === 'shop' || args[0] === '6') {
 let categoShop = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Beneficios\`
 ${menuShop}
@@ -396,10 +432,10 @@ return conn.sendMessage(m.chat, { text: categoShop, mentions: [m.sender], contex
 } else if (args[0] === 'rpg' || args[0] === '7') {
 let categoRpg = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Juegos RPG\`
 ${menuRpg}
@@ -409,10 +445,10 @@ return conn.sendMessage(m.chat, { text: categoRpg, mentions: [m.sender], context
 } else if (args[0] === 'utils' || args[0] === '8') {
 let categoUtils = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Ajustes\`
 ${menuUtils}
@@ -422,10 +458,10 @@ return conn.sendMessage(m.chat, { text: categoUtils, mentions: [m.sender], conte
 } else if (args[0] === 'stickers' || args[0] === '9') {
 let categoStick = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Stickers\`
 ${menuStick}
@@ -435,10 +471,10 @@ return conn.sendMessage(m.chat, { text: categoStick, mentions: [m.sender], conte
 } else if (args[0] === 'logos' || args[0] === '10') {
 let categoLogos = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Logos\`
 ${menuLogos}
@@ -448,10 +484,10 @@ return conn.sendMessage(m.chat, { text: categoLogos, mentions: [m.sender], conte
 } else if (args[0] === 'cc' || args[0] === '11') {
 let categoCol = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Coleccion\`
 ${menuColec}
@@ -461,10 +497,10 @@ return conn.sendMessage(m.chat, { text: categoCol, mentions: [m.sender], context
 } else if (args[0] === 'random' || args[0] === '12') {
 let categoRandom = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Random\`
 ${menuRandom}
@@ -474,10 +510,10 @@ return conn.sendMessage(m.chat, { text: categoRandom, mentions: [m.sender], cont
 } else if (args[0] === 'reac' || args[0] === '13') {
 let categoReac = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Reaccion\`
 ${menuReac}
@@ -487,10 +523,10 @@ return conn.sendMessage(m.chat, { text: categoReac, mentions: [m.sender], contex
 } else if (args[0] === 'ai' || args[0] === '14') {
 let categoAi = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Inteligencia\`
 ${menuAi}
@@ -500,10 +536,10 @@ return conn.sendMessage(m.chat, { text: categoAi, mentions: [m.sender], contextI
 } else if (args[0] === 'editor' || args[0] === '15') {
 let categoEdit = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Editor\`
 ${menuEdit}
@@ -513,10 +549,10 @@ return conn.sendMessage(m.chat, { text: categoEdit, mentions: [m.sender], contex
 } else if (args[0] === 'premium' || args[0] === '16') {
 let categoPrem = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Premium\`
 ${menuPrem}
@@ -526,23 +562,36 @@ return conn.sendMessage(m.chat, { text: categoPrem, mentions: [m.sender], contex
 } else if (args[0] === 'juegos' || args[0] === '17') {
 let categoPrem = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Premium\`
 ${menuPrem}
 
 > ${textbot}`
 return conn.sendMessage(m.chat, { text: categoPrem, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
+} else if (args[0] === "options" || args[0] === "enable") {
+let categoOption = `> ${hora}, ${dia} ${fechaTxt}
+
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
+${readMore}
+╭•[ 𔒝 ] ⧿ \`Gestion\`
+${menuOption}
+
+> ${textbot}`
+return conn.sendMessage(m.chat, { text: categoOption, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: true }}}, { quoted: m })
 } else if (args[0] === 'owner' || args[0] === 'own') {
 let categoOwn = `> ${hora}, ${dia} ${fechaTxt}
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Propietario\`
 ${menuOwn}
@@ -554,10 +603,10 @@ let categoAll = `> ${hora}, ${dia} ${fechaTxt}
 
 〝👋🏻  Bot automático via *(WhatsApp/Business)*, puede obtener información/datos o otras ventajas para proporcionar un uso util para todo usuario.〞
 
-⧨ Modo : *Privado*
-🜲 Usuario : @${name}
-＃ Prefix : *(/ ! # - .)*
-✦ Version : *${vs}*
+⧨ ᴍᴏᴅᴇ : *Privado*
+🜲 ᴜsᴜᴀʀɪᴏ : @${name}
+＃ ᴘʀᴇғɪx : *(/ ! # - .)*
+✦ ᴠᴇʀsɪᴏɴ : *${vs}*
 ${readMore}
 ╭•[ 𔒝 ] ⧿ \`Informacion\`
 ${menuInfo}
@@ -625,6 +674,10 @@ ${menuPrem}
 
 ╭•[ 𔒝 ] ⧿ \`Juegos\`
 ${menuJuegos}
+
+
+╭•[ 𔒝 ] ⧿ \`Gestion\`
+${menuOption}
 
 
 ╭•[ 𔒝 ] ⧿ \`Propietario\`

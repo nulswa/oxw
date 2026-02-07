@@ -13,7 +13,7 @@ let opciones = `· ┄ · ⊸ 𔓕 *Ajustes : Settings*
 
 \t📍 Puedes desactivar o activar comandos segun tu preferencia.
 
-\t＃ *Funciones* : *17* results
+\t＃ *Funciones* : *21* results
 \t＃ *Tipo* : admins
 
 \t⚶ Ejemplo de uso:
@@ -21,7 +21,11 @@ let opciones = `· ┄ · ⊸ 𔓕 *Ajustes : Settings*
 ${readMore}
 ⧡ *${usedPrefix}on/off* welcome
 ⧡ *${usedPrefix}on/off* admin
+⧡ *${usedPrefix}on/off* audios
+⧡ *${usedPrefix}on/off* sk+
 ⧡ *${usedPrefix}on/off* enlaces
+⧡ *${usedPrefix}on/off* enlaces2
+⧡ *${usedPrefix}on/off* autosticker
 ⧡ *${usedPrefix}on/off* informacion
 ⧡ *${usedPrefix}on/off* descargas
 ⧡ *${usedPrefix}on/off* juegos
@@ -83,6 +87,20 @@ chat.fEnlaces = isEnable
 break
 }
 
+case 'enlaces2':
+case 'links2': {
+if (!m.isGroup) {
+if (!isOwner) {
+global.dfail('group', m, conn)
+throw false
+}} else if (!isAdmin) {
+global.dfail('admin', m, conn)
+throw false
+}
+chat.fEnlaces2 = isEnable
+break
+}
+
 case 'descargas':
 case 'downloads':
 if (m.isGroup) {
@@ -113,6 +131,38 @@ throw false
 }
 chat.fStickers = isEnable
 break
+
+case 'autosticker':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+}
+chat.fAutoStick = isEnable
+break
+
+case 'sk+':
+case 'stickers+':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+}
+chat.stickers = isEnable
+break
+
+case 'audios':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+}
+chat.fAudios = isEnable
+break
+
 
 case 'shop':
 case 'tienda':

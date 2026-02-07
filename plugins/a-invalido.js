@@ -31,7 +31,7 @@ const similares = allCommands
 .sort((a, b) => b.score - a.score)
 .slice(0, 3)
 
-let sugerencias = similares.length ? similares.map(s => `>  *${usedPrefix + s.cmd}* con un *${s.score}%* parecido.`).join('\n') : 'Sin resultados'
+let sugerencias = similares.length ? similares.map(s => `- *${usedPrefix + s.cmd}* > *${s.score}%*`).join('\n') : 'Sin resultados'
 
 const texto = `El comando *(${usedPrefix + command})* no existe.
 - Use el comando *${usedPrefix}menu* para ver los comandos.

@@ -57,6 +57,7 @@ loTiene = userColeccion.personajes.some(p => p.id === personaje.id);
 // Construir mensaje con los detalles del personaje ._.
 let mensaje = `\t\t〤 \`Personaje : Info\`\n\n`;
 mensaje += `> 📍 ${personaje.habili}\n\n`;
+mensaje += `\t\t〤 \`Basico\`\n`;
 mensaje += `▢ *ID* : ${personaje.id}\n`;
 mensaje += `▢ *Nombre* : ${personaje.name}\n`;
 mensaje += `▢ *Género* : ${personaje.gender}\n`;
@@ -77,7 +78,7 @@ mensaje += `✅ *¡Ya tienes este personaje en tu colección!*`;
 } else {
 mensaje += `📍 *No tienes este personaje*\n`;
 if (personaje.status === 'Disponible') {
-mensaje += `- _Puedes comprarlo con *${usedPrefix}cbuy ${personaje.name}*_`;
+mensaje += `- _Puedes comprarlo con *${usedPrefix}cpay ${personaje.name}*_`;
 } else {
 mensaje += `- _Este personaje no está disponible actualmente_`;
 }
@@ -89,7 +90,7 @@ const imagenUrl = personaje.dfoto || personaje.pfoto;
 
 if (imagenUrl) {
 await //conn.sendMessage(m.chat, { text: mensaje, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: `${personaje.name} : ${personaje.status}`, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: imagenUrl, sourceUrl: null }}}, { quoted: m })
-conn.sendFile(m.chat, personaje.pfoto, 'toru.jpg', mensaje, m); // :b
+conn.sendFile(m.chat, personaje.dfoto, 'toru.jpg', mensaje, m); // :b
 } else {
 await conn.reply(m.chat, mensaje, m); //Si falla na mas envia mensaje sin imagen. :b
 }

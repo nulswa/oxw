@@ -6,7 +6,6 @@ return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ descargas ]* e
 }
   
 if (!args[0]) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}*  https://www.mediafire.com/file/ejemplo/file.zip` }, { quoted: m })
-throw `${lenguajeGB['smsAvisoMG']()}${mid.smsFire}`
 
 // Validar URL de MediaFire
 const url = args[0]

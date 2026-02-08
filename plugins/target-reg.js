@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 
-const targetFilePath = './src/target.json';
+const targetFilePath = './scrapers/src/target.json';
 
 async function loadTargets() {
 try {
@@ -142,10 +142,10 @@ let mensaje = `✅  \`¡REGISTRO CORRECTO!\`
 > *Nuevo* ${toruName}
 ▢ *Telefono* : ${telefono}
 ▢ *Alias* : ${alias}
-▢ *CBU* : ${numeral}`;
+▢ *CBU* : ${numeral}\n\n`;
 
 if (claveGenerada) {
-mensaje += `\n\nComo no asignaste una clave, se genero uno automáticamente.\n`;
+mensaje += `Como no asignaste una clave, se genero uno automáticamente.\n`;
 mensaje += `- Tu clave tiene una protección de actividad sospechosa adaptado a onix.\n\n`;
 }
 

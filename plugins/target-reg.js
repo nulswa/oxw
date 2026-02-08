@@ -31,6 +31,7 @@ return password;
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
 const userId = m.sender;
+  const toruName = await conn.getName(m.sender);
 let user = global.db.data.users[userId];
 
 try {
@@ -109,8 +110,7 @@ return await conn.reply(m.chat, `📍  El alias debe coincidir con tu cuenta.\n-
 // Validar numeral (solo números, máximo 22 dígitos)
 const numeralRegex = /^[0-9]+$/;
 if (!numeralRegex.test(numeral)) {
-return await conn.reply(m.chat, `📍 El *CBU* tiene al rededor de 22 dígitos.\n- Intentalo de nuevo y asegurate de que sea correcto.
-❌ El numeral debe contener solo números.\n\n*Ejemplo:* 12345678901234567890`, m);
+return await conn.reply(m.chat, `📍 El *CBU* tiene al rededor de 22 dígitos.\n- Intentalo de nuevo y asegurate de que sea correcto.`, m);
 }
 
 if (numeral.length > 22) {

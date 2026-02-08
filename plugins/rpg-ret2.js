@@ -19,6 +19,6 @@ user.bankk -= count * 1
 user.toruexp += count * 1
 await conn.sendMessage(m.chat, { text: `Has retirado tus *[ ${toem2} ${currency2} ]* con exito.\n- Cantidad retirada: *$${count.toLocaleString()}* ${currency2}` }, { quoted: m })
 }
-handler.command = ['ret2', 'retirar2']
+handler.command = ['ret2']
 handler.group = true
 export default handler

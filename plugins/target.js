@@ -3,72 +3,58 @@ import { promises as fs } from 'fs';
 const targetFilePath = './scrapers/ows/target.json';
 
 async function loadTargets() {
-    try {
-        const data = await fs.readFile(targetFilePath, 'utf-8');
-        return JSON.parse(data);
-    } catch (error) {
-        return [];
-    }
+try {
+const data = await fs.readFile(targetFilePath, 'utf-8');
+return JSON.parse(data);
+} catch (error) {
+return [];
+}
 }
 
-let handler = async (m, { conn, usedPrefix, command }) => {
-    const userId = m.sender;
+let handler = async (m, { conn, usedPrefix, args, command }) => {
+const userId = m.sender;
+const nameWa = await conn.getName(m.sender)
 
-    try {
-        // Cargar datos de targets
-        const targets = await loadTargets();
+try {
+const targets = await loadTargets();
+const userTarget = targets.find(t => t.usuario === userId);
 
-        // Buscar si el usuario está registrado
-        const userTarget = targets.find(t => t.usuario === userId);
+if (!userTarget) {
+let mensaje = `📍  No tienes una cuenta registrada en *@T O R U*\n- Usa *${usedPrefix}me* para registrar tus datos.`;
+return await conn.sendMessage(m.chat, { text: mensaje }, { quoted: m });
+}
 
-        // Si el usuario NO está registrado
-        if (!userTarget) {
-            let mensaje = `❌ *NO ESTÁS REGISTRADO* ❌\n\n`;
-            mensaje += `No tienes datos registrados en el sistema.\n\n`;
-            mensaje += `💡 *¿Cómo registrarte?*\n`;
-            mensaje += `Usa el comando *${usedPrefix}me* para registrar tus datos.\n\n`;
-            mensaje += `*Formato:*\n`;
-            mensaje += `${usedPrefix}me <teléfono>, <alias>, <numeral>\n\n`;
-            mensaje += `*Ejemplo:*\n`;
-            mensaje += `${usedPrefix}me +521234567890, Juan.P_123, 12345`;
+if (!args[0]) {
+let mensaje = `📍 \`TARJETA : PERFI\`
 
-            return await conn.reply(m.chat, mensaje, m);
-        }
+> Puedes usar *[ ${usedPrefix + command} clave ]*
 
-        // Si el usuario ESTÁ registrado, mostrar sus datos
-        let mensaje = `🎯 *TUS DATOS REGISTRADOS* 🎯\n\n`;
-        mensaje += `📋 *INFORMACIÓN PERSONAL:*\n`;
-        mensaje += `📞 Teléfono: ${userTarget.telefono}\n`;
-        mensaje += `🏷️ Alias: ${userTarget.alias}\n`;
-        mensaje += `🔢 Numeral: ${userTarget.numeral}\n`;
-        mensaje += `🔐 Clave: ${userTarget.clave}\n`;
-        mensaje += `💰 Pux: ${userTarget.pux} ToruCoins\n\n`;
+- 👤 *Usuario* : ${nameWa}
+📞 *Teléfono* : ${userTarget.telefono}
+🏷️ *Alias* : ${userTarget.alias}
+🔢 *CVU* : ${userTarget.numeral}
+💰 *ARS* : ${userTarget.pux}\n`;
+if (userTarget.codigo && userTarget.codigo.length > 0) {
+mensaje += `🎟️ *Código* : \`${userTarget.codigo}\`\n`;
+mensaje += `\n 📍 Usa *#check* para abrir el código.`;
+} else {
+mensaje += `🎟️ *Código* : Vacio\n`;
+mensaje += `\n📍 Los codigos se consiguen mediante eventos realizados.`;
+}
 
-        // Verificar si tiene código de canje
-        mensaje += `━━━━━━━━━━━━━━━━\n\n`;
-        mensaje += `🎁 *CÓDIGO DE CANJE:*\n`;
-        
-        if (userTarget.codigo && userTarget.codigo.length > 0) {
-            mensaje += `✅ Tienes un código activo\n`;
-            mensaje += `📝 Código: \`${userTarget.codigo}\`\n`;
-            mensaje += `_Usa este código para canjearlo cuando esté disponible_`;
-        } else {
-            mensaje += `❌ No tienes código de canje\n`;
-            mensaje += `_Espera a que se te asigne un código o participa en eventos para obtener uno_`;
-        }
+await conn.reply(m.chat, mensaje, m);
 
-        mensaje += `\n\n━━━━━━━━━━━━━━━━\n\n`;
-        mensaje += `💡 *Comandos útiles:*\n`;
-        mensaje += `• *${usedPrefix}me <clave>* - Eliminar tus datos`;
-
-        await conn.reply(m.chat, mensaje, m);
-
-    } catch (error) {
-        console.error('Error en comando target:', error);
-        await conn.reply(m.chat, `❌ Error al obtener tus datos: ${error.message}`, m);
-    }
+} else if (args[0] === "code" || args[0] === "clave") {
+let claveToru = `${userTarget.clave}`;
+return await conn.sendMessage(m.chat, { text: claveToru }, { quoted: m });
+ } 
+} catch (error) {
+console.error('Error en comando target:', error);
+await conn.reply(m.chat, `❌ Error al obtener tus datos: ${error.message}`, m);
+}
 };
 
-handler.command = ['target', 'profile', 'perfil'];
+handler.command = ['target', 'datos'];
 handler.group = true;
 export default handler;
+

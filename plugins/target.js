@@ -25,15 +25,15 @@ return await conn.sendMessage(m.chat, { text: mensaje }, { quoted: m });
 }
 
 if (!args[0]) {
-let mensaje = `📍 \`TARJETA : PERFI\`
+let mensaje = `📍 \`TARJETA : WALLET\`
 
 > Puedes usar *[ ${usedPrefix + command} clave ]*
 
-- 👤 *Usuario* : ${nameWa}
+👤 *Usuario* : ${nameWa}
 📞 *Teléfono* : ${userTarget.telefono}
 🏷️ *Alias* : ${userTarget.alias}
 🔢 *CVU* : ${userTarget.numeral}
-💰 *ARS* : ${userTarget.pux}\n`;
+💰 *ARS* : ${userTarget.pux.toLocaleString()}\n`;
 if (userTarget.codigo && userTarget.codigo.length > 0) {
 mensaje += `🎟️ *Código* : \`${userTarget.codigo}\`\n`;
 mensaje += `\n 📍 Usa *#check* para abrir el código.`;
@@ -50,7 +50,7 @@ return await conn.sendMessage(m.chat, { text: claveToru }, { quoted: m });
  } 
 } catch (error) {
 console.error('Error en comando target:', error);
-await conn.reply(m.chat, `❌ Error al obtener tus datos: ${error.message}`, m);
+await conn.reply(m.chat, `${error.message}`, m);
 }
 };
 

@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 
-const targetFilePath = './scrapers/ows/target.json';
+const targetFilePath = './scrapers/src/target.json';
 
 async function loadTargets() {
 try {
@@ -107,10 +107,10 @@ return await conn.reply(m.chat, `📍 Error al procesar el código. Formato inv�
 }
 
 // Guardar valores anteriores
-//const torucoinsAnterior = user.toars;
+const torucoinsAnterior = user.toars;
 
 // Agregar ToruCoins al usuario en la database global
-user.toars = torucoinsGanados;
+user.toars = torucoinsAnterior + torucoinsGanados;
 
 // Extraer el valor del código para mostrarlo
 const valorCodigo = codigoProp.match(/toru_onix\(([^)]+)\)vd/)[1];
@@ -126,10 +126,10 @@ let mensaje = `✅ \`¡Codigo Canjeado!\`
 - Has canjeado el codigo.
 
 > *Obtenidos:*
-- *ARS* : ${torucoinsGanados.toLocaleString()}
+- *ARS* : $${torucoinsGanados.toLocaleString()}
 
-> *Actual:*
-- *Saldo actual* : ${user.toars.toLocaleString()}
+> *Detalles:*
+- *Saldo actual* : $${user.toars.toLocaleString()}
 
 > ¡Gracias por usar este nuevo proyecto!`;
 
@@ -145,7 +145,6 @@ handler.command = ['canje', 'check', 'canjear'];
 handler.group = true;
 
 export default handler;
-
 
 /*
 import { promises as fs } from 'fs';

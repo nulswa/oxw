@@ -107,10 +107,10 @@ return await conn.reply(m.chat, `📍 Error al procesar el código. Formato inv�
 }
 
 // Guardar valores anteriores
-const torucoinsAnterior = user.toars || 0;
+//const torucoinsAnterior = user.toars;
 
 // Agregar ToruCoins al usuario en la database global
-user.toars = torucoinsAnterior + torucoinsGanados;
+user.toars = torucoinsGanados;
 
 // Extraer el valor del código para mostrarlo
 const valorCodigo = codigoProp.match(/toru_onix\(([^)]+)\)vd/)[1];
@@ -126,11 +126,10 @@ let mensaje = `✅ \`¡Codigo Canjeado!\`
 - Has canjeado el codigo.
 
 > *Obtenidos:*
-- *ARS* : $${torucoinsGanados.toLocaleString()}
+- *ARS* : ${torucoinsGanados.toLocaleString()}
 
-> *Detalles:*
-- *Saldo anterior* : $${torucoinsAnterior.toLocaleString()}
-- *Saldo actual* : $${user.toars.toLocaleString()}
+> *Actual:*
+- *Saldo actual* : ${user.toars.toLocaleString()}
 
 > ¡Gracias por usar este nuevo proyecto!`;
 
@@ -146,6 +145,7 @@ handler.command = ['canje', 'check', 'canjear'];
 handler.group = true;
 
 export default handler;
+
 
 /*
 import { promises as fs } from 'fs';

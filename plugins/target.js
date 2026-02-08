@@ -12,7 +12,7 @@ return [];
 }
 }
 
-let handler = async (m, { conn, usedPrefix, command }) => {
+let handler = async (m, { conn, args, usedPrefix, command }) => {
 const nameWa = await conn.getName(m.sender)
 const userId = m.sender;
 let user = global.db.data.users[userId];

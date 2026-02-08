@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 
-const targetFilePath = './scrapers/src/target.json';
+const targetFilePath = './src/target.json';
 
 async function loadTargets() {
 try {

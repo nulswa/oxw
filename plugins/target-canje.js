@@ -142,7 +142,7 @@ await conn.reply(m.chat, `${error.message}`, m);
 }
 };
 
-handler.command = ['canje', 'redeem', 'canjear'];
+handler.command = ['canje', 'check', 'canjear'];
 handler.group = true;
 
 export default handler;

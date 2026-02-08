@@ -19,6 +19,6 @@ user.bank -= count * 1
 user.torucoin += count * 1
 await conn.sendMessage(m.chat, { text: `Has retirado tus *[ ${toem} ${currency} ]* con exito.\n- Cantidad retirada: *$${count.toLocaleString()}* ${currency}` }, { quoted: m })
 }
-handler.command = ['ret', 'retirar']
+handler.command = ['ret']
 handler.group = true
 export default handler

@@ -1,3 +1,4 @@
+
 import { promises as fs } from 'fs';
 
 const targetFilePath = './scrapers/ows/target.json';
@@ -11,34 +12,45 @@ return [];
 }
 }
 
-let handler = async (m, { conn, usedPrefix, args, command }) => {
-const userId = m.sender;
+let handler = async (m, { conn, usedPrefix, command }) => {
 const nameWa = await conn.getName(m.sender)
+const userId = m.sender;
+let user = global.db.data.users[userId];
 
 try {
+// Cargar datos de targets
 const targets = await loadTargets();
+
+// Buscar si el usuario está registrado
 const userTarget = targets.find(t => t.usuario === userId);
 
+// Si el usuario NO está registrado
 if (!userTarget) {
 let mensaje = `📍  No tienes una cuenta registrada en *@T O R U*\n- Usa *${usedPrefix}me* para registrar tus datos.`;
 return await conn.sendMessage(m.chat, { text: mensaje }, { quoted: m });
 }
 
+// Obtener ToruCoins de la database global
+const torucoins = user.toars || 0;
+
 if (!args[0]) {
-let mensaje = `📍 \`TARJETA : WALLET\`
+// Si el usuario ESTÁ registrado, mostrar sus datos
+let mensaje = `📍 \`TARJETA : PERFI\`
+- Puedes usar *[ ${usedPrefix + command} clave ]*
 
-> Puedes usar *[ ${usedPrefix + command} clave ]*
+> *Fondos reservados:*
+💵 *ARS* : ${torucoins.toLocaleString()}
 
-👤 *Usuario*  :  ${nameWa}
-📞 *Teléfono*  :  ${userTarget.telefono}
-🏷️ *Alias*  :  ${userTarget.alias}
-🔢 *CVU*  :  ${userTarget.numeral}
-💰 *ARS*  :  $${userTarget.pux.toLocaleString()}\n`;
+👤 *Usuario* : ${nameWa}
+📞 *Teléfono* : ${userTarget.telefono}
+🏷️ *Alias* : ${userTarget.alias}
+🔢 *CVU* : ${userTarget.numeral}\n`;
+
 if (userTarget.codigo && userTarget.codigo.length > 0) {
-mensaje += `🎟️ *Código*  :  \`${userTarget.codigo}\`\n`;
+mensaje += `🎟️ *Código* : \`${userTarget.codigo}\`\n`;
 mensaje += `\n 📍 Usa *#check* para abrir el código.`;
 } else {
-mensaje += `🎟️ *Código*  :  Vacio\n`;
+mensaje += `🎟️ *Código* : Vacio\n`;
 mensaje += `\n📍 Los codigos se consiguen mediante eventos realizados.`;
 }
 
@@ -54,7 +66,8 @@ await conn.reply(m.chat, `${error.message}`, m);
 }
 };
 
-handler.command = ['target', 'datos'];
+handler.command = ['target', 'datos', 'perfil'];
 handler.group = true;
+
 export default handler;
 

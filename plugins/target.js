@@ -29,16 +29,16 @@ let mensaje = `📍 \`TARJETA : WALLET\`
 
 > Puedes usar *[ ${usedPrefix + command} clave ]*
 
-👤 *Usuario* : ${nameWa}
-📞 *Teléfono* : ${userTarget.telefono}
-🏷️ *Alias* : ${userTarget.alias}
-🔢 *CVU* : ${userTarget.numeral}
-💰 *ARS* : ${userTarget.pux.toLocaleString()}\n`;
+👤 *Usuario*  :  ${nameWa}
+📞 *Teléfono*  :  ${userTarget.telefono}
+🏷️ *Alias*  :  ${userTarget.alias}
+🔢 *CVU*  :  ${userTarget.numeral}
+💰 *ARS*  :  $${userTarget.pux.toLocaleString()}\n`;
 if (userTarget.codigo && userTarget.codigo.length > 0) {
-mensaje += `🎟️ *Código* : \`${userTarget.codigo}\`\n`;
+mensaje += `🎟️ *Código*  :  \`${userTarget.codigo}\`\n`;
 mensaje += `\n 📍 Usa *#check* para abrir el código.`;
 } else {
-mensaje += `🎟️ *Código* : Vacio\n`;
+mensaje += `🎟️ *Código*  :  Vacio\n`;
 mensaje += `\n📍 Los codigos se consiguen mediante eventos realizados.`;
 }
 

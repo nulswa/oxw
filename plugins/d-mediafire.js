@@ -17,7 +17,7 @@ const {name, size, date, mime, link} = res;
 const caption = `· ┄ · ⊸ 𔓕 *Mediafire : Download *
 
 \t＃ *Nombre* : ${name}
-\t＃ *Peso* : ${formatBytes(size)}
+\t＃ *Peso* : ${size}
 \t＃ *Publicado* : ${date}
 \t＃ *Fuente* : Mediafire
 
@@ -33,12 +33,14 @@ await conn.sendMessage(m.chat, { text: error.message }, { quoted: m });
 handler.command = ["mediafire", "mf"];
 export default handler;
 
+/*
 function formatBytes(bytes) {
 if (bytes === 0) return '0 B'
 const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
 const i = Math.floor(Math.log(bytes) / Math.log(1024))
 return `${(bytes / 1024 ** i).toFixed(2)} ${sizes[i]}`
 }
+*/
 
 async function mediafireDl(url) {
 try {

@@ -208,7 +208,7 @@ return { success: false, size: 0 };
 }
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.reply(m.chat, `*🎬 Ingresa el enlace de DramaBoxDB*\n\nEjemplo:\n${usedPrefix + command} https://www.dramaboxdb.com/movie/42000001178`, m);
+if (!text) return conn.reply(m.chat, `${mess.example}\n*${usedPrefix + command}* https://www.dramaboxdb.com/movie/xxxx`, m);
 
 await m.react('⏰');
 

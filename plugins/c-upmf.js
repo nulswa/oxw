@@ -10,7 +10,7 @@ return conn.sendMessage(m.chat, { text: `📍  Los comandos de *[ convertidor ]*
 
 let q = m.quoted ? m.quoted : m;
 let mime = (q.msg || q).mimetype || '';
-if (!mime) return conn.sendMessage(m.chat, { text: `${mssg.replya('mp4, mp3, jpg, gif, webp')}` }, { quoted: m });
+if (!mime) return conn.sendMessage(m.chat, { text: `ᗢ Responda a una extención para subirlo en Mediafire.` }, { quoted: m });
 await m.react("⏰");
 let mediaFont = "Mediafire";
 try {
@@ -54,7 +54,7 @@ const tokenResponse = await axios.post(
 const sessionData = tokenResponse.data;
 let sessionToken = sessionData.response?.session_token;
 if (!sessionToken) {
-throw new Error(`📍  Failed to get session token: ${JSON.stringify(sessionData)}`);
+throw new Error(`${JSON.stringify(sessionData)}`);
 }
 
 const actionTokenResponse = await axios.post(
@@ -91,7 +91,7 @@ checkForm,
 
 const checkData = checkResponse.data.response;
 if (checkData.result !== 'Success') {
- throw new Error(`📍  Check failed: ${JSON.stringify(checkData)}`);
+ throw new Error(`${JSON.stringify(checkData)}`);
 }
 
 let uploadUrl = 'https://www.mediafire.com/api/upload/resumable.php'; // Default fallback
@@ -148,7 +148,7 @@ if (resumableResponse.data && resumableResponse.data.response && resumableRespon
  if (pollResult.doupload.result === '0' && pollResult.doupload.status === '99') {
  quickKey = pollResult.doupload.quickkey;
  } else if (pollResult.doupload.result !== '0') {
- throw new Error(`📍  Poll Error: ${JSON.stringify(pollResult)}`);
+ throw new Error(`${JSON.stringify(pollResult)}`);
  } else {
  await new Promise(r => setTimeout(r, 2000));
  }
@@ -157,12 +157,12 @@ if (resumableResponse.data && resumableResponse.data.response && resumableRespon
 
 if (quickKey) {
 const link = `https://www.mediafire.com/file/${quickKey}/`;
-let toruUpload = `· ┄ · ⊸ 𔓕 *${mssg.resultado}  :  Mediafire*
+let toruUpload = `· ┄ · ⊸ 𔓕 *Mediafire  :  Upload*
 
-＃ *${mssg.nombre}* : ${filename}
-＃ *${mssg.peso}* : ${toruBit(fileSize)}
-＃ *${mssg.fuente}* : ${mediaFont}
-＃ *${mssg.enlace}* : ${link}
+＃ *Nombre* : ${filename}
+＃ *Peso* : ${toruBit(fileSize)}
+＃ *Fuente* : ${mediaFont}
+＃ *Enlace* : ${link}
 
 > ${textbot}`
 const thumbXd = Buffer.from(await (await fetch(`https://files.catbox.moe/uzje6f.jpg`)).arrayBuffer());
@@ -187,3 +187,4 @@ const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
 const i = Math.floor(Math.log(bytes) / Math.log(1024))
 return `${(bytes / 1024 ** i).toFixed(2)} ${sizes[i]}`
 }
+

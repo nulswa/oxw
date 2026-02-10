@@ -61,6 +61,7 @@ if (!("tagua" in user) || !isNumber(user.tagua)) user.tagua = 0
 if (!("taire" in user) || !isNumber(user.taire)) user.taire = 0
 if (!("toars" in user) || !isNumber(user.toars)) user.toars = 0
 if (!("tousd" in user) || !isNumber(user.tousd)) user.tousd = 0
+if (!("toper" in user) || !isNumber(user.toper)) user.toper = 0
 if (!("ttierra" in user) || !isNumber(user.ttierra)) user.ttierra = 0
 if (!("level" in user) || !isNumber(user.level)) user.level = 0
 if (!("health" in user) || !isNumber(user.health)) user.health = 100
@@ -91,8 +92,6 @@ name: m.name,
 exp: 0,
 torucoin: 0,
 toruexp: 0,
-torucoin: 0,
-toruexp: 0,
 torumana: 0,
 torupoder: 0,
 torufuerza: 0,
@@ -117,6 +116,7 @@ tagua: 0,
 taire: 0,
 toars: 0,
 tousd: 0,
+toper: 0,
 ttierra: 0,
 level: 0,
 health: 100,
@@ -165,6 +165,7 @@ if (!("fInformation" in chat)) chat.fInformation = true
 if (!("fLogos" in chat)) chat.fLogos = true
 if (!("fEdits" in chat)) chat.fEdits = false
 if (!("fPremium" in chat)) chat.fPremium = false
+if (!("fModerador" in chat)) chat.fModerador = false
 if (!("fModers" in chat)) chat.fModers = false
 if (!("fAdminbot" in chat)) chat.fAdminbot = false
 if (!("fGrupos" in chat)) chat.fGrupos = true
@@ -206,6 +207,7 @@ fInformation: true,
 fLogos: true,
 fEdits: false,
 fPremium: false,
+fModerador: false,
 fModers: false,
 fAdminbot: false,
 fGrupos: true,
@@ -255,7 +257,9 @@ const chat = global.db.data.chats[m.chat]
 const settings = global.db.data.settings[this.user.jid]  
 const isROwner = [...global.owner.map((number) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
 const isOwner = isROwner || m.fromMe
+const isMods = isROwner || global.mods.map((v) => v.replace(/[^0-9]/g, '') + "@s.whatsapp.net").includes(m.sender) || user.moderador == true
 const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender) || user.premium == true
+const isFriends = isROwner || global.mods.map((v) => v.replace(/[^0-9]/g, '') + "@s.whatsapp.net").includes(m.sender) || user.friends === true
 const isOwners = [this.user.jid, ...global.owner.map((number) => number + "@s.whatsapp.net")].includes(m.sender)
 if (settings.self && !isOwners) return
 if (settings.gponly && !isOwners && !m.chat.endsWith('g.us') && !/donar|pay|bk|mp|plan|creador|support/gim.test(m.text)) return
@@ -404,8 +408,16 @@ if (plugin.owner && !isOwner) {
 fail("owner", m, this)
 continue
 }
+if (plugin.premium && !isMods) {
+fail("mods", m, this)
+continue
+}
 if (plugin.premium && !isPrems) {
 fail("premium", m, this)
+continue
+}
+if (plugin.friends && !isFriends) {
+fail("friends", m, this)
 continue
 }
 if (plugin.group && !m.isGroup) {
@@ -446,7 +458,9 @@ isOwner,
 isRAdmin,
 isAdmin,
 isBotAdmin,
+isMods,
 isPrems,
+isFriends,
 chatUpdate,
 __dirname: ___dirname,
 __filename,
@@ -490,17 +504,17 @@ let edadaleatoria = ['10', '28', '20', '40', '18', '21', '15', '11', '9', '17', 
 let user2 = m.pushName || 'Anónimo'
 let verifyaleatorio = ['reg', 'verify'].getRandom()
  const msg = {
-rowner: mssg.proph,
-owner: mssg.dAdminh,
-mods: mssg.moderh,
-premium: mssg.premh,
-group: mssg.grupoh,
-private: mssg.privadoh,
-admin: mssg.adminsh,
-botAdmin: mssg.bAdminh,
-unreg: mssg.registroh, 
-friends: mssg.amigosh,
-restrict: mssg.estrich
+rowner: mess.prop,
+owner: mess.dAdmin,
+mods: mess.moder,
+premium: mess.prem,
+group: mess.grupo,
+private: mess.privado,
+admin: mess.admins,
+botAdmin: mess.bAdmin,
+unreg: mess.registro, 
+friends: mess.amigos,
+restrict: mess.estric
  }[type]
 if (msg) return conn.reply(m.chat, msg, m).then(_ => m.react('📍'))
 }

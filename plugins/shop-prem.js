@@ -7,8 +7,8 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
 let texto = `ᗢ Proporciona un numero y el tipo de duración.
 
 > *Duracion:*
-h = Por hora ( $${pHora.toLocaleString} *ARS* )
-d = Por dia ( $${pDia.toLocaleString} *ARS* )
+h = Por hora ( $1,000 *ARS* )
+d = Por dia ( $3,000 *ARS* )
 
 ${mess.example}
 *${usedPrefix + command}* 3 d`

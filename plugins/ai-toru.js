@@ -1,55 +1,45 @@
-import axios from "axios";
+
+import { randomBytes } from "crypto"
+import axios from "axios"
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* Imagina un gato con sombrero.` }, { quoted: m });
+if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* Hola` }, { quoted: m });
 try {
 await m.react("💬");
-const result = await fluximg.create(text);
-if (result && result.imageLink) {
-
-await conn.sendMessage(m.chat, { image: { url: result.imageLink },
-caption: `${botname}\n> ${textbot}` }, { quoted: m });
-} else {
-throw new Error(`${mess.fallo}`);
+let data = await chatGpt(text);
+await conn.sendMessage(m.chat, { text: data }, { quoted: m });
+} catch (err) {
+await conn.sendMessage(m.chat, { text: `${err.message}` }, { quoted: m });
 }
-} catch (error) {
-console.error(error);
-conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m });
 }
-};
 
-handler.command = ["flux"];
+handler.command = ['demo'];
 
 export default handler;
-
-const fluximg = {
-defaultRatio: "2:3", 
-
-create: async (query) => {
-const config = {
-headers: {
-accept: "*/*",
-authority: "1yjs1yldj7.execute-api.us-east-1.amazonaws.com",
-"user-agent": "Postify/1.0.0",
-},
-};
-
+async function chatGpt(query) {
 try {
-const response = await axios.get(
-`https://1yjs1yldj7.execute-api.us-east-1.amazonaws.com/default/ai_image?prompt=${encodeURIComponent(
-query
-)}&aspect_ratio=${fluximg.defaultRatio}`,
-config
-);
-return {
-imageLink: response.data.image_link,
-};
-} catch (error) {
-console.error(error);
-throw error;
+const { id_ } = (await axios.post("https://chat.chatgptdemo.net/new_chat", { user_id: "crqryjoto2h3nlzsg" }, { headers: { "Content-Type": "application/json" } })).data;
+
+const json = { "question": query, "chat_id": id_, "timestamp": new Date().getTime() };
+
+const { data } = await axios.post("https://chat.chatgptdemo.net/chat_api_stream", json, { headers: { "Content-Type": "application/json" } });
+const cek = data.split("data: ");
+
+let res = [];
+
+for (let i = 1; i < cek.length; i++) {
+if (cek[i].trim().length > 0) {
+res.push(JSON.parse(cek[i].trim()));
 }
-},
-};
+}
+
+return res.map((a) => a.choices[0].delta.content).join("");
+
+} catch (error) {
+console.error("Error parsing JSON:", error);
+return 404;
+}
+}
 
 
 

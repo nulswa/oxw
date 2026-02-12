@@ -57,7 +57,7 @@ await conn.reply(m.chat, mensaje, m);
 
 } else if (args[0] === "code" || args[0] === "clave") {
 let claveToru = `${userTarget.clave}`;
-return await conn.sendMessage(m.chat, { text: claveToru }, { quoted: m });
+return await conn.sendMessage(userTarget.usuario, { text: claveToru }, { quoted: m });
  } 
 } catch (error) {
 console.error('Error en comando target:', error);

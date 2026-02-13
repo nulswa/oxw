@@ -36,10 +36,9 @@ ${title}
 
 > ${textbot}`;
 
-const toruYt = await fetch("https://files.catbox.moe/d9picr.jpg");
-  const thumb3 = Buffer.from(await toruYt.arrayBuffer());
-  const toruEstilo = { key: { fromMe: false, participant: "0@s.whatsapp.net" }, message: { documentMessage: { title: textbot, fileName: "⧿ YouTube : Download ⧿", jpegThumbnail: thumb3 }}};
-await conn.sendMessage(m.chat, { text: toruWa }, { quoted: toruEstilo });
+const thumbMp = Buffer.from(await (await fetch(`https://raw.githubusercontent.com/nulswa/files/main/icons/icon-youtube.jpg`)).arrayBuffer())
+await conn.sendMessage(m.chat, { text: toruWa, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbMp, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+//await conn.sendMessage(m.chat, { text: thumbMp }, { quoted: toruEstilo });
   
 let head = await fetch(dl_url, { method: "HEAD" });
 let fileSize = head.headers.get("content-length") || 0;

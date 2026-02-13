@@ -40,6 +40,10 @@ let head = await fetch(dl_url, { method: "HEAD" });
 let fileSize = head.headers.get("content-length") || 0;
 let fileSizeMB = (fileSize / (1024 * 1024)).toFixed(2);
 
+const thumbMp = Buffer.from(await (await fetch(`https://raw.githubusercontent.com/nulswa/files/main/icons/icon-youtube.jpg`)).arrayBuffer())
+await conn.sendMessage(m.chat, { text: toruWa, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbMp, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+//await conn.sendMessage(m.chat, { text: thumbMp }, { quoted: toruEstilo });
+
 if (fileSizeMB >= 10) {
 await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: 'video/mp4', fileName, caption: `${caption}\n\n> 📍 Enviado como documento por *10MB*...`}, { quoted: m });
 } else {

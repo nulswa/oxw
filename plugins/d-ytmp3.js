@@ -24,7 +24,7 @@ const size = await getSize(dl_url);
 const sizeStr = size ? await formatSize(size) : 'Desconocido';
 
 const cleanTitle = title.replace(/[^\w\s]/gi, '').trim().replace(/\s+/g, '_');
-const fileName = `${cleanTitle}.mp3`;
+const fileName = `${cleanTitle}`;
 
 const caption = `${title}\n\n${botname}\n> ${textbot}`;
 let toruWa = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
@@ -49,18 +49,14 @@ if (fileSizeMB >= 10) {
 await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: 'audio/mpeg', fileName, caption: `${caption}\n📍 Enviado como documento por *10MB*...`}, { quoted: m });
 } else {
 await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: "audio/mpeg", fileName: title }, { quoted: m })
-//await conn.sendMessage(m.chat, { video: { url: dl_url }, mimetype: 'video/mp4', caption }, { quoted: m });
-}
-
-//await conn.sendMessage(m.chat, { react: { text: '✔️', key: m.key } });
-
+ }
 } catch (e) {
 console.error(e);
 conn.sendMessage(m.chat, { text: e.message }, { quoted: m });
 }
 };
 
-handler.command = ['ytmp3', 'mp3'];
+handler.command = ['ytmp3', 'mp3', 'audio'];
 
 export default handler;
 

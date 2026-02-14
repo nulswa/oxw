@@ -150,7 +150,7 @@ global.dfail('admin', m, conn)
 throw false
 }
 }
-chat.stickers = isEnable
+chat.fWaStick = isEnable
 break
 
 case 'audios':

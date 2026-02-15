@@ -1,31 +1,47 @@
 {
-"name": "oxw",
-"version": "1.8.2",
-"description": "Simple ChatBot.",
-"main": "index.js",
-"type": "module",
-"directories": {
-"lib": "lib",
-"plugins": "plugins"
-},
-"scripts": {
-"start": "node index.js"
-},
-"repository": {
-"type": "git",
-"url": "git+https://github.com/nulswa/oxw.git"
-},  
-"author": "Alan.Js",
-"license": "MIT-License",
-"bugs": {
-"url": "https://github.com/nulswa/oxw/issues"
-},
-"homepage": "https://github.com/nulswa/oxw#readme",
+  "name": "oxw",
+  "version": "2.8.6",
+  "description": "Lol",
+  "main": "index.js",
+  "type": "module",
+
+  "engines": {
+    "node": ">= 20.x"
+    "npm": ">=11.6.0"
+  },
+  "directories": {
+    "lib": "lib",
+    "src": "src",
+    "plugins": "plugins"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "qr": "node index.js qr",
+    "code": "node index.js code",
+    "eslint": "eslint .",
+    "eslintfix": "eslint --fix ."
+  },
+  "homepage": "https://github.com/nulswa/oxw",
+  "author": {
+    "name": "Farguts"
+  },
+  "collaborators": {
+    "col1": "Ramon",
+    "col2": "Ian",
+    "col3": "LolWa"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nulswa/oxw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nulswa/oxw/issues"
+  },
+  "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@whiskeysockets/baileys": "npm:wileys",
+    "@neoxr/wb": "^6.0.0-rc.31",
     "@adiwajshing/keyed-db": "^0.2.4",
-    "@bochilteam/scraper": "^4.2.4",
-    "@bochilteam/scraper-sosmed": "^1.0.5",
+    "baileys": "npm:@neoxr/baileys@8.2.19",
     "aptoide-scraper": "github:shadox-xyz/aptoide-scraper",
     "@xct007/frieren-scraper": "^0.0.2",
     "@ibaraki-douji/pixivts": "^2.4.1",
@@ -48,7 +64,6 @@
     "g-i-s": "^2.1.6",
     "google-it": "^1.6.4",
     "google-libphonenumber": "3.2.38",
-    "got-scraping": "^4.1.2",
     "gradient-string": "^2.0.2",
     "hispamemes": "^1.0.7",
     "human-readable": "^0.2.1",
@@ -94,9 +109,7 @@
   "optionalDependencies": {
     "wa-sticker-formatter": "^4.3.2",
     "moment-timezone": "^0.5.37"
-},
-"engines": {
-"node": ">=20.0.0"
+  },
+  "_note": "Compatible con todas las plataformas para bots de WhatsApp"
 }
-}
-    
+

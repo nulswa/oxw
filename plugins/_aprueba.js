@@ -24,7 +24,14 @@ buttonParamsJson: JSON.stringify({
 display_text: 'tap here',
 url: 'https://whatsapp.com/channel/0029Vb6BDQc0lwgsDN1GJ31i'
 })
-}
+},
+          {
+            name: 'quick_reply',
+            buttonParamsJson: JSON.stringify({
+              display_text: 'MENU',
+              id: `${usedPrefix}menu`
+            })
+          }
 ],
 mentions: [m.sender]
 })

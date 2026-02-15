@@ -6,7 +6,7 @@ const file = 'https://cdn.yupra.my.id/yp/6zu4qxn5.jpg'
 let xd = `Mensaje de prueba xd`
 await conn.sendMessage(m.chat, {
 product: {
-productImage: { url: file },
+productImage: { url: global.toruMenu },
 productId: '24529689176623820',
 title: botname,
 currencyCode: 'USD',

@@ -32,7 +32,7 @@ buttonParamsJson:
 },
 {
 name: 'quick_reply',
-buttonParamsJson: '{"display_text":"quick_reply","id":"#menu"}'
+buttonParamsJson: '{"display_text":"quick_reply","usedPrefix":"menu"}'
 },
 {
 name: 'cta_url',

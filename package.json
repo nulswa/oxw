@@ -6,7 +6,7 @@
   "type": "module",
 
   "engines": {
-    "node": ">= 20.x"
+    "node": ">= 20.x",
     "npm": ">=11.6.0"
   },
   "directories": {
@@ -39,9 +39,10 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@neoxr/wb": "^6.0.0-rc.31",
+    "@whiskeysockets/baileys": "github:gatanina-li/baileys",
     "@adiwajshing/keyed-db": "^0.2.4",
-    "baileys": "npm:@neoxr/baileys@8.2.19",
+    "@bochilteam/scraper": "^4.2.4",
+    "@bochilteam/scraper-sosmed": "^1.0.5",
     "aptoide-scraper": "github:shadox-xyz/aptoide-scraper",
     "@xct007/frieren-scraper": "^0.0.2",
     "@ibaraki-douji/pixivts": "^2.4.1",
@@ -109,7 +110,5 @@
   "optionalDependencies": {
     "wa-sticker-formatter": "^4.3.2",
     "moment-timezone": "^0.5.37"
-  },
-  "_note": "Compatible con todas las plataformas para bots de WhatsApp"
+  }
 }
-

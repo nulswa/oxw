@@ -36,7 +36,7 @@ title: '🔓 Para: Todos',
 description: '¡Conviértete en Bot con el método de código de 8 dígitos!',
 id: usedPrefix + 'serbot --code'
 },
-{header: '🤖 Ser Bot (qr)', title: '🔓 Para: Todos', description: 'Forma estándar de ser bot con código QR', id: usedPrefix + 'serbot'},
+{header: '🤖 Ser Bot (qr)', title: '🔓 Para: Todos', description: 'Forma estándar de ser bot con código QR', id: '/serbot'},
 {
 header: '🚄 Velocidad',
 title: '🔓 Para: Todos',

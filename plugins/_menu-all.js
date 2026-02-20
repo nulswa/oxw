@@ -178,8 +178,8 @@ const formatted = formatPluginCommands(plugin.commands, type, usedPrefix)
 lines.push(formatted)
 }
 
-fullMenu += lines.join('\n\n')
-fullMenu += `\n\n`
+fullMenu += lines.join('\n')
+fullMenu += `\n\n\n`
 }
 
 fullMenu += `\n> ${textbot}`

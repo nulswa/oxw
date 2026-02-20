@@ -22,6 +22,7 @@ const comandosTipo = {
 'rpg': 'unsolo',
 'utiles': 'unsolo',
 'socket': 'unsolo',
+'logos': 'todo',
 'random': 'unsolo',
 'reaccion': 'todo',
 'stickers': 'separado',
@@ -87,7 +88,7 @@ if (!commands || commands.length === 0) return ''
 
 switch(type) {
 case 'separado':
-return `${commands.map(cmd => `\t⊸≻ ${prefix}${cmd}`).join(' • ')}`
+return `\t⊸≻ ${commands.map(cmd => `${prefix}${cmd}`).join(' • ')}`
 
 case 'todo':
 return commands.map(cmd => `\t⊸≻ ${prefix}${cmd}`).join('\n')
@@ -96,7 +97,7 @@ case 'unsolo':
 return `⊸≻ ${prefix}${commands[0]}`
 
 default:
-return `${commands.map(cmd => `\t⊸≻ ${prefix}${cmd}`).join('\n')}`
+return `\t⊸≻ ${commands.map(cmd => `${prefix}${cmd}`).join('\n')}`
 }
 }
 
@@ -177,7 +178,7 @@ const formatted = formatPluginCommands(plugin.commands, type, usedPrefix)
 lines.push(formatted)
 }
 
-fullMenu += lines.join('\n')
+fullMenu += lines.join('\n\n')
 fullMenu += `\n\n`
 }
 

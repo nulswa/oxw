@@ -1,47 +1,34 @@
-import axios from 'axios'
-import fetch from 'node-fetch'
-let handler = async (m, { conn, usedPrefix, command, text }) => {
+import moment from 'moment-timezone'
+import fetch from 'node-fetch' 
 
+let handler = async (m, { conn, usedPrefix }) => {
+const file = 'https://cdn.yupra.my.id/yp/6zu4qxn5.jpg'
+let xd = `Mensaje de prueba xd`
 await conn.sendMessage(m.chat, {
-text: "✨ hola",
-footer: "Selecciona una opción:",
-buttons: [
-{
-type: 4,
-buttonId: "nativo",
-buttonText: { displayText: "🧪 Abrir opciones" },
-nativeFlowInfo: {
-name: "single_select",
-paramsJson: JSON.stringify({
-title: "📋 Lista de opciones",
-sections: [
-{
-title: "Acciones disponibles",
-highlight_label: "Haz clic abajo",
-rows: [
-{
-title: "🔁 Reiniciar Bot",
-description: "tragar semen",
-id: "#s"
+product: {
+productImage: { url: file },
+productId: '24529689176623820',
+title: botname,
+currencyCode: 'USD',
+priceAmount1000: '0',
+retailerId: 1677,
+productImageCount: 1
 },
+businessOwnerJid: m.sender,
+caption: xd.trim(),
+footer: `\n${textbot}`,
+interactiveButtons: [
 {
-title: "📊 Ver Estado",
-description: "orgia masiva en la pinche esquina",
-id: "#qc"
-}
-]
-}
-]
+name: 'cta_url',
+buttonParamsJson: JSON.stringify({
+display_text: 'tap here',
+url: 'https://whatsapp.com/channel/0029Vb6BDQc0lwgsDN1GJ31i'
 })
 }
-}
 ],
-headerType: 1,
-viewOnce: true
-}, { quoted: m });
-
+mentions: [m.sender]
+})
 }
 
-handler.command = ["test"]
+handler.command = ['test']
 export default handler
-  

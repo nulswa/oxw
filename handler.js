@@ -293,6 +293,15 @@ if (!('antiCall' in settings)) settings.antiCall = true
 if (!('fNoSpam' in settings)) settings.fNoSpam = false
 if (!('fAiBot' in settings)) settings.fAiBot = false
 if (!('prefix' in settings)) settings.prefix = opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®&.\\-.@'
+if (!('menuBot' in settings)) settings.menuBot = global.toruMenu
+if (!('imgBot' in settings)) settings.imgBot = global.toruImg
+if (!('nameBot' in settings)) settings.nameBot = global.botname
+if (!('descBot' in settings)) settings.descBot = global.textbot
+if (!('linkBot' in settings)) settings.linkBot = global.botweb
+if (!('groupBot' in settings)) settings.groupBot = global.botgroup
+if (!('canalBot' in settings)) settings.canalBot = global.botcanal
+if (!('moneBot' in settings)) settings.moneBot = global.currency
+if (!('expeBot' in settings)) settings.expeBot = global.currency2
 } else
 global.db.data.settings[this.user.jid] = {
 self: false,
@@ -308,6 +317,15 @@ antiCall: true,
 fNoSpam: false,
 fAiBot: false,
 prefix: opts['prefix'] || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®&.\\-.@',
+menuBot: global.toruMenu,
+imgBot: global.toruImg,
+nameBot: global.botname,
+descBot: global.textbot,
+linkBot: global.botweb,
+groupBot: global.botgroup,
+canalBot: global.botcanal,
+moneBot: global.currency,
+expeBot: global.currency2
 }
 } catch (e) {
 console.error(e)

@@ -8,16 +8,9 @@ import fs from "fs"
 global.botNumber = ""
 
 global.owner = ["5493873655135", "5493873634786", "5493876639332", "523142183828"]
-//[["5493873655135"], ["5493873634786"], ["5493876639332"], ["523142183828"]]
-
 global.prems = ["5493873655135"]
-  //[["5493873655135"], ["5493873634786"]]
-
 global.mods = ["5493873655135"]
-  //[["5493873634786"], ["5493873655135"]]
-
 global.suittag = "5493873655135"
-  //[["5493873655135"]]
 
 global.apikeyOptishield = "ebe2e764b8a003d278472b711498aec7" 
 
@@ -34,9 +27,9 @@ global.mess = {
   neces: '✦  *Requires at least 2 items...*',
   fallo: '✦  *Failed to get metadata...*',
   noapi: '✦  *API status: (error code: X)...*',
-  succs: '✦  *Command executed successfully...*',
+  succs: '✓  *Command executed successfully...*',
   socket: '✦  *Only sub-bots can use this command...*',
-  amigos: '✦  *Only friends added by the owner...*'
+  amigoss: '✦  *Only friends added by the owner...*'
 }
 
 global.fargs = {
@@ -53,10 +46,8 @@ global.fargs = {
   estric: '✦  *Comando restringido...*'
 }
 
-//
-//global.mssg = 'es'
-  
-global.botname = "き TORU > Ⓒmx_2.7.8-lt (norm)"
+global.botname = "⽷ TORU > Ⓒmx_3.0.2-lt (norm)"
+global.modevs = "(norm)"
 global.botweb = "https://ko-fi.com/farguts"
 global.textbot = "ᴍᴏᴅᴜʟᴀʀ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ ᴄʀᴇᴀᴛᴇᴅ ʙʏ @Farguts"
 global.botcanal = "https://whatsapp.com/channel/0029Vb7Rtoc5K3zQ08ioYc21"
@@ -64,17 +55,18 @@ global.botgroup = "https://chat.whatsapp.com/I9bKP27LAx1FltvoBBH0kU"
 global.toruImg = "https://i.postimg.cc/vmTrzt2Q/IMG-20260127-WA0051.jpg"
 global.toruMenu = "https://i.postimg.cc/QtVfF3Zq/Picsart-26-01-17-02-46-49-331.jpg"
 
-global.vs = "Ⓒmx_2.7.8-lt"
+global.vs = "Ⓒmx_3.0.2-lt"
 global.sessions = "Sessions/Principal"
 global.jadi = "Sessions/SubBot"
 global.alanWasock = true
 
-global.currency = "Yenes"
-global.currency2 = "Monedas"
+global.currency = "Toems"
+global.currency2 = "Wips"
 
-global.toem = "💴"
-global.toem2 = "🪙"
-global.toruads = "Sin anuncios por el momento..."
+global.emoji = "⽷"
+global.toem = "💸"
+global.toem2 = "🔮"
+global.toruads = "⽷  Sin anuncios por el momento..."
 
 global.toruCh = "https://i.postimg.cc/qRnCbb82/348d094689e5f711ca282a202f4f8ef1.jpg"
 

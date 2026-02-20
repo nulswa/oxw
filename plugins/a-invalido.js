@@ -5,8 +5,8 @@ if (!m.text || !global.prefix.test(m.text)) return
 const usedPrefix = global.prefix.exec(m.text)[0]
 const command = m.text.slice(usedPrefix.length).trim().split(' ')[0].toLowerCase()
 if (!command || command === 'bot') return
-const thumbRes = await fetch("")
-const thumbBuffer = await thumbRes.buffer()
+//const thumbRes = await fetch("")
+//const thumbBuffer = await thumbRes.buffer()
 const similarity = (a, b) => {
 let matches = 0
 for (let i = 0; i < Math.min(a.length, b.length); i++) {

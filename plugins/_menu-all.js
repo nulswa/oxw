@@ -51,7 +51,7 @@ readDir(fullPath)
 } else if (file.name.endsWith('.js')) {
 try {
 const content = readFileSync(fullPath, 'utf-8')
-
+ 
 // Extraer handler.command ._.
 const commandMatch = content.match(/handler\.command\s*=\s*\[([^\]]+)\]/)
 
@@ -100,7 +100,7 @@ case 'todo':
 return commands.map(cmd => `\t⊸≻ ${prefix}${cmd}`).join('\n')
 
 case 'unsolo':
-return `⊸≻ ${prefix}${commands[0]}`
+return `\t⊸≻ ${prefix}${commands[0]}`
 
 default:
 return `\t⊸≻ ${commands.map(cmd => `${prefix}${cmd}`).join('\n')}`

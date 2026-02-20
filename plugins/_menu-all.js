@@ -146,7 +146,16 @@ return menu
 
 
 let handler = async (m, { conn, usedPrefix, args, command }) => {
-const imageMenu = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
+
+  const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+  
+const imageMenu = Buffer.from(await (await fetch(`${botImg}`)).arrayBuffer())
 
 try {
 const user = global.db.data.users[m.sender]
@@ -156,7 +165,7 @@ const organized = organizeByTags(plugins)
 const sections = Object.keys(organized).sort()
 
 if (!args[0]) {
-let menu = `\t⽷ \`Lista de Menu\` ⽷\n`
+let menu = `\t⽷ \`Lista de Menu\` ⽷\n\n`
 menu += `\t📍 "Ingrese un argumento valido para ver el menu."\n\n`
 
 sections.forEach((tag, index) => {
@@ -166,8 +175,8 @@ menu += `▢ *${usedPrefix + command}* » ${tag} - *${index + 1}*\n`
 
 
 menu += `\n${mess.example}\n`
-menu += `*${usedPrefix + command}* all\n\n> ${textbot}`
-return await conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: imageMenu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+menu += `*${usedPrefix + command}* all\n\n> ${botDesc}`
+return await conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botName, body: botDesc, thumbnail: imageMenu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 //conn.reply(m.chat, menu, m)
 }
 
@@ -192,9 +201,9 @@ fullMenu += lines.join('\n')
 fullMenu += `\n\n\n`
 }
 
-fullMenu += `\n> ${textbot}`
+fullMenu += `\n> ${botDesc}`
 
-return await conn.sendMessage(m.chat, { text: fullMenu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: global.toruMenu, sourceUrl: null }}}, { quoted: m })
+return await conn.sendMessage(m.chat, { text: fullMenu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: botName, body: botDesc, containsAutoReply: true, mediaType: 1, thumbnailUrl: botMenu, sourceUrl: null }}}, { quoted: m })
 //conn.reply(m.chat, fullMenu, m)
 }
 
@@ -224,7 +233,7 @@ finalMenu += `\n`
 finalMenu += `⩩ *Seccion* : *${comandosTipo[selectedTag] || 'separado'}*\n`
 finalMenu += `⩩ *Comandos* : ${organized[selectedTag].length}\n\n> ${textbot}`
 
-await conn.sendMessage(m.chat, { text: finalMenu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: imageMenu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: finalMenu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botName, body: botDesc, thumbnail: imageMenu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 //conn.reply(m.chat, finalMenu, m)
 
 } catch (error) {

@@ -159,14 +159,13 @@ if (!("fSearch" in chat)) chat.fSearch = true
 if (!("fConvert" in chat)) chat.fConvert = true
 if (!("fAis" in chat)) chat.fAis = true
 if (!("fAjustes" in chat)) chat.fAjustes = true
-if (!("fTarget" in chat)) chat.fTarget = false
 if (!("fStickers" in chat)) chat.fStickers = true
 if (!("fOwners" in chat)) chat.fOwners = true
 if (!("fInformation" in chat)) chat.fInformation = true
 if (!("fLogos" in chat)) chat.fLogos = true
-if (!("fToxico" in chat)) chat.fToxico = false
 if (!("fEdits" in chat)) chat.fEdits = false
 if (!("fPremium" in chat)) chat.fPremium = false
+if (!("fModerador" in chat)) chat.fModerador = false
 if (!("fModers" in chat)) chat.fModers = false
 if (!("fAdminbot" in chat)) chat.fAdminbot = false
 if (!("fGrupos" in chat)) chat.fGrupos = true
@@ -179,11 +178,9 @@ if (!("fEnlaces2" in chat)) chat.fEnlaces2 = false
 if (!("fDescargas" in chat)) chat.fDescargas = true
 if (!("fRpg" in chat)) chat.fRpg = true
 if (!("fColection" in chat)) chat.fColection = true
-if (!("fCards" in chat)) chat.fCards = true
 if (!("fTienda" in chat)) chat.fTienda = true
 if (!("fWaStick" in chat)) chat.fWaStick = false
 if (!("fAutoStick" in chat)) chat.fAutoStick = false
-if (!("fAutoDown" in chat)) chat.fAutoDown = false
 if (!("fAudios" in chat)) chat.fAudios = false
 if (!("fMenu" in chat)) chat.fMenu = true
 } else global.db.data.chats[m.chat] = {
@@ -195,6 +192,7 @@ sBye: "",
 detect: false,
 primaryBot: null,
 fAdmin: false,
+fViewonce: false,
 fAceptar: false,
 fRechazar: false,
 fNobot: false,
@@ -203,14 +201,13 @@ fSearch: true,
 fConvert: true,
 fAis: true,
 fAjustes: true,
-fTarget: false,
 fStickers: true,
 fOwners: true,
 fInformation: true,
 fLogos: true,
-fToxico: false,
 fEdits: false,
 fPremium: false,
+fModerador: false,
 fModers: false,
 fAdminbot: false,
 fGrupos: true,
@@ -223,11 +220,9 @@ fEnlaces2: false,
 fDescargas: true,
 fRpg: true,
 fColection: true,
-fCards: true,
 fTienda: true,
 fWaStick: false,
 fAutoStick: false,
-fAutoDown: false,
 fAudios: false,
 fMenu: true
 }
@@ -238,13 +233,13 @@ global.db.data.settings[this.user.jid] = {}
 if (settings) {
 if (!("self" in settings)) settings.self = false
 if (!("restrict" in settings)) settings.restrict = true
-if (!("fJadi" in settings)) settings.fJadi = false
+if (!("fRentbot" in settings)) settings.fRentbot = false
 if (!("fPrivado" in settings)) settings.fPrivado = false
 if (!("gponly" in settings)) settings.gponly = false
 } else global.db.data.settings[this.user.jid] = {
 self: false,
 restrict: true,
-fJadi: false,
+fRentbot: false,
 fPrivado: false,
 gponly: false
 }} catch (e) {
@@ -507,7 +502,7 @@ console.log(m.message)
 global.dfail = (type, m, conn) => {
 let edadaleatoria = ['10', '28', '20', '40', '18', '21', '15', '11', '9', '17', '25'].getRandom()
 let user2 = m.pushName || 'Anónimo'
-let verifyaleatorio = ['reg', 'verify'].getRandom()
+//let verifyaleatorio = ['reg', 'verify'].getRandom()
  const msg = {
 rowner: fargs.prop,
 owner: fargs.dAdmin,

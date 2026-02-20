@@ -169,7 +169,7 @@ fullMenu += `⩩ *Version* : ${vs}\n⩩ *Tipo* : ${modevs}\n⩩ *Prefix* : Multi
 
 for (const tag of sections) {
 // Usar siempre tipo "separado" para ver todos
-const type = 'separado'
+const type = comandosTipo[tag] //'separado'
 
 fullMenu += `\t⽷ \`${tag.toUpperCase()}\` ≻\n`
 const lines = []

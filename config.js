@@ -51,7 +51,7 @@ global.modevs = "(norm)"
 global.botweb = "https://ko-fi.com/farguts"
 global.textbot = "ᴍᴏᴅᴜʟᴀʀ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ ᴄʀᴇᴀᴛᴇᴅ ʙʏ @Farguts"
 global.botcanal = "https://whatsapp.com/channel/0029Vb7Rtoc5K3zQ08ioYc21"
-global.botgroup = "https://chat.whatsapp.com/I9bKP27LAx1FltvoBBH0kU"
+global.botgroup = "https://chat.whatsapp.com/En4bbe8tRC8AC1aUjUbDkQ"
 global.toruImg = "https://i.postimg.cc/vmTrzt2Q/IMG-20260127-WA0051.jpg"
 global.toruMenu = "https://i.postimg.cc/QtVfF3Zq/Picsart-26-01-17-02-46-49-331.jpg"
 

@@ -22,7 +22,7 @@
 },
 "homepage": "https://github.com/nulswa/oxw#readme",
   "dependencies": {
-    "@whiskeysockets/baileys": "github:Davizuni17/Ryzewa",
+    "@whiskeysockets/baileys": "npm:wileys",
     "@adiwajshing/keyed-db": "^0.2.4",
     "@bochilteam/scraper": "^4.2.4",
     "@bochilteam/scraper-sosmed": "^1.0.5",

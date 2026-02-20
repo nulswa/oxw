@@ -121,7 +121,7 @@ return organized
 }
 
 function generateSectionMenu(tag, pluginsList, prefix = '#') {
-const type = comandosTipo[tag] || 'separado'
+const type = comandosTipo[tag] //|| 'separado'
 let menu = `⽷ \`${tag.toUpperCase()}\` ≻\n`
 
 // Generar líneas para cada plugin

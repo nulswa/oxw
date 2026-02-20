@@ -18,7 +18,7 @@ let menu = `╭─────────────────────
         // ... resto del menú
         
         // Enviar con imagen personalizada
-        await conn.sendFile(m.chat, botImg || botMenu, 'menu.jpg', menu, m)
+        await conn.sendFile(m.chat, botMenu, 'menu.jpg', menu, m)
         
     } catch (error) {
         console.error('Error en menú:', error)
@@ -28,3 +28,4 @@ let menu = `╭─────────────────────
 
 handler.command = ['utest']
 export default handler
+

@@ -13,20 +13,26 @@ const readMore = more.repeat(4001)
 //todo : #fb\n#facebook
 
 const comandosTipo = {
-'informacion': 'unsolo',
-'descargas': 'unsolo',
-'busquedas': 'unsolo',
-'convertidor': 'unsolo',
-'grupos': 'unsolo',
-'juegos': 'unsolo',
-'rpg': 'unsolo',
-'utiles': 'unsolo',
+'informacion': 'separado',
+'descargas': 'separado',
+'busquedas': 'separado',
+'convertidor': 'separado',
+'grupos': 'separado',
+'juegos': 'separado',
+'rpg': 'separado',
+'utiles': 'separado',
 'socket': 'unsolo',
 'logos': 'todo',
+'ajustes': 'todo',
+'premium': 'unsolo',
+'coleccion': 'unsolo',
+'editor': 'unsolo',
 'random': 'unsolo',
 'reaccion': 'todo',
 'stickers': 'separado',
+'tienda': 'unsolo',
 'inteligncia': 'unsolo',
+'pruebas': 'todo',
 'propietario': 'unsolo'
 }
 
@@ -121,7 +127,7 @@ return organized
 }
 
 function generateSectionMenu(tag, pluginsList, prefix = '#') {
-const type = comandosTipo[tag] //|| 'separado'
+const type = comandosTipo[tag] || 'separado'
 let menu = `⽷ \`${tag.toUpperCase()}\` ≻\n`
 
 // Generar líneas para cada plugin
@@ -169,7 +175,7 @@ fullMenu += `⩩ *Version* : ${vs}\n⩩ *Tipo* : ${modevs}\n⩩ *Prefix* : Multi
 
 for (const tag of sections) {
 // Usar siempre tipo "separado" para ver todos
-const type = comandosTipo[tag] //'separado'
+const type = comandosTipo[tag] // 'separado'
 
 fullMenu += `\t⽷ \`${tag.toUpperCase()}\` ≻\n`
 const lines = []
@@ -178,8 +184,8 @@ const formatted = formatPluginCommands(plugin.commands, type, usedPrefix)
 lines.push(formatted)
 }
 
-fullMenu += lines.join('\n')
-fullMenu += `\n\n\n`
+fullMenu += lines.join('\n\n')
+fullMenu += `\n\n`
 }
 
 fullMenu += `\n> ${textbot}`

@@ -31,6 +31,7 @@ const comandosTipo = {
 'reaccion': 'todo',
 'stickers': 'separado',
 'tienda': 'unsolo',
+'business': 'unsolo',
 'inteligncia': 'unsolo',
 'pruebas': 'todo',
 'propietario': 'unsolo'
@@ -51,7 +52,7 @@ readDir(fullPath)
 } else if (file.name.endsWith('.js')) {
 try {
 const content = readFileSync(fullPath, 'utf-8')
- 
+
 // Extraer handler.command ._.
 const commandMatch = content.match(/handler\.command\s*=\s*\[([^\]]+)\]/)
 
@@ -127,7 +128,7 @@ return organized
 }
 
 function generateSectionMenu(tag, pluginsList, prefix = '#') {
-const type = comandosTipo[tag] || 'separado'
+const type = comandosTipo[tag]
 let menu = `⽷ \`${tag.toUpperCase()}\` ≻\n`
 
 // Generar líneas para cada plugin
@@ -145,6 +146,8 @@ return menu
 
 
 let handler = async (m, { conn, usedPrefix, args, command }) => {
+const imageMenu = Buffer.from(await (await fetch(`${global.toruImg}`)).arrayBuffer())
+
 try {
 const user = global.db.data.users[m.sender]
 const plugins = getAllPlugins()
@@ -164,13 +167,14 @@ menu += `▢ *${usedPrefix + command}* » ${tag} - *${index + 1}*\n`
 
 menu += `\n${mess.example}\n`
 menu += `*${usedPrefix + command}* all\n\n> ${textbot}`
-return await conn.reply(m.chat, menu, m)
+return await conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: imageMenu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+//conn.reply(m.chat, menu, m)
 }
 
 const arg = args[0].toLowerCase()
 
 if (arg === '0' || arg === 'all') {
-let fullMenu = `> ${botname}\n\n`
+let fullMenu = `> 📍 Bienvenido/a al menu completo, ante cualquier error puede reportar con *#support* para una solución pendiente.\n\n`
 fullMenu += `⩩ *Version* : ${vs}\n⩩ *Tipo* : ${modevs}\n⩩ *Prefix* : Multi-Prefix\n⩩ *Secciones* : ${sections.length}\n⩩ *Plugins* : ${plugins.length}\n⩩ *URL* : ${botweb}\n${readMore}\n`
 
 for (const tag of sections) {
@@ -184,13 +188,14 @@ const formatted = formatPluginCommands(plugin.commands, type, usedPrefix)
 lines.push(formatted)
 }
 
-fullMenu += lines.join('\n\n')
-fullMenu += `\n\n`
+fullMenu += lines.join('\n')
+fullMenu += `\n\n\n`
 }
 
 fullMenu += `\n> ${textbot}`
 
-return await conn.reply(m.chat, fullMenu, m)
+return await conn.sendMessage(m.chat, { text: fullMenu, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: botname, body: textbot, containsAutoReply: true, mediaType: 1, thumbnailUrl: global.toruMenu, sourceUrl: null }}}, { quoted: m })
+//conn.reply(m.chat, fullMenu, m)
 }
 
 // Buscar por número o por nombre
@@ -219,7 +224,8 @@ finalMenu += `\n`
 finalMenu += `⩩ *Seccion* : *${comandosTipo[selectedTag] || 'separado'}*\n`
 finalMenu += `⩩ *Comandos* : ${organized[selectedTag].length}\n\n> ${textbot}`
 
-await conn.reply(m.chat, finalMenu, m)
+await conn.sendMessage(m.chat, { text: finalMenu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: imageMenu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+//conn.reply(m.chat, finalMenu, m)
 
 } catch (error) {
 await conn.reply(m.chat, error.message, m)

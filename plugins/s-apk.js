@@ -1,4 +1,5 @@
 import { search, download } from 'aptoide-scraper'
+import fetch from 'node-fetch'
 
 const MAX_FILE_SIZE_MB = 150
 const CACHE_TIME = 3 * 60 * 1000 // 3 minutos
@@ -48,12 +49,12 @@ caption += `⩩ *Peso* : APK\n\n`
 caption += `⏰ *Expira en:* 3 minutos\n\n`
 caption += `> ${botDesc}`
 
-const thumbnail = limitedResults[0].icon || null
+const thumbnail = "https://raw.githubusercontent.com/nulswa/files/main/icons/icon-file.jpg"
 
 let mensajeEnviado;
 
 if (thumbnail) {
-const thumbData = (await conn.getFile(thumbnail))?.data
+const thumbData = Buffer.from(await (await fetch(`${thumbnail}`)).arrayBuffer()) //(await conn.getFile(thumbnail))?.data
 mensajeEnviado = await conn.sendMessage(m.chat, { text: caption, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Apk : Search ⧿", body: botName, thumbnail: thumbData, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else {
 mensajeEnviado = await conn.sendMessage(m.chat, { text: caption }, { quoted: m })
@@ -93,6 +94,13 @@ await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
 }
 
 handler.before = async (m, { conn, usedPrefix }) => {
+
+const botJids = conn.user.jid
+let tarus = global.db.data.settings[botJids]
+
+const botWa = tarus?.nameBot || global.botname
+const botWe = tarus?.descBot || global.textbot
+
 if (!m.text) return false
 if (m.isBaileys) return false
 if (!m.quoted) return false
@@ -153,7 +161,7 @@ apkInfo += `> ${data.name}\n\n`
 apkInfo += `⩩ *Publicado* : ${data.lastup}\n`
 apkInfo += `⩩ *Peso* : ${data.size}\n`
 apkInfo += `⩩ *Paquete* : ${data.package}\n\n`
-apkInfo += `> ${botDesc}`
+apkInfo += `> ${botWe}`
 
 const thumb = data.icon ? (await conn.getFile(data.icon))?.data : null
 

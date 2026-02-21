@@ -134,7 +134,7 @@ if (settings.linkBot) {
 detailMenu += `🌐 Web: ${settings.linkBot}\n`
 }*/
 
-detailMenu += `> ${botDesc}`
+//detailMenu += `> ${botDesc}`
 
 // Enviar con la imagen del bot si existe
 const botImg = settings.imgBot || global.toruImg

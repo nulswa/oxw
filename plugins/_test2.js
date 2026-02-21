@@ -42,7 +42,7 @@ for (let i = 0; i < limitedResults.length; i++) {
 const app = limitedResults[i]
 caption += `> *${i + 1}* » ${app.name}\n`
 caption += `⩩ *ID* : ${app.id}\n`
-caption += `⩩ *Paquete* : ${app.package || 'N/A'}\n\n\n`
+caption += `⩩ *Peso* : ${app.size}\n\n\n`
 }
 
 caption += `⏰ *Expira en:* 3 minutos\n\n`

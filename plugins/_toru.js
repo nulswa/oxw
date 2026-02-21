@@ -8,13 +8,20 @@ const { generateWAMessageFromContent, prepareWAMessageMedia, proto } = pkg
 var handler = m => m
 handler.all = async function (m) { 
 
+  /*
 const botJid = conn.user.jid
 let settings = global.db.data.settings[botJid]
 
+global.botMenu = settings?.menuBot || global.toruMenu
+global.botImg = settings?.imgBot || global.toruImg
 global.botName = settings?.nameBot || global.botname
 global.botDesc = settings?.descBot || global.textbot
-global.botImg = settings?.imgBot || global.toruImg
-global.botMenu = settings?.menuBot || global.toruMenu
+global.botLink = settings?.linkBot || global.botweb
+global.botGroup = settings?.groupBot || global.botgroup
+global.botCanal = settings?.canalBot || global.botcanal
+global.botMon = settings?.moneBot || global.currency
+global.botExp = settings?.expeBot || global.currency2
+*/
   
 global.canalIdM = ["120363424098891946@newsletter", "120363405568666234@newsletter"]
 global.canalNombreM = ["[  MX COMMUNITY  ]", "[  MX  ]"]

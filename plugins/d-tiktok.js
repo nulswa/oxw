@@ -20,7 +20,7 @@ if (!json || json.code !== 0 || !json.data) return conn.sendMessage(m.chat, { te
 const data = json.data
 const { id, region, title, cover, origin_cover, duration, play, wmplay, music, music_info, play_count, digg_count, comment_count, share_count, download_count, author, images, create_time } = data
 await m.react("⏰")
-await conn.sendMessage(m.chat, { video: { url: play }, caption: `${botname}\n> ${textbot}`, gifPlayback: false, jpegThumbnail: Buffer.from(await (await fetch(cover)).arrayBuffer()) }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: play }, caption: `${botName}\n> ${botDesc}`, gifPlayback: false, jpegThumbnail: Buffer.from(await (await fetch(cover)).arrayBuffer()) }, { quoted: m })
 //await m.react("✅")
 } catch (err) {
 console.error(err)

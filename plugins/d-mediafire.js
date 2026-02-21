@@ -29,6 +29,14 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 if (!args[0]) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://mediafire.com/xxx` }, { quoted: m });
 if (!args[0].match(/mediafire\.com/)) return conn.sendMessage(m.chat, { text: `${mess.unlink}` }, { quoted: m });
 
@@ -62,9 +70,9 @@ let toruWa = `· ┄ · ⊸ 𔓕 *Mediafire  :  Download*
 \t＃ *Peso* : ${sizeStr}
 \t＃ *Fuente* : Mediafire
 
-> ${textbot}`
+> ${botDesc}`
 const thumbMf = Buffer.from(await (await fetch(`https://raw.githubusercontent.com/nulswa/files/main/icons/icon-mediafire.jpg`)).arrayBuffer());
-await conn.sendMessage(m.chat, { text: toruWa, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Mediafire : Download ⧿", body: botname, thumbnail: thumbMf, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m });
+await conn.sendMessage(m.chat, { text: toruWa, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Mediafire : Download ⧿", body: botName, thumbnail: thumbMf, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m });
 await conn.sendFile(m.chat, tmpPath, fileName, ``, m);
 
 if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);

@@ -81,6 +81,17 @@ return album
 }
 
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
+if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
+return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
+}
+
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
 
 const query = text?.trim() || args?.join(' ')
 if (!query) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* nino nakano` }, { quoted: m })
@@ -125,7 +136,7 @@ const caption = `· ┄ · ⊸ 𔓕 *Safebooru :  Download*
 ⩩ *Imagenes* » *${imageBuffers.length}* imagenes
 ⩩ *Fuente* » Safebooru
 
-> ${textbot}`
+> ${botDesc}`
 
 if (imageBuffers.length === 1) {
 await conn.sendMessage(m.chat, { image: imageBuffers[0], caption }, { quoted: m })

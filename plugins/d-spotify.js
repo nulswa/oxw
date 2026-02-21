@@ -4,6 +4,14 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 if (!text) return client.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://open.spotify.com/xxx` }, { quoted: m })
 try {
 await m.react("⏰")
@@ -23,9 +31,9 @@ let mensaje = `· ┄ · ⊸ 𔓕 *Spotify  :  Download*
 \t＃ *Artista* : ${toru.author}
 \t＃ *Duracion* : ${secondString(toru.duration)}
 
-> ${textbot}`
+> ${botDesc}`
 const thumb = (await conn.getFile(toru.image))?.data
-await conn.sendMessage(m.chat, { text: mensaje, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Spotify : Download ⧿", body: botname, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: mensaje, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Spotify : Download ⧿", body: botDesc, thumbnail: thumb, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 await conn.sendMessage(m.chat, { audio: { url: toru.download }, mimetype: "audio/mpeg", fileName: toru.title }, { quoted: m })
 //await m.react("✅")
 } catch (e) {

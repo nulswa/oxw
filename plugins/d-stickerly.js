@@ -7,6 +7,14 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 if (!args[0]) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://sticker.ly/x/xxxx` }, { quoted: m })
 
 await m.react("⏰")
@@ -30,8 +38,8 @@ const info = `· ┄ · ⊸ 𔓕 *StickerLy  :  Download*
 \t＃ Exports : *${toNum(data.exportCount)}* exportados
 \t＃ Animados : *${data.isAnimated ? "Sí" : "No"}*
 
-> ${textbot}`.trim()
-await conn.sendMessage(m.chat, { text: info, contextInfo: { externalAdReply: { title: `${data.name}`, body: botname, thumbnailUrl: data.preview, sourceUrl: data.url, mediaType: 1, renderLargerThumbnail: false, },},}, { quoted: m })
+> ${botDesc}`.trim()
+await conn.sendMessage(m.chat, { text: info, contextInfo: { externalAdReply: { title: `${data.name}`, body: botName, thumbnailUrl: data.preview, sourceUrl: data.url, mediaType: 1, renderLargerThumbnail: false, },},}, { quoted: m })
 
 let success = 0
 let failed = 0

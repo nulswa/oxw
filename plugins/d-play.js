@@ -12,6 +12,14 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 let usoCorrecto = mess.example + `\n*${usedPrefix + command}* Golden Brown.`
 if (!text) return conn.sendMessage(m.chat, { text: usoCorrecto }, { quoted: m })
 await m.react("⏰")
@@ -29,12 +37,12 @@ const texto1 = `· ┄ · ⊸ 𔓕 *Play  :  YouTube*
 - Audio
 - Video
 
-> ${textbot}`.trim()
+> ${botDesc}`.trim()
 
 tempStorage[m.sender] = {url: yt_play[0].url, title: yt_play[0].title}
 
 const thumbXd = (await conn.getFile(yt_play[0].thumbnail))?.data
-await conn.sendMessage(m.chat, { text: texto1, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: yt_play[0].title, body: "⧿ YouTube : Download ⧿", containsAutoReply: true, mediaType: 1, thumbnailUrl: yt_play[0].thumbnail, sourceUrl: null }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: texto1, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: yt_play[0].title, body: botName, containsAutoReply: true, mediaType: 1, thumbnailUrl: yt_play[0].thumbnail, sourceUrl: null }}}, { quoted: m })
 //conn.sendMessage(m.chat, { text: texto1, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: "YouTub", thumbnail: thumbXd, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 }
 
@@ -109,7 +117,7 @@ await m.react("⏰")
 const {mediaData, isDirect} = await download(videoApis)
 if (mediaData) {
 const fileSize = await getFileSize(mediaData)
-const messageOptions = {fileName: `${userVideoData.title}.mp4`, caption: `${botname}\n> ${textbot}`, mimetype: 'video/mp4'}
+const messageOptions = {fileName: `${userVideoData.title}.mp4`, caption: `${botName}\n> ${botDesc}`, mimetype: 'video/mp4'}
 if (fileSize > LimitVid) {
 await conn.sendMessage(m.chat, {document: isDirect ? mediaData : {url: mediaData}, ...messageOptions}, {quoted: m || null})
 //await m.react("✅")

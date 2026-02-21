@@ -6,6 +6,14 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 try {
 if (!text) return conn.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* https://youtube.com/xxxx` }, { quoted: m });
 if (!/^(?:https?:\/\/)?(?:www\.|m\.|music\.)?youtu\.?be/.test(args[0])) {
@@ -29,7 +37,7 @@ const sizeStr = size ? await formatSize(size) : 'Desconocido';
 const cleanTitle = title.replace(/[^\w\s]/gi, '').trim().replace(/\s+/g, '_');
 const fileName = `${cleanTitle}`;
 
-const caption = `${title}\n\n${botname}\n> ${textbot}`;
+const caption = `${botName}\n> ${botDesc}`;
 let toruWa = `· ┄ · ⊸ 𔓕 *YouTube  :  Download*
 
 ${title}
@@ -37,10 +45,10 @@ ${title}
 \t＃ *Fuente* : YouTube
 \t＃ *Tipo* : Audio *(mp3)*
 
-> ${textbot}`;
+> ${botName}`;
 
 const thumbMp = Buffer.from(await (await fetch(`https://raw.githubusercontent.com/nulswa/files/main/icons/icon-youtube.jpg`)).arrayBuffer())
-await conn.sendMessage(m.chat, { text: toruWa, mentions: [m.sender], contextInfo: { externalAdReply: { title: botname, body: textbot, thumbnail: thumbMp, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await conn.sendMessage(m.chat, { text: toruWa, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ YouTube : MP3 ⧿", body: botName, thumbnail: thumbMp, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 
 let head = await fetch(dl_url, { method: "HEAD" });
 let fileSize = head.headers.get("content-length") || 0;

@@ -5,6 +5,14 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 try {
 if (!args[0]) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://www.facebook.com/xxx` }, { quoted: m })
 const url = args[0]
@@ -38,7 +46,7 @@ videoTitle = data.data.title || 'Video de Facebook'
 return conn.sendMessage(m.chat, { text: mess.nosear }, { quoted: m })
 }
 
-await conn.sendMessage(m.chat, { video: { url: videoUrl }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: videoUrl }, caption: `${botName}\n> ${botDesc}` }, { quoted: m })
 //await m.react('✅')
 } catch (error) {
 await conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })

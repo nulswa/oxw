@@ -6,11 +6,13 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
-  const botJid = conn.user.jid
+const botJid = conn.user.jid
 let settings = global.db.data.settings[botJid]
 
 const botName = settings?.nameBot || global.botname
 const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
 
 if (command === "tiktok" || command === "tt") {
 if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://vm.tiktok.com/xxx/` }, { quoted: m })

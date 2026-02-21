@@ -6,16 +6,24 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 if (!args[0]) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://www.instagram.com/xxxx/xxxx/xxxx` }, { quoted: m })
 if (!args[0].match(/instagram/gi)) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
 try {
 await m.react("⏰")
 let res = await igdl(args[0])
 if (res.type === 'video') {
-conn.sendMessage(m.chat, { video: { url: res.video_url }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
+conn.sendMessage(m.chat, { video: { url: res.video_url }, caption: `${botName}\n> ${botDesc}` }, { quoted: m })
 } else {
 for (let img of res.images) {
-return conn.sendMessage(m.chat, { image: { url: img }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
+return conn.sendMessage(m.chat, { image: { url: img }, caption: `${botName}\n> ${botDesc}` }, { quoted: m })
 }
 }
 } catch (error) {

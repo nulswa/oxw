@@ -6,13 +6,21 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://pin.it/xxxx` }, { quoted: m })
 try {
 await m.react('⏰')
 if (text.includes("https://")) {
 let i = await dl(args[0])
 let isVideo = i.download.includes(".mp4")
-await conn.sendMessage(m.chat, { [isVideo ? "video" : "image"]: { url: i.download }, caption: i.title }, { quoted: m })
+await conn.sendMessage(m.chat, { [isVideo ? "video" : "image"]: { url: i.download }, caption: `${botName}\n- ${botDesc}` }, { quoted: m })
 //await m.react("✅")
 }
 } catch (e) {

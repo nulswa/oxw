@@ -5,6 +5,14 @@ if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+const botImg = settings?.imgBot || global.toruImg
+const botMenu = settings?.menuBot || global.toruMenu
+
 if (!args[0]) return client.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://x.com/xxx` }, { quoted: m })
 if (!/^(https?:\/\/)?(www\.)?(twitter\.com|x\.com)\//i.test(args[0])) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
 try {
@@ -16,10 +24,10 @@ let formattedDate = uploadedDate.toLocaleDateString('es-ES', { weekday: 'long', 
 
 for (let media of download) {
 if (media.tipo === "image/jpg") {
-await conn.sendMessage(m.chat, { image: { url: media.dl_url }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
+await conn.sendMessage(m.chat, { image: { url: media.dl_url }, caption: `${botName}\n> ${botDesc}` }, { quoted: m })
 //await m.react("✅")
 } else if (media.tipo === "video/mp4") {
-await conn.sendMessage(m.chat, { video: { url: media.dl_url }, caption: `${botname}\n> ${textbot}` }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: media.dl_url }, caption: `${botName}\n> ${botDesc}` }, { quoted: m })
 //await m.react("✅")
 }}} catch (error) {
 console.error(error)

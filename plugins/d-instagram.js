@@ -1,7 +1,60 @@
+import { gotScraping } from 'got-scraping';
+import { CookieJar } from 'tough-cookie';
+import crypto from 'crypto';
 
-import axios from 'axios'
+const CONFIG = {
+SITE_URL: 'https://fastdl.app',
+API_URL: 'https://api-wh.fastdl.app/api/convert',
+MSEC_URL: 'https://fastdl.app/msec',
+HMAC_KEY: '34ac9a1aa6aaa7d69a7075611898f16a85d496b1d8f1c7aaa5640a2d93d7af80',
+BUILD_TOKEN: 1770240123231,
+UA: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+};
 
-let handler = async (m, { conn, args, text, usedPrefix, command }) => {
+function signRequest(url, ts) {
+return crypto.createHmac('sha256', Buffer.from(CONFIG.HMAC_KEY, 'hex'))
+ .update(url + ts)
+ .digest('hex');
+}
+
+function formatNumber(num) {
+if (!num && num !== 0) return '0';
+if (num >= 1_000_000) return (num / 1_000_000).toFixed(1) + 'M';
+if (num >= 1_000) return (num / 1_000).toFixed(1) + 'K';
+return String(num);
+}
+
+async function fetchMedia(targetUrl) {
+const cookieJar = new CookieJar();
+
+await gotScraping({ url: CONFIG.SITE_URL, cookieJar, headers: { 'User-Agent': CONFIG.UA } });
+
+let ts = Date.now();
+try {
+const msec = await gotScraping({ url: CONFIG.MSEC_URL, cookieJar, responseType: 'json',
+headers: { 'Referer': CONFIG.SITE_URL } });
+const serverMs = Math.floor(msec.body.msec * 1000);
+if (Math.abs(ts - serverMs) >= 60000) ts -= (ts - serverMs);
+} catch(e) {}
+
+// Firmar y enviar
+const sig = signRequest(targetUrl, ts);
+const res = await gotScraping.post({
+url: CONFIG.API_URL,
+cookieJar,
+form: { sf_url: targetUrl, ts: String(ts), _ts: String(CONFIG.BUILD_TOKEN), _tsc: '0', _sv: '2', _s: sig },
+headers: {
+'Origin': CONFIG.SITE_URL, 'Referer': CONFIG.SITE_URL + '/',
+'Accept': 'application/json, text/plain, */*',
+'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+'User-Agent': CONFIG.UA,
+},
+responseType: 'json',
+});
+return res.body;
+}
+
+let handler = async (m, { conn, args, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fDescargas && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *descargas* estan desactivados...` }, { quoted: m })
 }
@@ -14,143 +67,41 @@ const botDesc = settings?.descBot || global.textbot
 const botImg = settings?.imgBot || global.toruImg
 const botMenu = settings?.menuBot || global.toruMenu
 
-if (!args[0]) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://www.instagram.com/xxxx/xxxx/xxxx` }, { quoted: m })
-if (!args[0].match(/instagram/gi)) return conn.sendMessage(m.chat, { text: mess.unlink }, { quoted: m })
+const text = args.length >= 1 ? args.join(" ") : null;
+if (!text) return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* https://instagram.com/xxx` }, { quoted: m });
+
 try {
-await m.react("⏰")
-let res = await igdl(args[0])
-if (res.type === 'video') {
-conn.sendMessage(m.chat, { video: { url: res.video_url }, caption: `${botName}\n> ${botDesc}` }, { quoted: m })
-} else {
-for (let img of res.images) {
-return conn.sendMessage(m.chat, { image: { url: img }, caption: `${botName}\n> ${botDesc}` }, { quoted: m })
+await m.react('⏰');
+const data = await fetchMedia(text);
+
+if (!data || !data.url || data.url.length === 0) {
+return conn.sendMessage(m.chat, { text: `${mess.nosear}` }, { quoted: m });
 }
-}
-} catch (error) {
-console.log(error)
-conn.sendMessage(m.chat, { text: `${error.message}` }, { quoted: m })
-}}
 
-handler.command = ['instagram', 'ig']
-handler.tags = ["descargas"]
+const videoList = data.url.filter(v => v.url);
+if (videoList.length === 0) return conn.sendMessage(m.chat, { text: `${mess.fallo}\n- Error de descarga...` }, { quoted: m });
+const bestVideo = videoList[0]; 
 
-export default handler
+const meta = data.meta || {};
+const title = meta.title || meta.source || '';
 
+let caption = '';
+if (title) caption += `📝 ${title}`;
+if (meta.like_count || data.like_count) caption += `\n❤️ *Likes:* ${formatNumber(meta.like_count || data.like_count)}`;
+if (meta.comment_count || data.comment_count) caption += `\n💬 *Comentarios:* ${formatNumber(meta.comment_count || data.comment_count)}`;
+caption = caption.trim();
 
-async function ig(url) {
-try {
-let e = 'https://igram.website/content.php?url=' + encodeURIComponent(url)
-let { data } = await axios.post(e, '', {
-headers: {
-authority: 'igram.website',
-accept: '*/*',
-'accept-language': 'id-ID,id;q=0.9',
-'content-type': 'application/x-www-form-urlencoded',
-cookie: '',
-referer: 'https://igram.website/',
-'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-'sec-ch-ua-mobile': '?1',
-'sec-ch-ua-platform': '"Android"',
-'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36'
-}
-})
-return data
+await conn.sendMessage(m.chat, { video: { url: bestVideo.url }, caption: `${botName}\n> ${botDesc}` }, { quoted: m });
+//await m.react('✅');
+
 } catch (e) {
-return { error: e.message }
-}}
-
-function parse(html) {
-let clean = html.replace(/\n|\t/g, '')
-let videoMatch = [...clean.matchAll(/<source src="([^"]+)/g)].map(x => x[1])
-let imageMatch = [...clean.matchAll(/<img src="([^"]+)/g)].map(x => x[1])
-if (imageMatch.length > 0) imageMatch = imageMatch.slice(1)
-let captionRaw = clean.match(/<p class="text-sm"[^>]*>(.*?)<\/p>/)
-let caption = captionRaw ? captionRaw[1].replace(/<br ?\/?>/g, '\n') : ''
-let likes = clean.match(/far fa-heart"[^>]*><\/i>\s*([^<]+)/)
-let comments = clean.match(/far fa-comment"[^>]*><\/i>\s*([^<]+)/)
-let time = clean.match(/far fa-clock"[^>]*><\/i>\s*([^<]+)/)
-
-return {
-is_video: videoMatch.length > 0,
-videos: videoMatch,
-images: imageMatch,
-caption,
-likes: likes ? likes[1] : null,
-comments: comments ? comments[1] : null,
-time: time ? time[1] : null
+console.error(e);
+conn.sendMessage(m.chat, { text: e.message }, { quoted: m });
 }
 }
 
-async function igdl(url) {
-let raw = await ig(url)
-if (!raw || !raw.html) return { error: 'error' }
-let parsed = parse(raw.html)
+handler.tags = ['descargas']
+handler.command = ['ig', 'instagram']
 
-return {
-status: raw.status,
-username: raw.username,
-type: parsed.is_video ? 'video' : 'image',
-video_url: parsed.is_video && parsed.videos.length > 0 ? parsed.videos[0] : null,
-images: parsed.is_video ? [] : parsed.images,
-caption: parsed.caption,
-likes: parsed.likes,
-comments: parsed.comments,
-time: parsed.time
-}
-}
+export default handler;
 
-
-
-/*
-import fetch from 'node-fetch'
-import axios from 'axios'
-const handler = async (m, {conn, args, command, usedPrefix}) => {
-let ponloXd = `\t〤*I N S T A G R A M*
-
-\t⸭ 📌 \`\`\`Proporcione un enlace de Instagram.\`\`\`
-
-\t⚶ Por ejemplo:
-*${usedPrefix + command}* https://www.instagram.com/xxxx/xxxx/xxxx`
-if (!args[0]) conn.sendMessage(m.chat, { text: ponloXd }, { quoted: m })
-let videoToru = `🎬*download-instagram_video.mp4*`
-let imageToru = `🖼️*donwload-instagram_image.jpg*`
-let conToru = `📥*donwload-instagram_file*`
-await m.react("⏰")
-try {
-const res = await fetch(`https://api.siputzx.my.id/api/d/igdl?url=${args}`)
-const data = await res.json()
-const fileType = data.data[0].url.includes('.webp') ? 'image' : 'video'
-const downloadUrl = data.data[0].url
-if (fileType === 'image') {
-await conn.sendFile(m.chat, downloadUrl, 'ig.jpg', imageToru, m, null)
-} else if (fileType === 'video') {
-await conn.sendFile(m.chat, downloadUrl, 'ig.mp4', videoToru, m, null)
-}
-} catch {
-try {
-const apiUrl = `${apis}/download/instagram?url=${encodeURIComponent(args[0])}`
-const apiResponse = await fetch(apiUrl)
-const delius = await apiResponse.json()
-if (!delius || !delius.data || delius.data.length === 0) return m.react('❌')
-const downloadUrl = delius.data[0].url
-const fileType = delius.data[0].type
-if (!downloadUrl) return m.react('❌')
-if (fileType === 'image') {
-await conn.sendFile(m.chat, downloadUrl, 'ig.jpg', imageToru, m, null)
-} else if (fileType === 'video') {
-await conn.sendFile(m.chat, downloadUrl, 'ig.mp4', videoToru, m, null)
-} else {
-return m.react('❌')
-}
-} catch (e) {
-await conn.reply(m.chat, `📍 ${e.message}`, m)
-console.log(e)
-}
-}
-}
-handler.help = ['instagram <link ig>']
-handler.tags = ['downloader']
-handler.command = ["instagram", "ig"]
-export default handler
- 
-*/

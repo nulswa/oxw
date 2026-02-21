@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+/*import fetch from 'node-fetch'
 
 export async function before(m, { conn }) {
 if (!m.text || !global.prefix.test(m.text)) return
@@ -40,3 +40,4 @@ const texto = `El comando *(${usedPrefix + command})* no existe.
 ${sugerencias}`
 await conn.sendMessage(m.chat, { text: texto.trim() }, { quoted: m })
  }
+*/

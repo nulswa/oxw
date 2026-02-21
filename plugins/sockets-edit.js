@@ -194,7 +194,7 @@ break
 case 'web':
 case 'link':
 if (!value) return conn.sendMessage(m.chat, { text: `${emoji} Proporciona un enlace web.\n\n${mess.example}\n*${usedPrefix + command}* web https://ejemplo.com` }, { quoted: m })
-if (!/^(https?:\/\/)?(www\.)?\//i.test(value)) return conn.sendMessage(m.chat, { text: `${mess.unlink}` }, { quoted: m })
+if (!/^(https?:\/\/)?(www\.)\//i.test(value)) return conn.sendMessage(m.chat, { text: `${mess.unlink}` }, { quoted: m })
 settings.linkBot = value
 await conn.sendMessage(m.chat, { text: `${mess.succs}\n- New Web: *${value}*` }, { quoted: m })
 break

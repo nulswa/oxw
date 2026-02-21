@@ -12,13 +12,15 @@ global.prems = ["5493873655135"]
 global.mods = ["5493873655135"]
 global.suittag = "5493873655135"
 
-global.apikeyOptishield = "ebe2e764b8a003d278472b711498aec7" 
+global.OptiShield.callApi("", {});
 
-global.toruOptishield = async (params) => {
-params.apikey = global.apikeyOptishield;
-const { data: json } = await axios("https://optishield.uk/api/", { params });
-return json
-}
+//global.apikeyOptishield = "ebe2e764b8a003d278472b711498aec7" 
+
+//global.toruOptishield = async (params) => {
+//params.apikey = global.apikeyOptishield;
+//const { data: json } = await axios("https://optishield.uk/api/", { params });
+//return json
+//}
 
 global.mess = {
   example: '✦  *Ejemplo de uso:*',

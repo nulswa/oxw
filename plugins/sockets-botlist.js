@@ -131,7 +131,7 @@ let detailMenu = `\t\t⽷ \`Info : Socket\` ⽷
 ⩩ *Prefix* » ${prefixType}
 ⩩ *Estado* » ✅
 
-⽷ *Enlace* » https://wa.me/${fullNumber}`
+> 📍  Puedes hacerte *sub-bot* si la función está activa.`
 
 
 /*if (settings.canalBot) {
@@ -152,7 +152,7 @@ const botImg = settings.imgBot || global.toruImg
 if (botImg) {
 try {
  const bailPhoto = Buffer.from(await (await fetch(`${botImg}`)).arrayBuffer())
-await await conn.sendMessage(m.chat, { text: detailMenu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botName, body: botDesc, thumbnail: bailPhoto, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+await await conn.sendMessage(m.chat, { text: detailMenu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botName, body: botDesc, thumbnail: bailPhoto, sourceUrl: `https://wa.me/${fullNumber}`, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
  //conn.sendFile(m.chat, botImg, 'bot.jpg', detailMenu, m)
 } catch (e) {
 await conn.sendMessage(m.chat, { text: detailMenu }, { quoted: m })

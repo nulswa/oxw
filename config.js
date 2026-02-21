@@ -4,7 +4,7 @@ import axios from "axios"
 import fetch from 'node-fetch'
 import { fileURLToPath } from "url"
 import fs from "fs"
-import '../OptiShield.js'
+//import '../OptiShield.js'
 
 global.botNumber = ""
 
@@ -13,7 +13,7 @@ global.prems = ["5493873655135"]
 global.mods = ["5493873655135"]
 global.suittag = "5493873655135"
 
-global.OptiShield.callApi("", {});
+//global.OptiShield = callApi("", {});
 
 //global.apikeyOptishield = "ebe2e764b8a003d278472b711498aec7" 
 

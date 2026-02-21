@@ -15,7 +15,7 @@ if (hours > 0) result.push(`${hours}h`)
 if (minutes > 0) result.push(`${minutes}m`)
 if (seconds > 0) result.push(`${seconds}s`)
 
-return result.length > 0 ? result.join(' ') // : '0s'
+return result.length > 0 ? result.join(' ') : '0s'
 }
 
 // Función para censurar número
@@ -84,7 +84,7 @@ menu += `> *${index + 1}. ${botName}*\n`
 menu += `⩩ *Tipo* » ${tipo}\n`
 menu += `⩩ *Numero* » ${censoredNumber}\n`
 menu += `⩩ *Prefix* » ${prefixType}\n`
-menu += `⩩ *Runtime* » ${runtime}\n\n\n`
+menu += `⩩ *Estado* » Activo\n\n\n`
 })
 
 

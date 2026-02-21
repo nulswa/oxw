@@ -80,8 +80,8 @@ const runtime = formatRuntime(Date.now() - startTime)
 
 const tipo = bot.isMain ? 'Principal' : 'Sub-Bot'
 
-menu += `> *${index + 1}. ${botName}${tipo}*\n`
-menu += `⩩ *Tipo* » ${censoredNumber}\n`
+menu += `> *${index + 1}. ${botName}*\n`
+menu += `⩩ *Tipo* » ${tipo}\n`
 menu += `⩩ *Numero* » ${censoredNumber}\n`
 menu += `⩩ *Prefix* » ${prefixType}\n`
 menu += `⩩ *Runtime* » ${runtime}\n\n\n`

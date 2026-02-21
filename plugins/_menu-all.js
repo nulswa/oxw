@@ -129,7 +129,7 @@ return organized
 
 function generateSectionMenu(tag, pluginsList, prefix = '#') {
 const type = comandosTipo[tag]
-let menu = `⽷ \`${tag.toUpperCase()}\` ≻\n`
+let menu = `⽷ \`${tag.toUpperCase()}\` ≻\n\n> 📍 Bienvenido/a a esta sección, reporte con *${prefix}support* si encuentras un error.\n\n`
 
 // Generar líneas para cada plugin
 const lines = []
@@ -154,6 +154,8 @@ const botName = settings?.nameBot || global.botname
 const botDesc = settings?.descBot || global.textbot
 const botImg = settings?.imgBot || global.toruImg
 const botMenu = settings?.menuBot || global.toruMenu
+const botLink = settings?.linkBot || global.botweb
+const botPrefix = settings?.prefix || '#'
   
 const imageMenu = Buffer.from(await (await fetch(`${botImg}`)).arrayBuffer())
 
@@ -183,8 +185,8 @@ return await conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contex
 const arg = args[0].toLowerCase()
 
 if (arg === '0' || arg === 'all') {
-let fullMenu = `> 📍 Bienvenido/a al menu completo, ante cualquier error puede reportar con *#support* para una solución pendiente.\n\n`
-fullMenu += `⩩ *Version* : ${vs}\n⩩ *Tipo* : ${modevs}\n⩩ *Prefix* : Multi-Prefix\n⩩ *Secciones* : ${sections.length}\n⩩ *Plugins* : ${plugins.length}\n⩩ *URL* : ${botweb}\n${readMore}\n`
+let fullMenu = `> 📍 Bienvenido/a al menu completo, ante cualquier error puede reportar con *${usedPrefix}support* para una solución pendiente.\n\n`
+fullMenu += `⩩ *Version* : ${vs}\n⩩ *Tipo* : ${modevs}\n⩩ *Prefix* : ${botPrefix}\n⩩ *Secciones* : ${sections.length}\n⩩ *Plugins* : ${plugins.length}\n⩩ *URL* : ${botLink}\n${readMore}\n`
 
 for (const tag of sections) {
 // Usar siempre tipo "separado" para ver todos

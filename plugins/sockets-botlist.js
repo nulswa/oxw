@@ -46,7 +46,15 @@ return prefix
 }
 
 let handler = async (m, { conn, usedPrefix, command, text, args }) => {
-try {
+const botJide = conn.user.jid
+let editors = global.db.data.settings[botJide]
+
+const taruName = editors?.nameBot || global.botname
+const taruDesc = editors?.descBot || global.textbot
+const taruImg = editors?.imgBot || global.toruImg
+const taruMenu = editors?.menuBot || global.toruMenu
+
+ try {
 // Obtener todos los bots conectados
 const bots = [
 { conn: global.conn, user: global.conn.user, isMain: true },
@@ -89,8 +97,9 @@ menu += `⩩ *Estado* » Activo\n\n\n`
 
 
 menu += `> Puedes usar el mismo comando con el index para ver sus detalles...`
-
-return await conn.sendMessage(m.chat, { text: menu }, { quoted: m })
+const thumbBot = Buffer.from(await (await fetch(`${taruImg}`)).arrayBuffer())
+return await conn.sendMessage(m.chat, { text: menu, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Sockets : Connected ⧿", body: taruName, thumbnail: thumbBot, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+ //conn.sendMessage(m.chat, { text: menu }, { quoted: m })
 }
 
 // Si hay argumento numérico, mostrar info detallada del bot
@@ -120,8 +129,9 @@ let detailMenu = `\t\t⽷ \`Info : Socket\` ⽷
 ⩩ *Tipo* » ${tipo}
 ⩩ *Numero* » +${fullNumber}
 ⩩ *Prefix* » ${prefixType}
-⩩ *Runtime* » ${runtime}
-⩩ *Estado* » ✅\n\n`
+⩩ *Estado* » ✅
+
+⽷ *Enlace* » https://wa.me/${fullNumber}`
 
 
 /*if (settings.canalBot) {
@@ -141,7 +151,9 @@ const botImg = settings.imgBot || global.toruImg
 
 if (botImg) {
 try {
-await conn.sendFile(m.chat, botImg, 'bot.jpg', detailMenu, m)
+ const bailPhoto = Buffer.from(await (await fetch(`${botImg}`)).arrayBuffer())
+await await conn.sendMessage(m.chat, { text: detailMenu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botName, body: botDesc, thumbnail: bailPhoto, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+ //conn.sendFile(m.chat, botImg, 'bot.jpg', detailMenu, m)
 } catch (e) {
 await conn.sendMessage(m.chat, { text: detailMenu }, { quoted: m })
 }

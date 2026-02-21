@@ -4,6 +4,7 @@ import axios from "axios"
 import fetch from 'node-fetch'
 import { fileURLToPath } from "url"
 import fs from "fs"
+import '../OptiShield.js'
 
 global.botNumber = ""
 

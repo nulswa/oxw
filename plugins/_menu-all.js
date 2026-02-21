@@ -21,7 +21,7 @@ const comandosTipo = {
 'juegos': 'separado',
 'rpg': 'separado',
 'utiles': 'separado',
-'socket': 'unsolo',
+'socket': 'separado',
 'logos': 'todo',
 'ajustes': 'todo',
 'premium': 'unsolo',

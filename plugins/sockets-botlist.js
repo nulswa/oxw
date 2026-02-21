@@ -88,7 +88,7 @@ menu += `⩩ *Runtime* » ${runtime}\n\n\n`
 })
 
 
-menu += `> ${botDesc}`
+menu += `> Puedes usar el mismo comando con el index para ver sus detalles...`
 
 return await conn.sendMessage(m.chat, { text: menu }, { quoted: m })
 }

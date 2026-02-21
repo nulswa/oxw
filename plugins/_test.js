@@ -1,5 +1,32 @@
+import fs from 'fs';
 
-let handler = async (m, { conn }) => {
+let handler = async (m, { text, usedPrefix, command }) => {
+    if (!text) {
+        return m.reply(`⚽🔵 Por favor, ingresa el nombre de la táctica que quieres guardar 🎯`);
+    }
+
+    if (!m.quoted || !m.quoted.text) {
+        return m.reply(`🎯⚡ Responde al mensaje con el contenido para guardarlo 🤖`);
+    }
+
+    const ruta = `plugins/${text}.js`;
+
+    try {
+        await fs.writeFileSync(ruta, m.quoted.text);
+        m.reply(`✅ ¡guardado! Archivo: ${ruta} 🔥`);
+    } catch (error) {
+        m.reply(`🚫 ¡Error al guardar! ${error.message}  🚫`);
+    }
+};
+
+//handler.help = ['saveplugin'];
+//handler.tags = ['owner'];
+handler.command = ["saveplugin"];
+//handler.owner = true;
+
+export default handler;
+
+/*let handler = async (m, { conn }) => {
   let msg = m.quoted ? m.quoted : m
   let mime = (msg.msg || msg).mimetype || ''
 
@@ -49,5 +76,6 @@ handler.tags = ['convertidor']
 handler.command = ['cdn']
 
 export default handler
+*/
 
 

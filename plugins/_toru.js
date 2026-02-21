@@ -8,6 +8,14 @@ const { generateWAMessageFromContent, prepareWAMessageMedia, proto } = pkg
 var handler = m => m
 handler.all = async function (m) { 
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+global.botName = settings?.nameBot || global.botname
+global.botDesc = settings?.descBot || global.textbot
+global.botImg = settings?.imgBot || global.toruImg
+global.botMenu = settings?.menuBot || global.toruMenu
+  
 global.canalIdM = ["120363424098891946@newsletter", "120363405568666234@newsletter"]
 global.canalNombreM = ["[  MX COMMUNITY  ]", "[  MX  ]"]
 global.channelRD = await getRandomChannel()
@@ -18,7 +26,7 @@ global.skpack2 = `\n${global.botname}`
 
 global.wapi = "toru-api"
 global.torub = "toru/baileys"
-
+  
 global.miapi = {
 vreden: "https://api.vreden.web.id",
 nekos: "https://api.nekolabs.web.id",

@@ -7,7 +7,7 @@ let apkCache = {}
 
 var handler = async (m, { conn, usedPrefix, command, text }) => {
 if (!global.db.data.chats[m.chat].fSearch && m.isGroup) {
-return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*Los comandos de *búsquedas* están desactivados...` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *búsquedas* están desactivados...` }, { quoted: m })
 }
 
 const botJid = conn.user.jid
@@ -32,7 +32,7 @@ return conn.sendMessage(m.chat, { text: mess.nosear }, { quoted: m })
 }
 
 // Limitar a 10 resultados
-const limitedResults = results.slice(0, 10)
+const limitedResults = results.slice(0, 15)
 
 let caption = `· ┄ · ⊸ 𔓕 *Apk : Search*\n\n`
 caption += `\t❒ *Búsqueda* : ${text}\n`
@@ -43,7 +43,7 @@ for (let i = 0; i < limitedResults.length; i++) {
 const app = limitedResults[i]
 caption += `> *${i + 1}* » ${app.name}\n`
 caption += `⩩ *ID* : ${app.id}\n`
-caption += `⩩ *Peso* : APK\n\n`
+caption += `⩩ *Tipo* : APK\n\n`
 }
 
 caption += `⏰ *Expira en:* 3 minutos\n\n`

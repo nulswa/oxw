@@ -1,4 +1,4 @@
-import fetch from 'node-fetch' 
+/*import fetch from 'node-fetch' 
 
 let handler = async (m, { conn }) => {
   await conn.reply(m.chat, '⏳ Iniciando subida de gifs...', m)
@@ -68,5 +68,6 @@ handler.command = ['subirgifs']
 //handler.rowner = true
 
 export default handler
+*/
 
 

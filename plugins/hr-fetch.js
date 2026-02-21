@@ -7,7 +7,7 @@ return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *herramienta
 }
 
 if (m.fromMe) return
-if (!/^https?:\/\//.test(text)) return client.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* https://ejemplo.com` }, { quoted: m })
+if (!/^https?:\/\//.test(text)) return conn.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* https://ejemplo.com` }, { quoted: m })
 let url = text
 await m.react('⏰')
 let res = await fetch(url)

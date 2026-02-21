@@ -15,7 +15,7 @@ if (hours > 0) result.push(`${hours}h`)
 if (minutes > 0) result.push(`${minutes}m`)
 if (seconds > 0) result.push(`${seconds}s`)
 
-return result.length > 0 ? result.join(' ') : '0s'
+return result.length > 0 ? result.join(' ') // : '0s'
 }
 
 // Función para censurar número

@@ -66,7 +66,7 @@ conn.sendMessage(m.chat, { text: e.message }, { quoted: m });
 }
 };
 
-handler.command = ['ytmp4', 'mp4', 'video'];
+handler.command = ['ytmp4', 'mp4'];
 handler.tags = ["descargas"];
 export default handler;
 

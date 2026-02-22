@@ -65,7 +65,7 @@ conn.sendMessage(m.chat, { text: e.message }, { quoted: m });
 }
 };
 
-handler.command = ['ytmp3', 'mp3', 'audio'];
+handler.command = ['ytmp3', 'mp3'];
 handler.tags = ["descargas"];
 export default handler;
 

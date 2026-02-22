@@ -76,8 +76,14 @@ return null
 var handler = async (m, { text, conn, usedPrefix, command }) => {
 if (!global.db.data.chats[m.chat].fSearch && m.isGroup) {
 return conn.sendMessage(m.chat, { text: `*[ ⽷ ]*  Los comandos de *búsquedas* estan desactivados...` }, { quoted: m })
-}
+} 
 
+const botJid = conn.user.jid
+let settings = global.db.data.settings[botJid]
+
+const botName = settings?.nameBot || global.botname
+const botDesc = settings?.descBot || global.textbot
+  
 if (!text) {
 return conn.sendMessage(m.chat, { text: mess.example + `\n*${usedPrefix + command}* Golden Brown` }, { quoted: m })
 }
@@ -105,7 +111,7 @@ caption += `⩩ *Enlace* : ${track.url || 'N/A'}\n\n\n`
 }
 
 caption += `⏰ *Expira en:* 3 minutos\n\n`
-caption += `> ${textbot}`
+caption += `> ${botDesc}`
 
 const thumbnail = results[0].image || results[0].thumbnail || null
 
@@ -113,7 +119,7 @@ let mensajeEnviado;
 
 if (thumbnail) {
 const thumbData = (await conn.getFile(thumbnail))?.data
-mensajeEnviado = await conn.sendMessage(m.chat, { text: caption, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Spotify : Search ⧿", body: botname, thumbnail: thumbData, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
+mensajeEnviado = await conn.sendMessage(m.chat, { text: caption, mentions: [m.sender], contextInfo: { externalAdReply: { title: "⧿ Spotify : Search ⧿", body: botDesc, thumbnail: thumbData, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 } else {
 mensajeEnviado = await conn.sendMessage(m.chat, { text: caption }, { quoted: m })
 }
@@ -136,7 +142,7 @@ if (spotifyCache[messageId] && spotifyCache[messageId].activo && !spotifyCache[m
 spotifyCache[messageId].expirado = true
 spotifyCache[messageId].activo = false
 
-conn.sendMessage(m.chat, { text: `⏰  La búsqueda de Spotify ha expirado.\n- Usa *[ ${usedPrefix + command} ]* para buscar de nuevo.` })
+//conn.sendMessage(m.chat, { text: `⏰  La búsqueda de Spotify ha expirado.\n- Usa *[ ${usedPrefix + command} ]* para buscar de nuevo.` })
 
 // Limpiar después de 10 segundos
 setTimeout(() => {
@@ -180,7 +186,7 @@ if (searchCache.expirado || !searchCache.activo) {
 // Solo mostrar mensaje de expiración si aún no se ha mostrado
 if (!searchCache.mensajeMostrado) {
 searchCache.mensajeMostrado = true
-await conn.sendMessage(m.chat, { text: `⏰  La búsqueda ha expirado.\n\n> Vuelve a usar el comando de búsqueda.` }, { quoted: m })
+//await conn.sendMessage(m.chat, { text: `⏰  La búsqueda ha expirado.\n\n> Vuelve a usar el comando de búsqueda.` }, { quoted: m })
 }
 return true
 }

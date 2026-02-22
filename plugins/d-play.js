@@ -67,7 +67,7 @@ const thumbnails = videoData.thumbnail
 let mensajeEnviado;
 
 if (thumbnails) {
-const thumbData = (await conn.getFile(thumbnail))?.data
+const thumbData = (await conn.getFile(thumbnails))?.data
 mensajeEnviado = await conn.sendMessage(m.chat, { text: caption, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "⧿ YouTube : Play ⧿", body: botName, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbData, sourceUrl: null }}}, { quoted: m })
 } else {
 mensajeEnviado = await conn.sendMessage(m.chat, { text: caption }, { quoted: m })

@@ -2,7 +2,7 @@ import fetch from "node-fetch"
 import axios from "axios"
 import yts from 'yt-search'
 
-const CACHE_TIME = 1 * 60 * 1000 // 1 minutos
+const CACHE_TIME = 2 * 60 * 1000 // 1 minutos
 let playCache = {}
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
@@ -183,18 +183,18 @@ let fileSizeMB = (fileSize / (1024 * 1024)).toFixed(2)
 //const caption = `${botName}\n> ${botDesc}`
 
 if (asDoc) {
-await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: mimeType, fileName: fileName, caption: `📍 Enviado como documento por exceder *15MB*` }, { quoted: m })
+await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: mimeType, fileName: fileName, caption: `📍 Enviado como documento por exceder *10MB*` }, { quoted: m })
 } else {
 
 if (formato === 'audio') {
 if (fileSizeMB >= 15) {
-await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: mimeType, fileName: fileName, caption: `📍 Enviado como documento por exceder *20MB*` }, { quoted: m })
+await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: mimeType, fileName: fileName, caption: `📍 Enviado como documento por exceder *15MB*` }, { quoted: m })
 } else {
 await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: mimeType, fileName: fileName }, { quoted: m })
 }
 } else {
 if (fileSizeMB >= 20) {
-await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: mimeType, fileName: fileName, caption: `${caption}\n\n📍 Enviado como documento por exceder 10MB` }, { quoted: m })
+await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: mimeType, fileName: fileName, caption: `📍 Enviado como documento por exceder *20MB*` }, { quoted: m })
 } else {
 await conn.sendMessage(m.chat, { video: { url: dl_url }, mimetype: mimeType, fileName: fileName }, { quoted: m })
 }

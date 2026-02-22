@@ -144,6 +144,19 @@ menu += `\n`
 return menu
 }
 
+function getPrefixType(prefix) {
+if (!prefix || prefix === null) {
+return 'noprefix'
+}
+
+const multiPrefix = '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®&.\\-.@'
+
+if (prefix === multiPrefix) {
+return 'multi-prefix'
+}
+
+return prefix
+}
 
 let handler = async (m, { conn, usedPrefix, args, command }) => {
 
@@ -155,7 +168,7 @@ const botDesc = settings?.descBot || global.textbot
 const botImg = settings?.imgBot || global.toruImg
 const botMenu = settings?.menuBot || global.toruMenu
 const botLink = settings?.linkBot || global.botweb
-const botPrefix = settings?.prefix || '#'
+const botPrefix = getPrefixType(settings?.prefix)
   
 const imageMenu = Buffer.from(await (await fetch(`${botImg}`)).arrayBuffer())
 
@@ -232,8 +245,8 @@ const sectionMenu = generateSectionMenu(selectedTag, organized[selectedTag], use
 
 let finalMenu = sectionMenu
 finalMenu += `\n`
-finalMenu += `⩩ *Seccion* : *${comandosTipo[selectedTag] || 'separado'}*\n`
-finalMenu += `⩩ *Comandos* : ${organized[selectedTag].length}\n\n> ${textbot}`
+finalMenu += `⩩ *Menu Tipo* : *${comandosTipo[selectedTag]}*\n`
+finalMenu += `⩩ *Comandos* : ${organized[selectedTag].length}\n\n> ${botDesc}`
 
 await conn.sendMessage(m.chat, { text: finalMenu, mentions: [m.sender], contextInfo: { externalAdReply: { title: botName, body: botDesc, thumbnail: imageMenu, sourceUrl: null, mediaType: 1, renderLargerThumbnail: false }}}, { quoted: m })
 //conn.reply(m.chat, finalMenu, m)

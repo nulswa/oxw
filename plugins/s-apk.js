@@ -77,7 +77,7 @@ apkCache[messageId].expirado = true
 apkCache[messageId].activo = false
 
 //Na mas avisar por las dudas :v
-conn.sendMessage(m.chat, { text: `⏰ La búsqueda de APK ha expirado.\n- Usa *[ ${usedPrefix + command} ]* para buscar de nuevo.` })
+//conn.sendMessage(m.chat, { text: `⏰ La búsqueda de APK ha expirado.\n- Usa *[ ${usedPrefix + command} ]* para buscar de nuevo.` })
 
 setTimeout(() => {
 delete apkCache[messageId]
@@ -122,7 +122,7 @@ if (!searchCache) return false
 if (searchCache.expirado || !searchCache.activo) {
 if (!searchCache.mensajeMostrado) {
 searchCache.mensajeMostrado = true
-await conn.sendMessage(m.chat, { text: `⏰ La búsqueda ha expirado.\n> Vuelve a usar el comando de búsqueda.` }, { quoted: m })
+//await conn.sendMessage(m.chat, { text: `⏰ La búsqueda ha expirado.\n> Vuelve a usar el comando de búsqueda.` }, { quoted: m })
 }
 return true
 }

@@ -17,7 +17,7 @@ const botName = settings?.nameBot || global.botname
 const botDesc = settings?.descBot || global.textbot
 
 if (!text) {
-return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* Golden Brown` }, { quoted: m })
+return conn.sendMessage(m.chat, { text: `${mess.example}\n*${usedPrefix + command}* Golden Brown\n\nO puede proporcionar un enlace.` }, { quoted: m })
 }
 
 try {
@@ -62,11 +62,11 @@ let caption = `· ┄ · ⊸ 𔓕 *YouTube : Play*
 
 > ${botDesc}`
 
-const thumbnail = videoData.thumbnail || videoData.image
+const thumbnails = videoData.thumbnail
 
 let mensajeEnviado;
 
-if (thumbnail) {
+if (thumbnails) {
 const thumbData = (await conn.getFile(thumbnail))?.data
 mensajeEnviado = await conn.sendMessage(m.chat, { text: caption, contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { showAdAttribution: false, renderLargerThumbnail: true, title: "⧿ YouTube : Play ⧿", body: botName, containsAutoReply: true, mediaType: 1, thumbnailUrl: thumbData, sourceUrl: null }}}, { quoted: m })
 } else {
